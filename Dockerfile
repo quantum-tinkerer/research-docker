@@ -67,7 +67,8 @@ RUN conda clean --yes --all
 # Enable jupyter nbextension-s
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel &&\
     jupyter nbextension enable --py --sys-prefix jupyter_cms &&\
-    jupyter nbextension enable --py --sys-prefix jupyter_dashboards
+    jupyter nbextension enable --py --sys-prefix jupyter_dashboards &&\
+    jupyter nbextension enable --py --sys-prefix nbserverproxy
 
 # prevent nb_conda_kernels from overriding our custom kernel manager
 RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json

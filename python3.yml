@@ -43,5 +43,6 @@ dependencies:
   - python-graphviz
   - xarray
   - pip:
+    - git+https://github.com/jupyterhub/nbserverproxy
     - jupyter_dashboards_bundlers
     - qtplot
