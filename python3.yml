@@ -3,26 +3,22 @@ channels:
   - conda-forge
 dependencies:
   # general numerics (version controlled)
-  - python=3.6.2
-  - numpy=1.13.*
-  - scipy=0.19.*
-  - kwant=1.3.*
+  - python=3.6*
+  - numpy=1.13*
+  - scipy=0.19*
+  - kwant=1.3*
   # fenics
-  - fenics=2016.2.*
-  - mshr=2016.2.*
-  # miscellaneous mission critical packages
-  - ipython=6.1.*
-  - ipykernel=4.6.*
+  - fenics=2016.2*
+  - mshr=2016.2*
   # general numerics (without version control)
   - anaconda
-  - cython
   # plotting and serialization
-  - deepdish=0.3.*
-  - matplotlib=2.0.*
-  - holoviews=1.8.*
+  - deepdish
+  - matplotlib=2.0*
+  - holoviews=1.8*
   - plotly
   # parallell computing
-  - ipyparallel=6.0.*
+  - ipyparallel
   - dill
   - distributed=1.16*  # untill https://github.com/dask/distributed/issues/1271 is fixed
   - hpc05
@@ -35,7 +31,6 @@ dependencies:
   - nbstripout
   - nb_conda
   # other
-  - pillow
   - feedparser
   - ffmpeg
   - pandoc
