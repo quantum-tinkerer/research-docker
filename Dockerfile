@@ -1,5 +1,4 @@
 FROM jupyter/base-notebook:latest
-Maintainer Joseph Weston <j.b.weston@tudelft.nl>
 
 USER root
 WORKDIR /
