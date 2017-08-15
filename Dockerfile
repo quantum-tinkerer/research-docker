@@ -39,6 +39,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         cm-super  # extra font\
         vim\
         zsh\
+        openssh-server \
+        apt-transport-https \
+        supervisor \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
