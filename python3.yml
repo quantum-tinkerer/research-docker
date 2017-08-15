@@ -1,0 +1,47 @@
+name: python3
+channels:
+  - conda-forge
+dependencies:
+  # general numerics (version controlled)
+  - python=3.6.2
+  - numpy=1.13.*
+  - scipy=0.19.*
+  - kwant=1.3.*
+  # fenics
+  - fenics=2016.2.*
+  - mshr=2016.2.*
+  # miscellaneous mission critical packages
+  - ipython=6.1.*
+  - ipykernel=4.6.*
+  # general numerics (without version control)
+  - anaconda
+  - cython
+  # plotting and serialization
+  - deepdish=0.3.*
+  - matplotlib=2.0.*
+  - holoviews=1.8.*
+  - plotly
+  # parallell computing
+  - ipyparallel=6.0.*
+  - dill
+  - distributed=1.16*  # untill https://github.com/dask/distributed/issues/1271 is fixed
+  - hpc05
+  # jupyter tools and extensions
+  - jupyter_cms
+  - jupyter_dashboards
+  - jupyterlab
+  - line_profiler
+  - nbdime
+  - nbstripout
+  - nb_conda
+  # other
+  - pillow
+  - feedparser
+  - ffmpeg
+  - pandoc
+  - pytest-flakes
+  - python-graphviz
+  - xarray
+  - pip:
+    - jupyter_dashboards_bundlers
+    - qtplot

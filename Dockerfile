@@ -57,7 +57,8 @@ COPY profile.sh /etc/profile.d/
 RUN conda config --system --add envs_dirs ~/.conda/envs
 
 # Add environment files
-COPY python2.yml python3.yml dev.yml /environments/
+RUN mkdir /environments
+COPY python3.yml dev.yml /environments/
 
 # Update the root environment
 RUN conda env update -n root -f /environments/python3.yml

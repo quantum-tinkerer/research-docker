@@ -1,0 +1,29 @@
+name: dev
+channels:
+  - kwant
+  - ioam
+  - conda-forge
+dependencies:
+  # general numerics
+  - python=3.6
+  - anaconda
+  - kwant=dev
+  - discretizer=0.4*
+  - cython
+  # fenics
+  - fenics
+  - mshr
+  # plotting and serialization
+  - deepdish
+  - holoviews
+  - plotly
+  # parallell computing
+  - dill
+  - distributed=1.16*  # untill https://github.com/dask/distributed/issues/1271 is fixed
+  - hpc05
+  - ipyparallel
+  # other
+  - feedparser
+  - pytest-flakes
+  - python-graphviz
+  - xarray
