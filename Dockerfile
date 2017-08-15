@@ -5,39 +5,39 @@ WORKDIR /
 
 # Debian packages
 RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
-        autossh\
-        bash-completion\
-        build-essential\
-        cron\
-        curl\
-        dvipng\
-        gfortran\
-        git\
-        htop\
-        imagemagick\
-        inkscape\
-        keychain\
-        latexmk\
-        less\
-        man\
-        nano\
-        rsync\
-        screen\
-        texlive-bibtex-extra\
-        texlive-extra-utils\
-        texlive-fonts-extra\
-        texlive-fonts-recommended\
-        texlive-generic-recommended\
-        texlive-latex-base\
-        texlive-latex-extra\
-        texlive-latex-recommended\
-        texlive-publishers\
-        texlive-science\
-        texlive-xetex\
-        texlive-lang-cyrillic\
-        cm-super  # extra font\
-        vim\
-        zsh\
+        autossh \
+        bash-completion \
+        build-essential \
+        cron \
+        curl \
+        dvipng \
+        gfortran \
+        git \
+        htop \
+        imagemagick \
+        inkscape \
+        keychain \
+        latexmk \
+        less \
+        man \
+        nano \
+        rsync \
+        screen \
+        texlive-bibtex-extra \
+        texlive-extra-utils \
+        texlive-fonts-extra \
+        texlive-fonts-recommended \
+        texlive-generic-recommended \
+        texlive-latex-base \
+        texlive-latex-extra \
+        texlive-latex-recommended \
+        texlive-publishers \
+        texlive-science \
+        texlive-xetex \
+        texlive-lang-cyrillic \
+        cm-super  # extra font \
+        vim \
+        zsh \
         openssh-server \
         apt-transport-https \
         supervisor \
@@ -64,9 +64,9 @@ RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 RUN conda clean --yes --all
 
 # Enable jupyter nbextension-s
-RUN jupyter nbextension enable --py --sys-prefix ipyparallel &&\
-    jupyter nbextension enable --py --sys-prefix jupyter_cms &&\
-    jupyter nbextension enable --py --sys-prefix jupyter_dashboards &&\
+RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
+    jupyter nbextension enable --py --sys-prefix jupyter_cms && \
+    jupyter nbextension enable --py --sys-prefix jupyter_dashboards && \
     jupyter nbextension enable --py --sys-prefix nbserverproxy
 
 # prevent nb_conda_kernels from overriding our custom kernel manager
@@ -89,6 +89,14 @@ ENV OPENBLAS_NUM_THREADS=1\
     MKL_DYNAMIC=FALSE\
     MKL_NUM_THREADS=1\
     CONDA_ALWAYS_COPY=true
+
+# Syncthing installation
+RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
+    echo "deb https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list && \
+    apt-get update && apt-get install -y syncthing syncthing-inotify && apt-get clean
+
+# Install supervisor for automatic starting of syncthing
+COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # copy startup.sh script and set start-up command
 COPY startup.sh /srv/singleuser/
