@@ -42,11 +42,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-# Syncthing installation
-RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
-    echo "deb https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list && \
-    apt-get update && apt-get install -y syncthing syncthing-inotify && apt-get clean
-
 # Install supervisor for automatic starting of syncthing
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
@@ -86,7 +81,7 @@ COPY git* /etc/
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
 RUN ipython profile create --parallel --profile dev --ipython-dir /opt/conda/etc/ipython
 COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
-COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_dev/ipcluster_config.py
+COPY ipcluster_config_dev.py /opt/conda/etc/ipython/profile_dev/ipcluster_config.py
 
 # setting openblas and mkl variables
 ENV OPENBLAS_NUM_THREADS=1\
@@ -95,5 +90,7 @@ ENV OPENBLAS_NUM_THREADS=1\
     MKL_NUM_THREADS=1\
     CONDA_ALWAYS_COPY=true
 
+# copy startup.sh script and set start-up command
+COPY startup.sh /srv/singleuser/
 CMD ["sh", "/srv/singleuser/startup.sh"]
 EXPOSE 22
