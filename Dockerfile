@@ -4,19 +4,41 @@ Maintainer Joseph Weston <j.b.weston@tudelft.nl>
 USER root
 WORKDIR /
 
-COPY setup_user.sh startup.sh /srv/singleuser/
-RUN sh /srv/singleuser/setup_user.sh
-RUN mkdir /var/run/sshd /environments && \
-    chown {{jupyterhub_notebook_user}} /environments
-
 # Debian packages
 RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
-        {% for package in jupyter_apt_packages %}
-        {{package}} \
-        {% endfor %}
-        openssh-server \
-        apt-transport-https \
-        supervisor \
+        autossh\
+        bash-completion\
+        build-essential\
+        cron\
+        curl\
+        dvipng\
+        gfortran\
+        git\
+        htop\
+        imagemagick\
+        inkscape\
+        keychain\
+        latexmk\
+        less\
+        man\
+        nano\
+        rsync\
+        screen\
+        texlive-bibtex-extra\
+        texlive-extra-utils\
+        texlive-fonts-extra\
+        texlive-fonts-recommended\
+        texlive-generic-recommended\
+        texlive-latex-base\
+        texlive-latex-extra\
+        texlive-latex-recommended\
+        texlive-publishers\
+        texlive-science\
+        texlive-xetex\
+        texlive-lang-cyrillic\
+        cm-super  # extra font\
+        vim\
+        zsh\
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
@@ -46,9 +68,10 @@ RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 # Cleanup all downloaded conda files
 RUN conda clean --yes --all
 
-{% for extension in jupyter_nbextensions %}
-RUN jupyter nbextension enable --py --sys-prefix {{extension}}
-{% endfor %}
+# Enable jupyter nbextension-s
+RUN jupyter nbextension enable --py --sys-prefix ipyparallel &&\
+    jupyter nbextension enable --py --sys-prefix jupyter_cms &&\
+    jupyter nbextension enable --py --sys-prefix jupyter_dashboards
 
 # prevent nb_conda_kernels from overriding our custom kernel manager
 RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json
