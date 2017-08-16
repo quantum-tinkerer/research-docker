@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         texlive-science \
         texlive-xetex \
         texlive-lang-cyrillic \
-        cm-super \ # extra font
+        cm-super \
         vim \
         zsh \
         openssh-server \
