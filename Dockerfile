@@ -100,5 +100,5 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # copy startup.sh script and set start-up command
 COPY startup.sh /srv/singleuser/
-CMD ["sh", "/srv/singleuser/startup.sh"]
+CMD ["bash", "/srv/singleuser/startup.sh"]
 EXPOSE 22
