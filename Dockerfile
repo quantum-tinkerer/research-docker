@@ -99,6 +99,6 @@ RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # copy startup.sh script and set start-up command
-COPY startup.sh /srv/singleuser/
-CMD ["bash", "/srv/singleuser/startup.sh"]
+COPY startup.sh /usr/local/bin
+CMD ["startup.sh"]
 EXPOSE 22
