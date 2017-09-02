@@ -15,4 +15,4 @@ fi
 
 ## start the notebook server, passing in all the environment variables
 ## we run as NB_USER to prevent 'start.sh' from doing its job twice
-exec su -l $NB_USER -p -c "env PATH=$PATH /usr/local/bin/start-singleuser.sh $*"
+exec su $NB_USER -p -c "env PATH=$PATH /usr/local/bin/start-singleuser.sh $*"
