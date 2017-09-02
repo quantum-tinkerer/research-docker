@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/usr/local/bin/start.sh  # rename user etc.
+
 ## launch daemonized SSHD
 /usr/sbin/sshd
 
@@ -12,4 +14,4 @@ if [[ ! -z "$NB_HOSTNAME" ]]; then
 fi
 
 ## start the notebook server
-exec /usr/local/bin/start-singleuser.sh $*
+exec su $NB_USER -c "/usr/local/bin/start-singleuser.sh $*"
