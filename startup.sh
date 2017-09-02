@@ -7,7 +7,7 @@
 /usr/bin/supervisord
 
 ## rename the host to something cool
-if [[ -z "$NB_HOSTNAME" ]]; then
+if [[ ! -z "$NB_HOSTNAME" ]]; then
     hostname "$NB_HOSTNAME"
 fi
 
