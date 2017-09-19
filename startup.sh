@@ -3,6 +3,7 @@
 /usr/local/bin/start.sh  # rename user etc.
 
 ## launch daemonized SSHD
+mkdir -p /var/run/sshd
 /usr/sbin/sshd
 
 ## launch daemonized supervisor
