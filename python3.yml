@@ -31,6 +31,7 @@ dependencies:
   - nbstripout
   - nb_conda
   # other
+  - emcee
   - feedparser
   - ffmpeg
   - pandoc
