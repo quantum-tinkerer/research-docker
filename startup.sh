@@ -2,6 +2,10 @@
 
 /usr/local/bin/start.sh  # rename user etc.
 
+# start.sh does not explicitly set permissions on /home/$NB_USER
+# and if we are mounting this from the docker host for the first
+# time it will have root permissions
+chown $NB_UID:$NB_GID /home/$NB_USER
 cd /home/$NB_USER  # make sure that we're in the right place
 
 ## launch daemonized SSHD
