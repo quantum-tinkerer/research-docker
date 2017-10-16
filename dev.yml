@@ -23,6 +23,7 @@ dependencies:
   - hpc05
   - ipyparallel
   # other
+  - line_profiler
   - feedparser
   - pytest-flakes
   - python-graphviz
