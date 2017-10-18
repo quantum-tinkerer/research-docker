@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         nano \
         rsync \
         screen \
+        tmux \
         texlive-bibtex-extra \
         texlive-extra-utils \
         texlive-fonts-extra \
