@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         inkscape \
         keychain \
         latexmk \
+        latexdiff \
         less \
         man \
         nano \
