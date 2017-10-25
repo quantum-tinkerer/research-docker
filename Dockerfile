@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         dvipng \
         gfortran \
         git \
+        tig \
         htop \
         imagemagick \
         inkscape \
