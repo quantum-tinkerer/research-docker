@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         bash-completion \
         build-essential \
         cron \
+        tree \
         curl \
         dvipng \
         gfortran \
