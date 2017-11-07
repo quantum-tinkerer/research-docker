@@ -37,6 +37,9 @@ dependencies:
   - pandoc
   - pytest-flakes
   - python-graphviz
+  - pillow
+  - xlrd
+  - opencv
   - xarray
   - pip:
     - git+https://github.com/jupyterhub/nbserverproxy
