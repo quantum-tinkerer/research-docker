@@ -102,6 +102,9 @@ RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
 # Install supervisor for automatic starting of syncthing
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
+# Fix permissions (required when following the base image)
+RUN fix-permissions /opt/conda
+
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin
 CMD ["startup.sh"]
