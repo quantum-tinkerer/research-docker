@@ -14,13 +14,13 @@ dependencies:
   - anaconda
   # plotting and serialization
   - deepdish
-  - matplotlib=2.0*
-  - holoviews=1.8*
+  - matplotlib=2.1*
+  - holoviews=1.9*
   - plotly
   # parallell computing
   - ipyparallel
   - dill
-  - distributed=1.16*  # untill https://github.com/dask/distributed/issues/1271 is fixed
+  - distributed
   - hpc05
   # jupyter tools and extensions
   - jupyter_cms
