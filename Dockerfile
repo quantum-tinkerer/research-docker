@@ -64,10 +64,7 @@ RUN conda env update -n root -f /environments/python3.yml
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
-# Cleanup all downloaded conda files
-RUN conda clean --yes --all
-
-# Enable jupyter nbextension-s
+# Enable `jupyter nbextension`s
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
     jupyter nbextension enable --py --sys-prefix jupyter_dashboards && \
@@ -78,6 +75,7 @@ RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json
 
 # Add notebook config
 COPY jupyter_notebook_config.py /opt/conda/etc/jupyter
+
 # Register nbdime as a git diff and merge tool
 COPY git* /etc/
 
@@ -104,6 +102,9 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # Fix permissions (required when following the base image)
 RUN fix-permissions /opt/conda
+
+# Cleanup all downloaded conda files
+RUN conda clean --yes --all
 
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin
