@@ -19,7 +19,7 @@ dependencies:
   - plotly
   # parallell computing
   - dill
-  - distributed=1.16*  # untill https://github.com/dask/distributed/issues/1271 is fixed
+  - distributed
   - hpc05
   - ipyparallel
   # other
