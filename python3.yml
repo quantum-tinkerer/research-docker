@@ -21,7 +21,7 @@ dependencies:
   - ipyparallel
   - dill
   - distributed
-  - hpc05
+  - hpc05=v1.19
   # jupyter tools and extensions
   - jupyter_cms
   - jupyter_dashboards
