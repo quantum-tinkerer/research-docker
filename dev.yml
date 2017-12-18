@@ -15,7 +15,6 @@ dependencies:
   - mshr
   # plotting and serialization
   - deepdish
-  - holoviews
   - plotly
   # parallell computing
   - dill
@@ -28,3 +27,5 @@ dependencies:
   - pytest-flakes
   - python-graphviz
   - xarray
+  - pip:
+    - git+https://github.com/ioam/holoviews.git
