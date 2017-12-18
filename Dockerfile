@@ -51,9 +51,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
 # Add global bash profile
 COPY profile.sh /etc/profile.d/
 
-# Set the conda environment folder in the home folder
-RUN conda config --system --add envs_dirs ~/.conda/envs
-
 # Add environment files
 RUN mkdir /environments
 COPY python3.yml dev.yml /environments/
@@ -105,6 +102,9 @@ RUN fix-permissions /opt/conda
 
 # Cleanup all downloaded conda files
 RUN conda clean --yes --all
+
+# Set the conda environment folder in the home folder
+RUN conda config --system --add envs_dirs ~/.conda/envs
 
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin
