@@ -27,5 +27,6 @@ dependencies:
   - pytest-flakes
   - python-graphviz
   - xarray
+  - pillow
   - pip:
     - git+https://github.com/ioam/holoviews.git
