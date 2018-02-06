@@ -47,3 +47,4 @@ dependencies:
     - jupyter_dashboards_bundlers
     - qtplot
     - python-gitlab
+    - adaptive

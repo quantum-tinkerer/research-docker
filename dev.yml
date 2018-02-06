@@ -30,3 +30,4 @@ dependencies:
   - pillow
   - pip:
     - git+https://github.com/ioam/holoviews.git
+    - git+https://github.com/python-adaptive/adaptive.git
