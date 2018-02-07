@@ -21,7 +21,6 @@ class QTKernelSpecManager(CondaKernelSpecManager):
 
 
 NBApp = c.NotebookApp
-NBApp.iopub_data_rate_limit = 100000000  # Untill notebook 5.1 is out
 NBApp.kernel_spec_manager_class = QTKernelSpecManager
 NBApp.nbserver_extensions = {
   "nb_conda": True,
