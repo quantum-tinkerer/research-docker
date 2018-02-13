@@ -18,10 +18,10 @@ dependencies:
   - holoviews=1.9*
   - plotly
   # parallell computing
-  - ipyparallel
   - dill
   - distributed
   - hpc05
+  - ipyparallel
   # jupyter tools and extensions
   - jupyter_cms
   - jupyter_dashboards
