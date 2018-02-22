@@ -32,8 +32,9 @@ dependencies:
   - nbdime
   - nbstripout
   - nb_conda
-  - "mistune >= 0.8.1"
+  - mistune>=0.8.1
   # other
+  - adaptive
   - emcee
   - feedparser
   - ffmpeg
@@ -49,4 +50,3 @@ dependencies:
     - jupyter_dashboards_bundlers
     - qtplot
     - python-gitlab
-    - adaptive
