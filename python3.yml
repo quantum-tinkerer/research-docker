@@ -35,6 +35,7 @@ dependencies:
   - mistune>=0.8.1
   # other
   - adaptive
+  - boost
   - emcee
   - feedparser
   - ffmpeg

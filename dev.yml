@@ -23,6 +23,7 @@ dependencies:
   - ipyparallel
   # other
   - line_profiler
+  - boost
   - feedparser
   - pytest-flakes
   - python-graphviz
