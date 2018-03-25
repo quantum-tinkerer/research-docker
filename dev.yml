@@ -32,7 +32,6 @@ dependencies:
   - ipykernel>=4.8*  # needed for adaptive
   - jupyter_client>=5.2.2  # needed for adaptive
   - ipywidgets
-  - git
   - pip:
     - git+https://github.com/ioam/holoviews.git
     - git+https://github.com/python-adaptive/adaptive.git
