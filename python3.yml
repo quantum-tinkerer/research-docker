@@ -31,6 +31,7 @@ dependencies:
   - line_profiler
   - nbdime
   - nbstripout
+  - nbserverproxy
   - nb_conda
   - mistune>=0.8.1
   # other
