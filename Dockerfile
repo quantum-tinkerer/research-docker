@@ -107,10 +107,6 @@ RUN fix-permissions /opt/conda
 # Cleanup all downloaded conda files
 RUN conda clean --yes --all
 
-# Set the conda environment folder in the home folder
-RUN conda config --system --add envs_dirs /home/tinkerer/.conda/envs
-RUN conda config --system --add pkgs_dirs /home/tinkerer/.conda/pkgs
-
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin
 CMD ["startup.sh"]

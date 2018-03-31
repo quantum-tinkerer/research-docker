@@ -8,6 +8,10 @@
 chown $NB_UID:$NB_GID /home/$NB_USER
 cd /home/$NB_USER  # make sure that we're in the right place
 
+# Set the conda environment and package folder in the home folder
+conda config --system --add envs_dirs /home/$NB_USER/.conda/envs
+conda config --system --add pkgs_dirs /home/$NB_USER/.conda/pkgs
+
 ## launch daemonized SSHD
 mkdir -p /var/run/sshd
 /usr/sbin/sshd
