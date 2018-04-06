@@ -112,3 +112,6 @@ RUN conda clean --yes --all
 COPY startup.sh /usr/local/bin
 CMD ["startup.sh"]
 EXPOSE 22
+
+# Switch back to jovyan to avoid accidental container runs as root
+USER $NB_UID
