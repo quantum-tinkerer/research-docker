@@ -15,7 +15,7 @@ dependencies:
   # plotting and serialization
   - deepdish
   - matplotlib=2.1*
-  - holoviews=1.9*
+  - holoviews=1.10*
   - plotly
   # parallell computing
   - dill
