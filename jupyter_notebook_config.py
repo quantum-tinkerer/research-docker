@@ -24,8 +24,6 @@ NBApp = c.NotebookApp
 NBApp.kernel_spec_manager_class = QTKernelSpecManager
 NBApp.nbserver_extensions = {
   "nb_conda": True,
-  "nb_anacondacloud": True,
-  "nbpresent": True,
   "jupyterlab": True,
   "jupyter_cms": True,
   "jupyter_dashboards": True,
