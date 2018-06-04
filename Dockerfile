@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         openssh-server \
         apt-transport-https \
         supervisor \
+        gnupg \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
