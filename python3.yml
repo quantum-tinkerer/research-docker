@@ -15,9 +15,10 @@ dependencies:
   - anaconda
   # plotting and serialization
   - deepdish
-  - matplotlib=2.1*
+  - matplotlib=2.2*
   - holoviews=1.10*
   - plotly
+  - ipyml  # interactive plotting in jupyterlab
   # parallell computing
   - dill
   - distributed
