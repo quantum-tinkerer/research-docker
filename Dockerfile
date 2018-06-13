@@ -41,6 +41,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         texlive-science \
         texlive-xetex \
         texlive-lang-cyrillic \
+        texlive-lang-european \
+        lmodern \
         cm-super \
         vim \
         zsh \
