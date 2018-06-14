@@ -102,6 +102,9 @@ RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
     echo "deb https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list && \
     apt-get update && apt-get install -y syncthing && apt-get clean
 
+# https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
+RUN echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
+
 # Install supervisor for automatic starting of syncthing
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
