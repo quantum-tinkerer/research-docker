@@ -54,6 +54,7 @@ dependencies:
   - ruamel.yaml
   - pip:
     - git+https://github.com/jupyterhub/nbserverproxy
+    - git+https://github.com/basnijholt/adaptive-tools
     - jupyter_dashboards_bundlers
     - qtplot
     - python-gitlab
