@@ -45,7 +45,6 @@ dependencies:
   - pandoc
   - pytest-flakes
   - python-graphviz
-  - pillow
   - scikit-image
   - xlrd
   - xarray
