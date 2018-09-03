@@ -24,8 +24,7 @@ dependencies:
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
-  - jupyter_client>=5.2.2  # needed for adaptive
-  - ipykernel>=4.8*  # needed for adaptive
+  - jupyterhub
   - jupyter_cms
   - jupyter_dashboards
   - jupyterlab
