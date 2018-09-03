@@ -20,7 +20,6 @@ dependencies:
   - plotly
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
-  - dill
   - distributed
   - hpc05
   - ipyparallel
