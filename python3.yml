@@ -52,7 +52,6 @@ dependencies:
   - tornado==4.5.3  # because of https://github.com/jupyter/notebook/issues/3397
   - tqdm
   - pip:
-    - git+https://github.com/jupyterhub/nbserverproxy
     - git+https://github.com/basnijholt/adaptive-tools
     - jupyter_dashboards_bundlers
     - qtplot
