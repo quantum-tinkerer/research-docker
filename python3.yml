@@ -49,7 +49,7 @@ dependencies:
   - xlrd
   - xarray
   - ruamel.yaml
-  - tornado==4.5.3  # because of https://github.com/jupyter/notebook/issues/3397
+  - tornado=4.5.3  # because of https://github.com/jupyter/notebook/issues/3397
   - tqdm
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
