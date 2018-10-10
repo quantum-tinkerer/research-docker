@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         curl \
         dvipng \
         gfortran \
-        git \
         tig \
         htop \
         imagemagick \
