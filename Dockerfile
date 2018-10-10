@@ -58,7 +58,7 @@ COPY profile.sh /etc/profile.d/
 
 # Add environment files
 RUN mkdir /environments
-COPY python3.yml dev.yml install_dev.sh /environments/
+COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
 RUN conda env update -n root -f /environments/python3.yml
