@@ -77,7 +77,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
 RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json
 
 # Add notebook config
-COPY jupyter_notebook_config.py /opt/conda/etc/jupyter
+COPY jupyter_notebook_config.py /opt/conda/etc/jupyter/
 
 # Register nbdime as a git diff and merge tool
 COPY git* /etc/
@@ -113,7 +113,7 @@ RUN fix-permissions /opt/conda
 RUN conda clean --yes --all
 
 # copy startup.sh script and set start-up command
-COPY startup.sh /usr/local/bin
+COPY startup.sh /usr/local/bin/
 CMD ["startup.sh"]
 EXPOSE 22
 
