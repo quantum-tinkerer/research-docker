@@ -10,6 +10,7 @@ dependencies:
   - kwant=dev
   - discretizer=0.4*
   - cython
+  - libgcc=5.2.0
   # fenics
   - fenics
   - mshr
