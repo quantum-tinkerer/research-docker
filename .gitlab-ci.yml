@@ -1,5 +1,5 @@
 image:
-    name: gcr.io/kaniko-project/executor:debug
+    name: gcr.io/kaniko-project/executor:debug-v0.7.0
     entrypoint: [""]
 
 before_script:
