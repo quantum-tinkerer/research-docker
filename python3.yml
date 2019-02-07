@@ -8,10 +8,6 @@ dependencies:
   - scipy=1.0*
   - kwant=1.3*
   - cython=0.28*
-  - libgcc=5.2.0
-  # fenics
-  - fenics=2017.2*
-  - mshr=2017.2*
   # plotting and serialization
   - deepdish
   - matplotlib=2.2*
