@@ -22,6 +22,7 @@ dependencies:
   - jupyterhub
   - jupyter_cms
   - jupyterlab
+  - jupytext
   - line_profiler
   - nbdime
   - nbstripout
