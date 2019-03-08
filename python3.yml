@@ -4,7 +4,7 @@ channels:
 dependencies:
   # general numerics (version controlled)
   - python=3.7*
-  - numpy=1.13*
+  - numpy=1.16*
   - scipy=1.2*
   - kwant=1.4*
   - cython=0.29*
