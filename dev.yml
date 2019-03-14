@@ -5,15 +5,10 @@ channels:
   - conda-forge
 dependencies:
   # general numerics
-  - python=3.6
+  - python
   - anaconda
-  - kwant=dev
-  - discretizer=0.4*
+  - kwant
   - cython
-  - libgcc=5.2.0
-  # fenics
-  - fenics
-  - mshr
   # plotting and serialization
   - deepdish
   - plotly
@@ -24,14 +19,11 @@ dependencies:
   - ipyparallel
   # other
   - line_profiler
-  - boost
   - feedparser
   - pytest-flakes
   - python-graphviz
   - xarray
   - pillow
-  - ipykernel>=4.8*  # needed for adaptive
-  - jupyter_client>=5.2.2  # needed for adaptive
   - ipywidgets
   - pip:
     - git+https://github.com/ioam/holoviews.git
