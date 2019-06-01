@@ -62,7 +62,8 @@ RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
-RUN conda env update -n root -f /environments/python3.yml
+RUN conda env update -n root -f /environments/python3.yml && \
+    conda clean --yes --all
 
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
@@ -100,7 +101,7 @@ ENV OPENBLAS_NUM_THREADS=1\
 # Syncthing installation
 RUN curl -s https://syncthing.net/release-key.txt | apt-key add - && \
     echo "deb https://apt.syncthing.net/ syncthing stable" | tee /etc/apt/sources.list.d/syncthing.list && \
-    apt-get update && apt-get install -y syncthing && apt-get clean
+    apt-get update && apt-get install -y syncthing && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
 RUN echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
@@ -110,9 +111,6 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 # Fix permissions (required when following the base image)
 RUN fix-permissions /opt/conda
-
-# Cleanup all downloaded conda files
-RUN conda clean --yes --all
 
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin/
