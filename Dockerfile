@@ -75,7 +75,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix nbserverproxy && \
     jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
-            @jupyterlab/katex-extension
+            @jupyterlab/katex-extension \
             @jupyterlab/latex \
             jupyterlab_bokeh \
             @pyviz/jupyterlab_pyviz \
