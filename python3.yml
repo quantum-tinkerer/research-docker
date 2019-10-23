@@ -24,7 +24,7 @@ dependencies:
   - jupyter_cms
   - jupyterlab
   - jupytext
-  - jupyterlab_git
+  - jupyterlab-git
   - line_profiler
   - nbdime
   - nbstripout
