@@ -73,13 +73,14 @@ RUN conda env update -n root -f /environments/python3.yml && \
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
     jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
+    jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
     jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/katex-extension \
             @jupyterlab/latex \
             jupyterlab_bokeh \
             @pyviz/jupyterlab_pyviz \
-            @ryantam626/jupyterlab_black \
+            @ryantam626/jupyterlab_code_formatter \
             && \
     jupyter lab build  # apparently jupyterlab-git needs this
 
