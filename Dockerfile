@@ -74,6 +74,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
     jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
     jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
+    jupyter serverextension enable --sys-prefix nbgitpuller && \
     jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/katex-extension \
