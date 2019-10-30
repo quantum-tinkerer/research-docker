@@ -23,12 +23,12 @@ dependencies:
   - jupyterhub
   - jupyter_cms
   - jupyterlab
+  - jupyter-server-proxy
   - jupytext
   - jupyterlab-git
   - line_profiler
   - nbdime
   - nbstripout
-  - nbserverproxy
   - nb_conda
   - mistune
   # other

@@ -72,7 +72,7 @@ RUN conda env update -n root -f /environments/python3.yml && \
 # Enable `jupyter nbextension`s
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
-    jupyter nbextension enable --py --sys-prefix nbserverproxy && \
+    jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
     jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/katex-extension \
