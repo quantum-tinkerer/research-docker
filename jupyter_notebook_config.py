@@ -29,4 +29,6 @@ NBApp.nbserver_extensions = {
   "ipyparallel.nbextension": True,
   "jupyter_server_proxy": True,
   "jupyterlab_black": True,
+  "jupyterlab_git": True,
+  "nbgitpuller": True,
 }

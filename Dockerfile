@@ -75,6 +75,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
     jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
     jupyter serverextension enable --sys-prefix nbgitpuller && \
+    jupyter serverextension enable --py --sys-prefix jupyterlab_git && \
     jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/katex-extension \
@@ -82,6 +83,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             jupyterlab_bokeh \
             @pyviz/jupyterlab_pyviz \
             @ryantam626/jupyterlab_code_formatter \
+            @jupyterlab/git \
             && \
     jupyter lab build  # apparently jupyterlab-git needs this
 
