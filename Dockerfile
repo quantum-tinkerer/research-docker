@@ -86,6 +86,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             @ryantam626/jupyterlab_code_formatter \
             @jupyterlab/git \
             @krassowski/jupyterlab-lsp \
+            @jupyterlab/toc \
             && \
     jupyter lab build  # apparently jupyterlab-git needs this
 
