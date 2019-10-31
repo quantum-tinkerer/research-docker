@@ -87,6 +87,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             @jupyterlab/git \
             @krassowski/jupyterlab-lsp \
             @jupyterlab/toc \
+            @aquirdturtle/collapsible_headings \
             && \
     jupyter lab build  # apparently jupyterlab-git needs this
 
