@@ -22,7 +22,7 @@ dependencies:
   # jupyter tools and extensions
   - jupyterhub
   - jupyter_cms
-  - jupyterlab
+  - jupyterlab=1.1*  # upgrade to 1.2* when collapsible headings is fixed
   - jupyter-server-proxy
   - jupytext
   - jupyterlab-git
