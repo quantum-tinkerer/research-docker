@@ -1,6 +1,4 @@
-# Things are broken since the base notebook was upgraded to Ubuntu 18.04
-# TODO: fix this properly, but for now we just pin the upstream image
-FROM jupyter/base-notebook:5b2160dfd919
+FROM jupyter/base-notebook
 
 USER root
 WORKDIR /
