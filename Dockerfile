@@ -97,6 +97,10 @@ COPY jupyter_notebook_config.py /opt/conda/etc/jupyter/
 
 # Register nbdime as a git diff and merge tool
 COPY git* /etc/
+# We use git from Conda, so ensure we install the system
+# git config and attributes into the appropriate /etc
+RUN cat /etc/gitconfig >> /opt/conda/etc/gitconfig && \
+    cat /etc/gitattributes >> /opt/conda/etc/gitattributes
 
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
