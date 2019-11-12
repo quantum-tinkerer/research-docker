@@ -1,6 +1,4 @@
-# Things are broken since the base notebook was upgraded to Ubuntu 18.04
-# TODO: fix this properly, but for now we just pin the upstream image
-FROM jupyter/base-notebook:5b2160dfd919
+FROM jupyter/base-notebook
 
 USER root
 WORKDIR /
@@ -68,13 +66,28 @@ RUN conda env update -n root -f /environments/python3.yml && \
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
+
 # Enable `jupyter nbextension`s
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
-    jupyter nbextension enable --py --sys-prefix nbserverproxy && \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager \
-            @jupyterlab/katex-extension @jupyterlab/latex \
-            jupyterlab_bokeh @pyviz/jupyterlab_pyviz
+    jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
+    jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
+    jupyter serverextension enable --sys-prefix nbgitpuller && \
+    jupyter serverextension enable --py --sys-prefix jupyterlab_git && \
+    jupyter serverextension enable --sys-prefix --py jupyter_lsp && \
+    jupyter labextension install \
+            @jupyter-widgets/jupyterlab-manager \
+            @jupyterlab/katex-extension \
+            @jupyterlab/latex \
+            jupyterlab_bokeh \
+            @pyviz/jupyterlab_pyviz \
+            @ryantam626/jupyterlab_code_formatter \
+            @jupyterlab/git \
+            @krassowski/jupyterlab-lsp \
+            @jupyterlab/toc \
+            @aquirdturtle/collapsible_headings \
+            && \
+    jupyter lab build  # apparently jupyterlab-git needs this
 
 # prevent nb_conda_kernels from overriding our custom kernel manager
 RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json
@@ -84,6 +97,10 @@ COPY jupyter_notebook_config.py /opt/conda/etc/jupyter/
 
 # Register nbdime as a git diff and merge tool
 COPY git* /etc/
+# We use git from Conda, so ensure we install the system
+# git config and attributes into the appropriate /etc
+RUN cat /etc/gitconfig >> /opt/conda/etc/gitconfig && \
+    cat /etc/gitattributes >> /opt/conda/etc/gitattributes
 
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython

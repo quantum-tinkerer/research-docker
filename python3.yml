@@ -22,12 +22,14 @@ dependencies:
   # jupyter tools and extensions
   - jupyterhub
   - jupyter_cms
-  - jupyterlab
+  - jupyterlab=1.0*  # upgrade to 1.2* when collapsible headings is fixed
+  - jupyter-server-proxy
   - jupytext
+  - jupyterlab-git
+  - jupyterlab_code_formatter
   - line_profiler
   - nbdime
   - nbstripout
-  - nbserverproxy
   - nb_conda
   - mistune
   # other
@@ -54,3 +56,7 @@ dependencies:
     - git+https://github.com/basnijholt/adaptive-tools
     - qtplot
     - python-gitlab
+    - nbgitpuller
+    # for nice autocompletion and jump-to-definition in Jupyterlab
+    - jupyter-lsp
+    - python-language-server[all]
