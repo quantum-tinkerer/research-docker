@@ -49,6 +49,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         apt-transport-https \
         supervisor \
         gnupg \
+        libgl1-mesa-glx \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
