@@ -3,32 +3,33 @@ stages:
   - build
 
 mirror repository:
-    stage: mirror
-    allow_failure: true
-    variables:
-      REPO: "git@github.com:quantum-tinkerer/research-docker.git"
-    before_script:
-      - mkdir ~/.ssh && chmod 700 ~/.ssh
-      - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      - echo "$DEPLOY_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-    after_script:
-      - rm -rf ~/.ssh
-    script:
-      - ORIGIN_URL=$(git config --get remote.origin.url)
-      - cd $(mktemp -d); git clone --bare $ORIGIN_URL .
-      - git push --mirror $REPO
+  stage: mirror
+  allow_failure: true
+  variables:
+    REPO: "git@github.com:quantum-tinkerer/research-docker.git"
+  before_script:
+    - mkdir ~/.ssh && chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    - echo "$DEPLOY_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+  after_script:
+    - rm -rf ~/.ssh
+  script:
+    - ORIGIN_URL=$(git config --get remote.origin.url)
+    - cd $(mktemp -d); git clone --bare $ORIGIN_URL .
+    - git push --mirror $REPO
 
 build image:
     stage: build
     image:
-        name: gcr.io/kaniko-project/executor:debug
-        entrypoint: [""]
-
+      name: gcr.io/kaniko-project/executor:debug
+      entrypoint: [""]
+    only:
+      - branches@qt/research-docker
+      - tags@qt/research-docker
     before_script:
-        - mkdir -p /kaniko/.docker
-        - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-        - export CI_REF=${CI_COMMIT_TAG:-latest}
-
+      - mkdir -p /kaniko/.docker
+      - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+      - export CI_REF=$([[ "$CI_COMMIT_REF_SLUG" == "master" ]] && echo "latest" || echo "$CI_COMMIT_REF_SLUG")
     script:
       - /kaniko/executor
         --context $CI_PROJECT_DIR
