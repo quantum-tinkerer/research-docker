@@ -84,7 +84,6 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             @pyviz/jupyterlab_pyviz \
             @ryantam626/jupyterlab_code_formatter \
             @jupyterlab/git \
-            @krassowski/jupyterlab-lsp \
             @jupyterlab/toc \
             @aquirdturtle/collapsible_headings \
             && \
