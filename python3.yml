@@ -58,6 +58,3 @@ dependencies:
     - qtplot
     - python-gitlab
     - nbgitpuller
-    # for nice autocompletion and jump-to-definition in Jupyterlab
-    - jupyter-lsp
-    - python-language-server[all]
