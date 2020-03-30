@@ -1,9 +1,14 @@
+image:
+  name: gcr.io/kaniko-project/executor:debug-v0.16.0
+  entrypoint: [""]
+
 stages:
   - mirror
   - build_base
   - build
 
 mirror repository:
+  image: $CI_REGISTRY_IMAGE:base
   stage: mirror
   allow_failure: true
   variables:
@@ -21,9 +26,6 @@ mirror repository:
 
 .build base image:
     stage: build_base
-    image:
-      name: gcr.io/kaniko-project/executor:debug
-      entrypoint: [""]
     before_script:
       - mkdir -p /kaniko/.docker
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
@@ -39,6 +41,8 @@ build base image:test:
   only:
     refs:
       - enh/split_images
+    changes:
+      - base_image/**/*
 
 build base image:master:
   extends: .build base image
@@ -57,9 +61,6 @@ build base image:scheduled:
 
 build image:
   stage: build
-  image:
-      name: gcr.io/kaniko-project/executor:debug
-      entrypoint: [""]
   only:
     # To ensure that CI_COMMIT_REF_SLUG exists
     refs:
