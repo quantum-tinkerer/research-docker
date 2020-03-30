@@ -34,6 +34,7 @@ mirror repository:
         --context $CI_PROJECT_DIR/base_image
         --dockerfile $CI_PROJECT_DIR/base_image/Dockerfile
         --destination $CI_REGISTRY_IMAGE:base
+        --reproducible
 
 # FIXME: remove this before merge
 build base image:test:
@@ -75,3 +76,4 @@ build image:
       --context $CI_PROJECT_DIR/main_image
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
+      --reproducible
