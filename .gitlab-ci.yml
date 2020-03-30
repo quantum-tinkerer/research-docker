@@ -1,8 +1,14 @@
+image:
+  name: gcr.io/kaniko-project/executor:debug-v0.16.0
+  entrypoint: [""]
+
 stages:
   - mirror
+  - build_base
   - build
 
 mirror repository:
+  image: $CI_REGISTRY_IMAGE:base
   stage: mirror
   allow_failure: true
   variables:
@@ -18,20 +24,47 @@ mirror repository:
     - cd $(mktemp -d); git clone --bare $ORIGIN_URL .
     - git push --mirror $REPO
 
-build image:
-    stage: build
-    image:
-      name: gcr.io/kaniko-project/executor:debug
-      entrypoint: [""]
-    only:
-      - branches@qt/research-docker
-      - tags@qt/research-docker
+.build base image:
+    stage: build_base
     before_script:
       - mkdir -p /kaniko/.docker
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-      - export CI_REF=$([[ "$CI_COMMIT_REF_SLUG" == "master" ]] && echo "latest" || echo "$CI_COMMIT_REF_SLUG")
     script:
       - /kaniko/executor
-        --context $CI_PROJECT_DIR
-        --dockerfile $CI_PROJECT_DIR/Dockerfile
-        --destination $CI_REGISTRY_IMAGE:$CI_REF
+        --context $CI_PROJECT_DIR/base_image
+        --dockerfile $CI_PROJECT_DIR/base_image/Dockerfile
+        --destination $CI_REGISTRY_IMAGE:base
+        --reproducible
+
+build base image:master:
+  extends: .build base image
+  only:
+    refs:
+      - master
+      - schedules
+    changes:
+      - base_image/**/*
+
+build base image:scheduled:
+  extends: .build base image
+  only:
+    refs:
+      - schedules
+
+build image:
+  stage: build
+  only:
+    # To ensure that CI_COMMIT_REF_SLUG exists
+    refs:
+      - branches
+      - tags
+  before_script:
+      - mkdir -p /kaniko/.docker
+      - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+      - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
+  script:
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR/main_image
+      --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
+      --destination $CI_REGISTRY_IMAGE:$CI_REF
+      --reproducible
