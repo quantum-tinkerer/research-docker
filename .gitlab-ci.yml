@@ -36,15 +36,6 @@ mirror repository:
         --destination $CI_REGISTRY_IMAGE:base
         --reproducible
 
-# FIXME: remove this before merge
-build base image:test:
-  extends: .build base image
-  only:
-    refs:
-      - enh/split_images
-    changes:
-      - base_image/**/*
-
 build base image:master:
   extends: .build base image
   only:
