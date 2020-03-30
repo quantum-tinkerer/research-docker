@@ -49,6 +49,7 @@ dependencies:
   - pip
   - pytest-flakes
   - python-graphviz
+  - python-language-server
   - scikit-image
   - sympy
   - xlrd
@@ -57,6 +58,7 @@ dependencies:
   - tqdm
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
+    - jupyter-lsp
     - qtplot
     - python-gitlab
     - nbgitpuller
