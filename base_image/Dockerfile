@@ -60,20 +60,9 @@ RUN apt-get update \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-RUN conda update -y -n base --all \
-    && conda install -n base -y \
-        git \
-        nbdime \
-        nbstripout \
-        ffmpeg \
-        pandoc \
-    && conda clean --yes --all \
-    && conda init --system --no-user \
-    && fix-permissions /opt/conda
-
 RUN update-alternatives --set editor /bin/nano
 # https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
-RUN echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
+RUN echo "fs.inotify.max_user_watches=204800" | tee -a /etc/sysctl.conf
 # Install supervisor for automatic starting of syncthing
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 # copy startup.sh script and set start-up command
@@ -86,8 +75,19 @@ ENV OPENBLAS_NUM_THREADS=1\
     MKL_NUM_THREADS=1\
     CONDA_ALWAYS_COPY=true
 
-CMD ["startup.sh"]
-EXPOSE 22
+RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
+    && conda install --quiet -n base -y \
+        git \
+        nbdime \
+        nbstripout \
+        ffmpeg \
+        pandoc \
+    && conda clean --yes --all \
+    && conda init --system --no-user \
+    && fix-permissions /opt/conda
 
 USER $NB_USER
 COPY gitconfig gitattributes /opt/conda/etc/
+
+CMD ["startup.sh"]
+EXPOSE 22
