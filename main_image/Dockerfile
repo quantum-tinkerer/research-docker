@@ -19,6 +19,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
     jupyter nbextension enable --py --sys-prefix jupyter_cms && \
     jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
     jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
+    jupyter serverextension enable --py --sys-prefix jupyter_lsp && \
     # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
     #jupyter serverextension enable --py --sys-prefix jupyterlab_git && \
     jupyter serverextension enable --sys-prefix nbgitpuller && \
