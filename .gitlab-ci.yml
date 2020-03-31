@@ -51,6 +51,10 @@ build base image:scheduled:
     refs:
       - schedules
 
+build base image:manual:
+  extends: .build base image
+  when: manual
+
 build image:
   stage: build
   only:
