@@ -7,6 +7,9 @@ WORKDIR /
 RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
+# Switch back to jovyan to avoid accidental container runs as root
+USER $NB_UID
+
 # Update the root environment
 RUN conda env update --quiet -n root -f /environments/python3.yml && \
     conda clean --quiet --yes --all
@@ -37,20 +40,10 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             && \
     jupyter lab build  # apparently jupyterlab-git needs this
 
-# prevent nb_conda_kernels from overriding our custom kernel manager
-RUN rm /opt/conda/etc/jupyter/jupyter_notebook_config.json
-
 # Add notebook config
 COPY jupyter_notebook_config.py /opt/conda/etc/jupyter/
-
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
 # RUN ipython profile create --parallel --profile dev --ipython-dir /opt/conda/etc/ipython
 COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
 # COPY ipcluster_config_dev.py /opt/conda/etc/ipython/profile_dev/ipcluster_config.py
-
-# Fix permissions (required when following the base image)
-RUN fix-permissions /opt/conda
-
-# Switch back to jovyan to avoid accidental container runs as root
-USER $NB_UID
