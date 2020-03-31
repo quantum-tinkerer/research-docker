@@ -60,9 +60,6 @@ RUN apt-get update \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-RUN update-alternatives --set editor /bin/nano
-# https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
-RUN echo "fs.inotify.max_user_watches=204800" | tee -a /etc/sysctl.conf
 # Install supervisor for automatic starting of syncthing
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 # copy startup.sh script and set start-up command
@@ -74,6 +71,11 @@ ENV OPENBLAS_NUM_THREADS=1\
     MKL_DYNAMIC=FALSE\
     MKL_NUM_THREADS=1\
     CONDA_ALWAYS_COPY=true
+
+RUN chmod a+x /usr/local/bin/startup.sh \
+    && update-alternatives --set editor /bin/nano \
+    # https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
+    && echo "fs.inotify.max_user_watches=204800" >> /etc/sysctl.conf
 
 RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
     && conda install --quiet -n base -y \
