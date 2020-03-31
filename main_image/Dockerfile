@@ -7,26 +7,24 @@ WORKDIR /
 RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
-# Switch back to jovyan to avoid accidental container runs as root
-USER $NB_UID
-
 # Update the root environment
-RUN conda env update --quiet -n root -f /environments/python3.yml && \
-    conda clean --quiet --yes --all
+RUN conda env update --quiet -n root -f /environments/python3.yml \
+    && conda clean --quiet --yes --all \
+    && fix-permissions /opt/conda
 
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
 # Enable `jupyter nbextension`s
-RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
-    jupyter nbextension enable --py --sys-prefix jupyter_cms && \
-    jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
-    jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter && \
-    jupyter serverextension enable --py --sys-prefix jupyter_lsp && \
+RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
+    && jupyter nbextension enable --py --sys-prefix jupyter_cms \
+    && jupyter serverextension enable --sys-prefix jupyter_server_proxy \
+    && jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter \
+    && jupyter serverextension enable --py --sys-prefix jupyter_lsp \
     # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
-    #jupyter serverextension enable --py --sys-prefix jupyterlab_git && \
-    jupyter serverextension enable --sys-prefix nbgitpuller && \
-    jupyter labextension install \
+    #&& jupyter serverextension enable --py --sys-prefix jupyterlab_git \
+    && jupyter serverextension enable --sys-prefix nbgitpuller \
+    && jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/latex \
             @bokeh/jupyter_bokeh \
@@ -37,11 +35,11 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel && \
             @jupyterlab/toc \
             @aquirdturtle/collapsible_headings \
             @krassowski/jupyterlab-lsp \
-            && \
-    jupyter lab build  # apparently jupyterlab-git needs this
+    && jupyter lab build \
+    && fix-permissions /opt/conda
 
-# Add notebook config
-COPY jupyter_notebook_config.py /opt/conda/etc/jupyter/
+# Switch back to jovyan to avoid accidental container runs as root
+USER $NB_UID
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
 # RUN ipython profile create --parallel --profile dev --ipython-dir /opt/conda/etc/ipython

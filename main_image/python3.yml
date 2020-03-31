@@ -57,7 +57,6 @@ dependencies:
   - ruamel.yaml
   - tqdm
   - pip:
-    - git+https://gitlab.kwant-project.org/qt/qtkernelspecmanager.git
     - git+https://github.com/basnijholt/adaptive-tools
     - jupyter-lsp
     - qtplot
