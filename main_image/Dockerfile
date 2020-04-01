@@ -40,6 +40,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
+COPY jupyter_notebook_config.d/set_root_dir.json /opt/conda/etc/jupyter/jupyter_notebook_config.d
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
 # RUN ipython profile create --parallel --profile dev --ipython-dir /opt/conda/etc/ipython
