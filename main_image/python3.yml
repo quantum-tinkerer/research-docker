@@ -4,15 +4,15 @@ channels:
 dependencies:
   # general numerics (version controlled)
   - python=3.7*
-  - numpy=1.17*
-  - scipy=1.3*
+  - numpy=1.18*
+  - scipy=1.4*
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
   # plotting and serialization
   - deepdish
-  - matplotlib=3.1*
-  - holoviews=1.12*
+  - matplotlib=3.2*
+  - holoviews=1.13*
   - plotly
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
@@ -22,11 +22,13 @@ dependencies:
   # jupyter tools and extensions
   - jupyterhub
   - jupyter_cms
-  - jupyterlab=1.0*  # upgrade to 1.2* when collapsible headings is fixed
+  - jupyterlab=2.0*
   - jupyter-server-proxy
   - jupytext
-  - jupyterlab-git
+  # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
+  #- jupyterlab-git
   - jupyterlab_code_formatter
+  - jupyterlab_latex
   - line_profiler
   - nbdime
   - nbstripout
@@ -44,8 +46,10 @@ dependencies:
   - opencv
   - pandas
   - pandoc
+  - pip
   - pytest-flakes
   - python-graphviz
+  - python-language-server
   - scikit-image
   - sympy
   - xlrd
@@ -54,6 +58,7 @@ dependencies:
   - tqdm
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
+    - jupyter-lsp
     - qtplot
     - python-gitlab
     - nbgitpuller
