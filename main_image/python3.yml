@@ -24,6 +24,7 @@ dependencies:
   - jupyter_cms
   - jupyterlab=2.0*
   - jupyter-server-proxy
+  - jupyter-vscode-proxy
   - jupytext
   # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
   #- jupyterlab-git
@@ -39,6 +40,7 @@ dependencies:
   - adaptive-scheduler
   - black
   - boost
+  - code-server
   - emcee
   - feedparser
   - ffmpeg
