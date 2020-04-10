@@ -9,6 +9,11 @@ dependencies:
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
+  # numerics, not version-controlled (less mission-critical)
+  - pfapack
+  - adaptive
+  - xarray
+  - sympy
   # plotting and serialization
   - deepdish
   - matplotlib=3.2*
@@ -36,7 +41,6 @@ dependencies:
   - nb_conda
   - mistune
   # other
-  - adaptive
   - adaptive-scheduler
   - black
   - boost
@@ -53,9 +57,7 @@ dependencies:
   - python-graphviz
   - python-language-server
   - scikit-image
-  - sympy
   - xlrd
-  - xarray
   - ruamel.yaml
   - tqdm
   - pip:
