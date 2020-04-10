@@ -33,10 +33,9 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
             #@jupyterlab/git \
             @jupyterlab/toc \
+            @jupyterlab/server-proxy \
             @aquirdturtle/collapsible_headings \
             @krassowski/jupyterlab-lsp \
-    # FIXME disabling: can't get connected to LSP websocket, possibly due to proxying 
-    && jupyter labextension disable @krassowski/jupyterlab-lsp \
     && jupyter lab build \
     && fix-permissions /opt/conda
 

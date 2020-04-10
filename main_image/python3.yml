@@ -9,6 +9,11 @@ dependencies:
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
+  # numerics, not version-controlled (less mission-critical)
+  - pfapack
+  - adaptive
+  - xarray
+  - sympy
   # plotting and serialization
   - deepdish
   - matplotlib=3.2*
@@ -24,6 +29,7 @@ dependencies:
   - jupyter_cms
   - jupyterlab=2.0*
   - jupyter-server-proxy
+  - jupyter-vscode-proxy
   - jupytext
   # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
   #- jupyterlab-git
@@ -35,10 +41,10 @@ dependencies:
   - nb_conda
   - mistune
   # other
-  - adaptive
   - adaptive-scheduler
   - black
   - boost
+  - code-server
   - emcee
   - feedparser
   - ffmpeg
@@ -51,9 +57,7 @@ dependencies:
   - python-graphviz
   - python-language-server
   - scikit-image
-  - sympy
   - xlrd
-  - xarray
   - ruamel.yaml
   - tqdm
   - pip:
