@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   # general numerics (version controlled)
-  - python=3.7*
+  - python=3.8*
   - numpy=1.18*
   - scipy=1.4*
   - kwant=1.4*
