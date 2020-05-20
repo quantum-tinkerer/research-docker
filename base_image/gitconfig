@@ -1,3 +1,5 @@
+[core]
+	editor = /usr/bin/editor
 [diff "jupyternotebook"]
         command = git-nbdiffdriver diff
 [merge "jupyternotebook"]
