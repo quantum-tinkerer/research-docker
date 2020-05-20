@@ -6,6 +6,7 @@ stages:
   - mirror
   - build_base
   - build
+  - build_singularity
 
 mirror repository:
   image: $CI_REGISTRY_IMAGE:base
@@ -67,8 +68,34 @@ build image:
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
       - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
   script:
+    - echo "CI_REF=$CI_REF" >> build.env
     - /kaniko/executor
       --context $CI_PROJECT_DIR/main_image
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
       --reproducible
+  artifacts:
+    reports:
+      dotenv: build.env
+
+build singularity image:
+  stage: build_singularity
+  image:
+    name: quay.io/singularity/singularity:v3.5.3
+    entrypoint: [""]
+  only:
+    # To ensure that CI_COMMIT_REF_SLUG exists
+    refs:
+      - master@qt/research-docker
+      - staging@qt/research-docker
+      - singularity@qt/research-docker  # TEMP
+  script:
+    - singularity build research-docker.simg docker://$CI_REGISTRY_IMAGE:$CI_REF
+  needs:
+    - job: build image
+      artifacts: true
+  artifacts:
+    paths:
+      - research-docker.simg
+    # images are rebuilt every week, so this should be enough to keep them permanently
+    expire_in: 2 weeks
