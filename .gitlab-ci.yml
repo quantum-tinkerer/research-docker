@@ -68,12 +68,11 @@ build image:
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
       - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
   script:
-    # TEMP commented out to make build faster
-    # - /kaniko/executor
-    #   --context $CI_PROJECT_DIR/main_image
-    #   --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
-    #   --destination $CI_REGISTRY_IMAGE:$CI_REF
-    #   --reproducible
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR/main_image
+      --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
+      --destination $CI_REGISTRY_IMAGE:$CI_REF
+      --reproducible
     - /busybox/sed -e "s%{{ docker_container_name }}%$CI_REGISTRY_IMAGE:$CI_REF%g" Singularity.j2 > Singularity
   artifacts:
     paths:
@@ -89,7 +88,6 @@ build singularity image:
     refs:
       - master@qt/research-docker
       - staging@qt/research-docker
-      - singularity@qt/research-docker  # TEMP
   before_script:
     - mkdir -p build
   script:
