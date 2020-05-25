@@ -6,6 +6,7 @@ stages:
   - mirror
   - build_base
   - build
+  - build_singularity
 
 mirror repository:
   image: $CI_REGISTRY_IMAGE:base
@@ -72,3 +73,30 @@ build image:
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
       --reproducible
+    - /busybox/sed -e "s%{{ docker_container_name }}%$CI_REGISTRY_IMAGE:$CI_REF%g" Singularity.j2 > Singularity
+  artifacts:
+    paths:
+      - Singularity
+
+build singularity image:
+  stage: build_singularity
+  image:
+    name: quay.io/singularity/singularity:v3.5.3
+    entrypoint: [""]
+  only:
+    # To ensure that CI_COMMIT_REF_SLUG exists
+    refs:
+      - master@qt/research-docker
+      - staging@qt/research-docker
+  before_script:
+    - mkdir -p build
+  script:
+    - cp Singularity build/Singularity
+    - cd build && /bin/bash ../.ci/build_singularity.sh Singularity
+  needs:
+    - job: build image
+      artifacts: true
+  artifacts:
+    paths:
+      - build/Singularity
+      - build/Singularity.simg
