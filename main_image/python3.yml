@@ -21,6 +21,7 @@ dependencies:
   - plotly
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
+  - dask-gateway
   - distributed
   - hpc05
   - ipyparallel
