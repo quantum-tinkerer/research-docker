@@ -63,6 +63,7 @@ dependencies:
   - tqdm
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
+    - dask_labextension
     - jupyter-lsp
     - qtplot
     - python-gitlab

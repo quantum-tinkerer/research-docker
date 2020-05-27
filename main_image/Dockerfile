@@ -24,6 +24,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
     # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
     #&& jupyter serverextension enable --py --sys-prefix jupyterlab_git \
     && jupyter serverextension enable --sys-prefix nbgitpuller \
+    && jupyter serverextension enable --py --sys-prefix dask_labextension \
     && jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
             @jupyterlab/latex \
@@ -36,6 +37,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             @jupyterlab/server-proxy \
             @aquirdturtle/collapsible_headings \
             @krassowski/jupyterlab-lsp \
+            dask-labextension \
     && jupyter lab build \
     && fix-permissions /opt/conda
 
