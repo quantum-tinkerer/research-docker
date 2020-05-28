@@ -1,5 +1,5 @@
 image:
-  name: gcr.io/kaniko-project/executor:debug-v0.16.0
+  name: gcr.io/kaniko-project/executor:debug
   entrypoint: [""]
 
 stages:
