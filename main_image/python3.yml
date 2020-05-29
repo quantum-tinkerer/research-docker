@@ -22,6 +22,8 @@ dependencies:
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
   - dask-gateway
+  - dask-gateway-server=0.7*
+  - dask-gateway-server-jobqueue=0.7*
   - distributed
   - hpc05
   - ipyparallel
@@ -63,6 +65,7 @@ dependencies:
   - tqdm
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
+    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - dask_labextension
     - jupyter-lsp
     - qtplot
