@@ -22,8 +22,6 @@ dependencies:
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
   - dask-gateway
-  - dask-gateway-server=0.7*
-  - dask-gateway-server-jobqueue=0.7*
   - distributed
   - hpc05
   - ipyparallel
