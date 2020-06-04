@@ -1,4 +1,6 @@
 FROM gitlab.kwant-project.org:5005/qt/research-docker:base
+ARG GITLAB_API_TOKEN
+ARG CI_PIPELINE_ID
 
 USER root
 WORKDIR /
@@ -41,11 +43,14 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
     && jupyter lab build \
     && fix-permissions /opt/conda
 
+# Figure out the future Singularity image address
+COPY resolve_singularity.py /usr/local/bin/resolve_singularity.py
+RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
+    && rm /usr/local/bin/resolve_singularity.py
+
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
 COPY jupyter_notebook_config.d/set_root_dir.json /opt/conda/etc/jupyter/jupyter_notebook_config.d
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
-# RUN ipython profile create --parallel --profile dev --ipython-dir /opt/conda/etc/ipython
 COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
-# COPY ipcluster_config_dev.py /opt/conda/etc/ipython/profile_dev/ipcluster_config.py
