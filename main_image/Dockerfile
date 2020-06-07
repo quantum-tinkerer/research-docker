@@ -27,7 +27,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
     && jupyter serverextension enable --py --sys-prefix jupyterlab_git \
     && jupyter serverextension enable --sys-prefix nbgitpuller \
     && jupyter serverextension enable --py --sys-prefix dask_labextension \
-    && jupyter labextension install \
+    && jupyter labextension install --no-build \
             @jupyter-widgets/jupyterlab-manager \
             # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/135
             # @jupyterlab/latex \
