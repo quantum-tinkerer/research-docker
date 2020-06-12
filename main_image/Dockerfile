@@ -38,6 +38,8 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             @aquirdturtle/collapsible_headings \
             @krassowski/jupyterlab-lsp \
             dask-labextension \
+            jupyterlab-plotly \
+            plotlywidget \
     && jupyter lab build \
     && fix-permissions /opt/conda
 
