@@ -78,6 +78,7 @@ build image:
   artifacts:
     paths:
       - Singularity
+  needs: []
 
 build singularity image:
   stage: build_singularity
@@ -96,9 +97,7 @@ build singularity image:
   script:
     - cp Singularity build/Singularity
     - cd build && /bin/bash ../.ci/build_singularity.sh Singularity
-  needs:
-    - job: build image
-      artifacts: true
+  needs: ["build image"]
   artifacts:
     paths:
       - build/Singularity
