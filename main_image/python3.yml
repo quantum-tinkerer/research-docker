@@ -23,18 +23,19 @@ dependencies:
   # parallell computing
   - dask-gateway
   - distributed
+  - dask_labextension
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
   - jupyterhub
-  - jupyterlab=2.0*
+  - jupyterlab
   - jupyter-server-proxy
   - jupyter-vscode-proxy
   - jupytext
-  # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
-  #- jupyterlab-git
+  - jupyterlab-git
   - jupyterlab_code_formatter
-  - jupyterlab_latex
+  # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/135
+  # - jupyterlab_latex
   - line_profiler
   - nbdime
   - nbstripout
@@ -62,10 +63,10 @@ dependencies:
   - tqdm
   # Fixes
   - conda
+  - mamba
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
-    - dask_labextension
     - jupyter-lsp
     - qtplot
     - python-gitlab

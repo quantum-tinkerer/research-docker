@@ -8,7 +8,9 @@ RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
-RUN mamba env update --quiet -n root -f /environments/python3.yml \
+# We install python beforehand, otherwise the post-update scripts break :(
+RUN mamba install -y -n base python=3.8* \
+    && mamba env update --quiet -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
