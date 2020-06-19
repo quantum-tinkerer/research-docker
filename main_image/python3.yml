@@ -27,7 +27,6 @@ dependencies:
   - ipyparallel
   # jupyter tools and extensions
   - jupyterhub
-  - jupyter_cms
   - jupyterlab=2.0*
   - jupyter-server-proxy
   - jupyter-vscode-proxy
