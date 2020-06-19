@@ -8,8 +8,8 @@ RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
-RUN conda env update --quiet -n root -f /environments/python3.yml \
-    && conda clean --quiet --yes --all \
+RUN mamba env update --quiet -n root -f /environments/python3.yml \
+    && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
 # Add a dev environment (e.g. with dev kwant and holoviews)
