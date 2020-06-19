@@ -38,7 +38,7 @@ dependencies:
   - line_profiler
   - nbdime
   - nbstripout
-  - nb_conda
+  - nb_conda_kernels
   - mistune
   # other
   - adaptive-scheduler
@@ -62,7 +62,6 @@ dependencies:
   - tqdm
   # Fixes
   - conda
-  - six  # seemingly required by several packaged but not explicitly listed as a dependency
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
