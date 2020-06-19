@@ -61,6 +61,8 @@ dependencies:
   - xlrd
   - ruamel.yaml
   - tqdm
+  # Seemingly we need to explicitly list conda here
+  - conda
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
