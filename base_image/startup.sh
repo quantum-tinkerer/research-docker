@@ -17,7 +17,7 @@ mkdir -p /var/run/sshd
 /usr/sbin/sshd
 
 ## launch daemonized supervisor
-/usr/bin/supervisord
+/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
 ## start the notebook server, passing in all the environment variables
 ## we run as NB_USER to prevent 'start.sh' from doing its job twice

@@ -73,6 +73,8 @@ build image:
       --context $CI_PROJECT_DIR/main_image
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
+      --build-arg GITLAB_API_TOKEN=$GITLAB_API_TOKEN
+      --build-arg CI_PIPELINE_ID=$CI_PIPELINE_ID
       --reproducible
     - /busybox/sed -e "s%{{ docker_container_name }}%$CI_REGISTRY_IMAGE:$CI_REF%g" Singularity.j2 > Singularity
   artifacts:
