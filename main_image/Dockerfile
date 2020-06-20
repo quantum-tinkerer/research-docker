@@ -8,8 +8,10 @@ RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
-RUN conda env update --quiet -n root -f /environments/python3.yml \
-    && conda clean --quiet --yes --all \
+# We install python beforehand, otherwise the post-update scripts break :(
+RUN mamba install -y -n base python=3.8* \
+    && mamba env update --quiet -n base -f /environments/python3.yml \
+    && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
 # Add a dev environment (e.g. with dev kwant and holoviews)
@@ -17,22 +19,20 @@ RUN conda env update --quiet -n root -f /environments/python3.yml \
 
 # Enable `jupyter nbextension`s
 RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
-    && jupyter nbextension enable --py --sys-prefix jupyter_cms \
     && jupyter serverextension enable --sys-prefix jupyter_server_proxy \
     && jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter \
     && jupyter serverextension enable --py --sys-prefix jupyter_lsp \
-    # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
-    #&& jupyter serverextension enable --py --sys-prefix jupyterlab_git \
+    && jupyter serverextension enable --py --sys-prefix jupyterlab_git \
     && jupyter serverextension enable --sys-prefix nbgitpuller \
     && jupyter serverextension enable --py --sys-prefix dask_labextension \
     && jupyter labextension install \
             @jupyter-widgets/jupyterlab-manager \
-            @jupyterlab/latex \
+            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/135
+            # @jupyterlab/latex \
             @bokeh/jupyter_bokeh \
             @pyviz/jupyterlab_pyviz \
             @ryantam626/jupyterlab_code_formatter \
-            # FIXME https://github.com/jupyterlab/jupyterlab-git/pull/520
-            #@jupyterlab/git \
+            @jupyterlab/git \
             @jupyterlab/toc \
             @jupyterlab/server-proxy \
             @aquirdturtle/collapsible_headings \
