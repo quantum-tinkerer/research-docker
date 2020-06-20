@@ -61,9 +61,10 @@ dependencies:
   - xlrd
   - ruamel.yaml
   - tqdm
-  # Fixes
+  # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
+  - tini=0.18*
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
