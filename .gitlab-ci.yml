@@ -80,7 +80,6 @@ build image:
   artifacts:
     paths:
       - Singularity
-  needs: []
 
 build singularity image:
   stage: build_singularity
