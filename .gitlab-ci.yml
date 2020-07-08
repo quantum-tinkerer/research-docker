@@ -84,9 +84,7 @@ build image:
 build singularity image:
   stage: build_singularity
   image:
-    #FIXME After 13.06.2020 migrate back to quay.io (they should replace their storage backend then)
-    #name: quay.io/singularity/singularity:v3.5.3
-    name: $CI_REGISTRY_IMAGE/singularity:latest
+    name: quay.io/singularity/singularity:v3.5.3
     entrypoint: [""]
   only:
     # To ensure that CI_COMMIT_REF_SLUG exists
