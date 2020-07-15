@@ -42,6 +42,8 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             dask-labextension \
             jupyterlab-plotly \
             plotlywidget \
+            jupyterlab-topbar-extension\
+            jupyterlab-system-monitor\
     && jupyter lab build \
     && fix-permissions /opt/conda
 
@@ -52,7 +54,12 @@ RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
-COPY jupyter_notebook_config.d/set_root_dir.json /opt/conda/etc/jupyter/jupyter_notebook_config.d
+RUN printf '\n\n\
+c.NotebookApp.ResourceUseDisplay.mem_limit = 21474836480\n\
+c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True\n\
+c.NotebookApp.ResourceUseDisplay.cpu_limit = 5\n\
+c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
+
 # Create parallel profiles and copy the correct config
 RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
 COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
