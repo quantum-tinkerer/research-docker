@@ -41,6 +41,7 @@ dependencies:
   - nbstripout
   - nb_conda_kernels
   - mistune
+  - nbresuse
   # other
   - adaptive-scheduler
   - black
