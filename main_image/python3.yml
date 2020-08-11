@@ -4,8 +4,8 @@ channels:
 dependencies:
   # general numerics (version controlled)
   - python=3.8*
-  - numpy=1.18*
-  - scipy=1.4*
+  - numpy=1.19*
+  - scipy=1.5*
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
@@ -16,7 +16,7 @@ dependencies:
   - sympy
   # plotting and serialization
   - deepdish
-  - matplotlib=3.2*
+  - matplotlib-base=3.3*
   - holoviews=1.13*
   - plotly
   - ipympl  # interactive plotting in jupyterlab
