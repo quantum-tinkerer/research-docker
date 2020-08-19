@@ -22,10 +22,7 @@ dependencies:
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
   - dask-gateway
-  # FIXME when distributed>2.20.0 is released
-  # or we migrate to dask-gateway>0.7.1
-  # (temporarily installed via pip from git revision)
-  #- distributed
+  - distributed
   - dask_labextension
   - hpc05
   - ipyparallel
@@ -37,8 +34,7 @@ dependencies:
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
-  # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/135
-  # - jupyterlab_latex
+  - jupyterlab_latex
   - line_profiler
   - nbdime
   - nbstripout
@@ -72,9 +68,6 @@ dependencies:
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
-      # FIXME remove, when distributed>2.20.0 is released
-      # or we migrate to dask-gateway>0.7.1
-    - git+https://github.com/dask/distributed.git@ea282c54d63e333447e9065bc20c5e8c3c20c2b0
     - jupyter-lsp
     - qtplot
     - python-gitlab
