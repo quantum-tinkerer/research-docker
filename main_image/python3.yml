@@ -61,6 +61,7 @@ dependencies:
   - xlrd
   - ruamel.yaml
   - tqdm
+  - shapely
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
