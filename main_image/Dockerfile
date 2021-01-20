@@ -44,6 +44,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             plotlywidget \
             jupyterlab-topbar-extension\
             jupyterlab-system-monitor\
+            jupyter-matplotlib\
     && jupyter lab build \
     && fix-permissions /opt/conda
 
