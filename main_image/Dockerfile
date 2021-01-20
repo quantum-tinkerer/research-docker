@@ -33,7 +33,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             # @jupyterlab/latex \
             @bokeh/jupyter_bokeh \
             @pyviz/jupyterlab_pyviz \
-            @ryantam626/jupyterlab_code_formatter \
+            # @ryantam626/jupyterlab_code_formatter \
             @jupyterlab/git \
             @jupyterlab/toc \
             @jupyterlab/server-proxy \
@@ -44,6 +44,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             plotlywidget \
             jupyterlab-topbar-extension\
             jupyterlab-system-monitor\
+            jupyter-matplotlib\
     && jupyter lab build \
     && fix-permissions /opt/conda
 
