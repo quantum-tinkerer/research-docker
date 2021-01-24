@@ -1,0 +1,75 @@
+name: python3
+channels:
+  - conda-forge
+dependencies:
+  # general numerics (version controlled)
+  - python=3.8*
+  - numpy=1.19*
+  - scipy=1.5*
+  - kwant=1.4*
+  - cython=0.29*
+  - libblas=*=*mkl
+  # numerics, not version-controlled (less mission-critical)
+  - pfapack
+  - adaptive
+  - xarray
+  - sympy
+  # plotting and serialization
+  - deepdish
+  - matplotlib-base=3.3*
+  - holoviews=1.13*
+  - plotly
+  - ipympl  # interactive plotting in jupyterlab
+  # parallell computing
+  - dask-gateway
+  - distributed
+  - dask_labextension
+  - hpc05
+  - ipyparallel
+  # jupyter tools and extensions
+  - jupyterhub
+  - jupyterlab<3.0
+  - jupyter-server-proxy
+  - jupytext
+  - jupyterlab-git
+  - jupyterlab_code_formatter
+  - jupyterlab_latex
+  - line_profiler
+  - nbdime
+  - nbstripout
+  - nb_conda_kernels
+  - mistune
+  - nbresuse
+  # other
+  - adaptive-scheduler
+  - black
+  - boost
+  - code-server
+  - emcee
+  - feedparser
+  - ffmpeg
+  - git
+  - opencv
+  - pandas
+  - pandoc
+  - pip
+  - pytest-flakes
+  - python-graphviz
+  - python-language-server
+  - scikit-image
+  - xlrd
+  - ruamel.yaml
+  - tqdm
+  - shapely
+  # Ensure that these packages do not get removed by python upgrade
+  - conda
+  - mamba
+  - tini=0.18*
+  - pip:
+    - git+https://github.com/basnijholt/adaptive-tools
+    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
+    - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
+    - jupyter-lsp
+    - qtplot
+    - python-gitlab
+    - nbgitpuller

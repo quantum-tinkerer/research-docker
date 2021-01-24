@@ -3,41 +3,8 @@ image:
   entrypoint: [""]
 
 stages:
-  - build_base
   - build
   - build_singularity
-
-.build base image:
-  stage: build_base
-  before_script:
-    - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-  script:
-    - /kaniko/executor
-      --context $CI_PROJECT_DIR/base_image
-      --dockerfile $CI_PROJECT_DIR/base_image/Dockerfile
-      --destination $CI_REGISTRY_IMAGE:base
-      --reproducible
-  needs: []
-
-build base image:master:
-  extends: .build base image
-  only:
-    refs:
-      - master
-      - schedules
-    changes:
-      - base_image/**/*
-
-build base image:scheduled:
-  extends: .build base image
-  only:
-    refs:
-      - schedules
-
-build base image:manual:
-  extends: .build base image
-  when: manual
 
 build image:
   stage: build
@@ -52,12 +19,13 @@ build image:
       - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
   script:
     - /kaniko/executor
-      --context $CI_PROJECT_DIR/main_image
-      --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
       --build-arg GITLAB_API_TOKEN=$GITLAB_API_TOKEN
       --build-arg CI_PIPELINE_ID=$CI_PIPELINE_ID
       --reproducible
+      --cache=true
     - /busybox/sed -e "s%{{ docker_container_name }}%$CI_REGISTRY_IMAGE:$CI_REF%g" Singularity.j2 > Singularity
   artifacts:
     paths:
