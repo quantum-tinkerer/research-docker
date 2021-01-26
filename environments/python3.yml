@@ -64,6 +64,7 @@ dependencies:
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
+  - mamba_gator
   - tini=0.18*
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools

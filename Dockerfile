@@ -128,6 +128,7 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
             jupyterlab-topbar-extension\
             jupyterlab-system-monitor\
             jupyter-matplotlib\
+            @mamba-org/gator-lab\
     && jupyter lab build \
     && fix-permissions /opt/conda
 
