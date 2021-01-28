@@ -49,6 +49,7 @@ dependencies:
   - feedparser
   - ffmpeg
   - git
+  - numba
   - opencv
   - pandas
   - pandoc
@@ -56,11 +57,11 @@ dependencies:
   - pytest-flakes
   - python-graphviz
   - python-language-server
-  - scikit-image
-  - xlrd
   - ruamel.yaml
-  - tqdm
+  - scikit-image
   - shapely
+  - tqdm
+  - xlrd
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
