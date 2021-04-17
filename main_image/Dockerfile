@@ -28,23 +28,10 @@ RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
     && jupyter serverextension enable --sys-prefix nbgitpuller \
     && jupyter serverextension enable --py --sys-prefix dask_labextension \
     && jupyter labextension install --no-build \
-            @jupyter-widgets/jupyterlab-manager \
-            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/135
+            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
             # @jupyterlab/latex \
-            @bokeh/jupyter_bokeh \
-            @pyviz/jupyterlab_pyviz \
-            # @ryantam626/jupyterlab_code_formatter \
-            @jupyterlab/git \
-            @jupyterlab/toc \
-            @jupyterlab/server-proxy \
-            @aquirdturtle/collapsible_headings \
-            @krassowski/jupyterlab-lsp \
-            dask-labextension \
             jupyterlab-plotly \
             plotlywidget \
-            jupyterlab-topbar-extension\
-            jupyterlab-system-monitor\
-            jupyter-matplotlib\
     && jupyter lab build \
     && fix-permissions /opt/conda
 
