@@ -20,14 +20,7 @@ RUN mamba install -y -n base python=3.9* \
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
 # Enable `jupyter nbextension`s
-RUN jupyter nbextension enable --py --sys-prefix ipyparallel \
-    && jupyter serverextension enable --sys-prefix jupyter_server_proxy \
-    && jupyter serverextension enable --py --sys-prefix jupyterlab_code_formatter \
-    && jupyter serverextension enable --py --sys-prefix jupyter_lsp \
-    && jupyter serverextension enable --py --sys-prefix jupyterlab_git \
-    && jupyter serverextension enable --sys-prefix nbgitpuller \
-    && jupyter serverextension enable --py --sys-prefix dask_labextension \
-    && jupyter labextension install --no-build \
+RUN jupyter labextension install --no-build \
             # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
             # @jupyterlab/latex \
             jupyterlab-plotly \
