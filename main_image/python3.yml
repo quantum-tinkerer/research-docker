@@ -29,6 +29,7 @@ dependencies:
   - jupyterhub
   - jupyterlab<4.0
   - jupyter-server-proxy
+  - jupyter-vscode-proxy
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
