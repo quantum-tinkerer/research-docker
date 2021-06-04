@@ -59,7 +59,6 @@ dependencies:
   - pip
   - pytest-flakes
   - python-graphviz
-  - python-language-server
   - ruamel.yaml
   - scikit-image
   - shapely
