@@ -21,7 +21,6 @@ dependencies:
   - plotly
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
-  - dask-gateway==0.7.1
   - distributed
   - dask_labextension
   - hpc05
@@ -37,6 +36,7 @@ dependencies:
   - jupyter_bokeh
   - jupyterlab-lsp
   - python-lsp-server
+  - nbgitpuller
   - pyviz_comms
   - line_profiler
   - jupyterlab-system-monitor
@@ -76,6 +76,7 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
     - python-gitlab
-    - nbgitpuller
     - aquirdturtle_collapsible_headings
     - opencv-python-headless
+    # Switch to conda when we rely on >=0.9.0
+    - dask-gateway==0.7.1
