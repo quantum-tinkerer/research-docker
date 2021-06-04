@@ -36,9 +36,9 @@ RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
 RUN printf '\n\n\
-c.NotebookApp.ResourceUseDisplay.mem_limit = 21474836480\n\
-c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True\n\
-c.NotebookApp.ResourceUseDisplay.cpu_limit = 5\n\
+c.ServerApp.ResourceUseDisplay.mem_limit = 21474836480\n\
+c.ServerApp.ResourceUseDisplay.track_cpu_percent = True\n\
+c.ServerApp.ResourceUseDisplay.cpu_limit = 5\n\
 c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
 
 # Create parallel profiles and copy the correct config

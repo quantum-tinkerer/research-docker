@@ -77,12 +77,6 @@ RUN chmod a+x /usr/local/bin/startup.sh \
     && echo "fs.inotify.max_user_watches=204800" >> /etc/sysctl.conf
 
 RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
-    && conda install --quiet -n base -y \
-        git \
-        nbdime \
-        nbstripout \
-        ffmpeg \
-        pandoc \
     && conda clean --yes --all \
     && conda init --system --no-user \
     && fix-permissions /opt/conda

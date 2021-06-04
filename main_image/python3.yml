@@ -39,7 +39,6 @@ dependencies:
   - jupyterlab-system-monitor
   - nbdime
   - nbstripout
-  - nb_conda_kernels
   - mistune
   - nbresuse
   # other
@@ -63,6 +62,8 @@ dependencies:
   - shapely
   - tqdm
   - xlrd
+  - ffmpeg
+  - git
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
