@@ -3,9 +3,9 @@ channels:
   - conda-forge
 dependencies:
   # general numerics (version controlled)
-  - python=3.8*
-  - numpy=1.19*
-  - scipy=1.5*
+  - python=3.9*
+  - numpy=1.20*
+  - scipy=1.6*
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
@@ -17,27 +17,33 @@ dependencies:
   # plotting and serialization
   - deepdish
   - matplotlib-base=3.3*
-  - holoviews=1.13*
+  - holoviews=1.14*
   - plotly
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
-  - dask-gateway=0.7.1
   - distributed
   - dask_labextension
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
   - jupyterhub
-  - jupyterlab<3.0
+  - jupyterlab<4.0
+  - retrolab
   - jupyter-server-proxy
+  - jupyter-vscode-proxy
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
+  - jupyter_bokeh
+  - jupyterlab-lsp
+  - python-lsp-server
+  - nbgitpuller
+  - pyviz_comms
   - line_profiler
+  - jupyterlab-system-monitor
   - nbdime
   - nbstripout
-  - nb_conda_kernels
   - mistune
   - nbresuse
   # other
@@ -50,18 +56,18 @@ dependencies:
   - ffmpeg
   - git
   - numba
-  - opencv
   - pandas
   - pandoc
   - pip
   - pytest-flakes
   - python-graphviz
-  - python-language-server
   - ruamel.yaml
   - scikit-image
   - shapely
   - tqdm
   - xlrd
+  - ffmpeg
+  - git
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
@@ -70,7 +76,8 @@ dependencies:
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
-    - jupyter-lsp
-    - qtplot
     - python-gitlab
-    - nbgitpuller
+    - aquirdturtle_collapsible_headings
+    - opencv-python-headless
+    # Switch to conda when we rely on >=0.9.0
+    - dask-gateway==0.7.1
