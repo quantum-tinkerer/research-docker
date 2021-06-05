@@ -28,6 +28,7 @@ dependencies:
   # jupyter tools and extensions
   - jupyterhub
   - jupyterlab<4.0
+  - retrolab
   - jupyter-server-proxy
   - jupyter-vscode-proxy
   - jupytext
