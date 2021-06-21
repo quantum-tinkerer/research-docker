@@ -20,13 +20,11 @@ RUN mamba install -y -n base python=3.9* \
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
 # Enable `jupyter nbextension`s
-RUN jupyter labextension install --no-build \
-            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
-            # @jupyterlab/latex \
-            jupyterlab-plotly \
-            plotlywidget \
-    && jupyter lab build \
-    && fix-permissions /opt/conda
+#RUN jupyter labextension install --no-build \
+#            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
+#            # @jupyterlab/latex \
+#    && jupyter lab build \
+#    && fix-permissions /opt/conda
 
 # Figure out the future Singularity image address
 COPY resolve_singularity.py /usr/local/bin/resolve_singularity.py
