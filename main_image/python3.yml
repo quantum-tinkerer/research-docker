@@ -18,7 +18,7 @@ dependencies:
   - deepdish
   - matplotlib-base=3.3*
   - holoviews=1.14*
-  - plotly
+  - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
   - distributed
