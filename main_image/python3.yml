@@ -80,4 +80,4 @@ dependencies:
     - aquirdturtle_collapsible_headings
     - opencv-python-headless
     # Switch to conda when we rely on >=0.9.0
-  - dask-gateway==0.9.0
+    - dask-gateway==0.9.0
