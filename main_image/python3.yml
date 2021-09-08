@@ -23,7 +23,7 @@ dependencies:
   # parallell computing
   - zarr
   - h5py
-  - tables
+  - pytables
   - distributed
   - dask_labextension
   - hpc05
