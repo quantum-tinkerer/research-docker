@@ -21,6 +21,9 @@ dependencies:
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
+  - zarr
+  - h5py
+  - tables
   - distributed
   - dask_labextension
   - hpc05
