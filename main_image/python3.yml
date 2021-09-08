@@ -77,7 +77,7 @@ dependencies:
   - tini=0.18*
   - pip:
     - git+https://github.com/basnijholt/adaptive-tools
-    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git@dask_qt_fix
+    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
     - python-gitlab
     - aquirdturtle_collapsible_headings
