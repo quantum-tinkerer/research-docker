@@ -73,6 +73,7 @@ build singularity image:
     refs:
       - master@qt/research-docker
       - staging@qt/research-docker
+      - stim-patch@qt/research-docker
   before_script:
     - mkdir -p build
   script:
