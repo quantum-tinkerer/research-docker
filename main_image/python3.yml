@@ -86,3 +86,4 @@ dependencies:
     # Switch to conda when we rely on >=0.9.0
     - dask-gateway==0.9.0
     - jupyterhub==2.0.0rc3
+    - jupyterlab-rtc-hub-settings
