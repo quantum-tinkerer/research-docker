@@ -51,6 +51,7 @@ dependencies:
   - nbresuse
   # other
   - adaptive-scheduler
+  - autograd
   - black
   - boost
   - code-server
