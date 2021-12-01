@@ -29,6 +29,7 @@ dependencies:
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
+  - jupyterhub>=2.0.0
   - jupyterlab<4.0
   - retrolab
   - jupyterlab-link-share
@@ -87,5 +88,4 @@ dependencies:
     - opencv-python-headless
     # Switch to conda when we rely on >=0.9.0
     - dask-gateway==0.9.0
-    - jupyterhub==2.0.0rc3
     - jupyterlab-rtc-hub-settings
