@@ -29,9 +29,10 @@ dependencies:
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
-  - jupyterhub
+  - jupyterhub>=2.0.0
   - jupyterlab<4.0
   - retrolab
+  - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter-vscode-proxy
   - jupytext
@@ -51,6 +52,7 @@ dependencies:
   - nbresuse
   # other
   - adaptive-scheduler
+  - jax
   - black
   - boost
   - code-server
@@ -76,6 +78,7 @@ dependencies:
   - mamba
   - tini=0.18*
   - pip:
+    - memory_profiler
     - stim
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
@@ -85,3 +88,4 @@ dependencies:
     - opencv-python-headless
     # Switch to conda when we rely on >=0.9.0
     - dask-gateway==0.9.0
+    - jupyterlab-rtc-hub-settings
