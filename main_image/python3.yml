@@ -77,6 +77,7 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
+  - dask-gateway~=0.9
   - pip:
     - memory_profiler
     - stim
@@ -86,6 +87,4 @@ dependencies:
     - python-gitlab
     - aquirdturtle_collapsible_headings
     - opencv-python-headless
-    # Switch to conda when we rely on >=0.9.0
-    - dask-gateway==0.9.0
-    - jupyterlab-rtc-hub-settings
+

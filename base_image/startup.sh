@@ -21,4 +21,4 @@ mkdir -p /var/run/sshd
 
 ## start the notebook server, passing in all the environment variables
 ## we run as NB_USER to prevent 'start.sh' from doing its job twice
-exec su $NB_USER -p -c "env PATH=$PATH HOME=/home/$NB_USER /usr/local/bin/start-singleuser.sh $*"
+exec su $NB_USER -p -c "env PATH=$PATH HOME=/home/$NB_USER jupyterhub-singleuser --ip=0.0.0.0"
