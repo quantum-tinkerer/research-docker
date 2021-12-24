@@ -85,6 +85,5 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
     - python-gitlab
-    - aquirdturtle_collapsible_headings
     - opencv-python-headless
 
