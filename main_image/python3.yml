@@ -32,7 +32,7 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
-  - jupyterlab<4.0,!=3.2.7  # See https://github.com/jupyterlab/jupyterlab/issues/11856
+  - jupyterlab<4.0,>=3.2.8
   - retrolab
   - jupyterlab-link-share
   - jupyter-server-proxy
@@ -44,7 +44,7 @@ dependencies:
   - jupyter_bokeh
   - jupyterlab-lsp
   - python-lsp-server
-  - nbgitpuller
+  # - nbgitpuller  # Uncomment when https://github.com/jupyterhub/nbgitpuller/pull/240 is released
   - pyviz_comms
   - line_profiler
   - jupyterlab-system-monitor
@@ -83,6 +83,8 @@ dependencies:
   - pip:
     - memory_profiler
     - stim
+    # Remove when https://github.com/jupyterhub/nbgitpuller/pull/240 is released
+    - git+https://github.com/manics/nbgitpuller/tree/jupyter-server.git
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git

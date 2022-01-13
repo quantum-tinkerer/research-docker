@@ -19,13 +19,6 @@ RUN mamba install -y -n base python=3.9* \
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
-# Enable `jupyter nbextension`s
-#RUN jupyter labextension install --no-build \
-#            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
-#            # @jupyterlab/latex \
-#    && jupyter lab build \
-#    && fix-permissions /opt/conda
-
 # Figure out the future Singularity image address
 COPY resolve_singularity.py /usr/local/bin/resolve_singularity.py
 RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
