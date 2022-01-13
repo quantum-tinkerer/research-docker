@@ -32,7 +32,7 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
-  - jupyterlab<4.0!=3.2.7  # See https://github.com/jupyterlab/jupyterlab/issues/11856
+  - jupyterlab<4.0,!=3.2.7  # See https://github.com/jupyterlab/jupyterlab/issues/11856
   - retrolab
   - jupyterlab-link-share
   - jupyter-server-proxy
