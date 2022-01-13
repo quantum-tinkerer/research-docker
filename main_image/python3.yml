@@ -30,7 +30,7 @@ dependencies:
   - hpc05
   - ipyparallel
   # jupyter tools and extensions
-  - ipython>=8
+  - ipython<8
   - jupyterhub>=2.0.0
   - jupyterlab<4.0,!=3.2.7  # See https://github.com/jupyterlab/jupyterlab/issues/11856
   - retrolab
@@ -73,7 +73,7 @@ dependencies:
   - shapely
   - tqdm
   - xlrd
-  - ffmpeg
+  - ffmpe
   - git
   # Ensure that these packages do not get removed by python upgrade
   - conda
