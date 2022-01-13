@@ -73,7 +73,7 @@ dependencies:
   - shapely
   - tqdm
   - xlrd
-  - ffmpe
+  - ffmpeg
   - git
   # Ensure that these packages do not get removed by python upgrade
   - conda
