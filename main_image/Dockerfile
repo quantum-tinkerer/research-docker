@@ -19,17 +19,14 @@ RUN mamba install -y -n base python=3.9* \
 # Add a dev environment (e.g. with dev kwant and holoviews)
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
-# Enable `jupyter nbextension`s
-#RUN jupyter labextension install --no-build \
-#            # FIXME https://github.com/jupyterlab/jupyterlab-latex/issues/154
-#            # @jupyterlab/latex \
-#    && jupyter lab build \
-#    && fix-permissions /opt/conda
-
 # Figure out the future Singularity image address
 COPY resolve_singularity.py /usr/local/bin/resolve_singularity.py
 RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
     && rm /usr/local/bin/resolve_singularity.py
+
+# Create parallel profiles and copy the correct config
+RUN mkdir -p /opt/conda/etc/ipython && ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
+COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
@@ -40,7 +37,3 @@ c.ServerApp.ResourceUseDisplay.cpu_limit = 5\n\
 c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
 # Add the manual jupyter lab config file
 COPY jupyter_server_config.json /etc/jupyter/jupyter_server_config.json
-
-# Create parallel profiles and copy the correct config
-RUN ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
-COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
