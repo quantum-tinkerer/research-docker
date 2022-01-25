@@ -43,8 +43,8 @@ dependencies:
   - jupyterlab_code_formatter
   - jupyterlab_latex
   - jupyter_bokeh
-  - jupyterlab-lsp
-  - python-lsp-server
+  #- jupyterlab-lsp
+  #- python-lsp-server
   # - nbgitpuller  # Uncomment when https://github.com/jupyterhub/nbgitpuller/pull/240 is released
   - pyviz_comms
   - line_profiler
