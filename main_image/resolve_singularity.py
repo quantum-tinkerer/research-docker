@@ -23,6 +23,9 @@ for job in reversed(req.json()):
     if job["name"] == JOB_NAME:
         with open(TARGET_FILENAME, "w") as f:
             print(f"{SERVER_URL}/api/v4/projects/{PROJECT_ID}/jobs/{job['id']}/artifacts/{IMAGE_PATH}", file=f)
+        # Ensure artifacts containing singularity image are preserved
+        requests.post(f"{SERVER_URL}/api/v4/projects/{PROJECT_ID}/jobs/{job['id']}/artifacts/keep",
+                     headers={"PRIVATE-TOKEN": token})
         sys.exit(0)
 
 print(f"Job \"{JOB_NAME}\" is not found in the CI job", file=sys.stderr)
