@@ -5,7 +5,7 @@ dependencies:
   # general numerics (version controlled)
   - python=3.9*
   - numpy=1.22*
-  - scipy=1.7*
+  - scipy=1.8*
   - kwant=1.4*
   - cython=0.29*
   - libblas=*=*mkl
@@ -19,6 +19,7 @@ dependencies:
   - deepdish
   - matplotlib-base=3.3*
   - holoviews=1.14*
+  - panel=0.13*  # Needed for https://github.com/holoviz/panel/pull/3258
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
@@ -32,7 +33,7 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
-  - jupyterlab<4.0,>=3.2.8
+  - jupyterlab<4.0,>=3.3.0
   - retrolab
   - jupyterlab-link-share
   - jupyter-server-proxy
