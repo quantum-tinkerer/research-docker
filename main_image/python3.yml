@@ -6,7 +6,7 @@ dependencies:
   - python=3.9*
   - numpy=1.22*
   - scipy=1.8*
-  - kwant=1.4*
+  - kwant>=1.4.3
   - cython=0.29*
   - libblas=*=*mkl
   # numerics, not version-controlled (less mission-critical)
