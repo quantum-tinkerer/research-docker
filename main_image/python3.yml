@@ -17,7 +17,7 @@ dependencies:
   - sparse
   # plotting and serialization
   - deepdish
-  - matplotlib-base=3.3*
+  - matplotlib-base=3.5*
   - holoviews=1.14*
   - panel=0.13*  # Needed for https://github.com/holoviz/panel/pull/3258
   - plotly>=5.0
