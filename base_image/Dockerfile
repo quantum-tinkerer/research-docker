@@ -83,6 +83,10 @@ RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
 
 USER $NB_USER
 COPY gitconfig gitattributes /opt/conda/etc/
+# Allow running image in CI with user mismatch, see
+# e.g. https://github.com/actions/checkout/issues/760
+# and https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2750
+RUN git config --global --add safe.directory '*'
 
 CMD ["startup.sh"]
 EXPOSE 22
