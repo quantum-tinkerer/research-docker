@@ -80,7 +80,8 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
-  - dask-gateway~=0.9
+  # Reenable once https://github.com/conda-forge/dask-gateway-feedstock/pull/23 and other are merged
+  # - dask-gateway~=0.9
   - pip:
     - memory_profiler
     - stim
@@ -91,4 +92,5 @@ dependencies:
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
     - python-gitlab
     - opencv-python-headless
+    - dask-gateway~=0.9
 
