@@ -92,5 +92,5 @@ dependencies:
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
     - python-gitlab
     - opencv-python-headless
-    - dask-gateway~=0.9
+    - dask-gateway=2022.4.*
 
