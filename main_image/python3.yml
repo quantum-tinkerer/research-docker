@@ -80,6 +80,7 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
+  - alphashape
   # Reenable once https://github.com/conda-forge/dask-gateway-feedstock/pull/23 and other are merged
   # - dask-gateway~=0.9
   - pip:
