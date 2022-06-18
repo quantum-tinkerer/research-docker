@@ -63,8 +63,7 @@ dependencies:
   - feedparser
   - ffmpeg
   - git
-  # Restore numba once 0.55.2 is out https://github.com/conda-forge/numba-feedstock/pull/93
-  # - numba
+  - numba
   - pandas
   - pandoc
   - pip
