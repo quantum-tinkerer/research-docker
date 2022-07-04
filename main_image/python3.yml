@@ -45,7 +45,7 @@ dependencies:
   - jupyter_bokeh
   - jupyterlab-lsp
   - python-lsp-server
-  # - nbgitpuller  # Uncomment when https://github.com/jupyterhub/nbgitpuller/pull/240 is released
+  - nbgitpuller
   - pyviz_comms
   - line_profiler
   - jupyterlab-system-monitor
@@ -68,6 +68,7 @@ dependencies:
   - pandoc
   - pip
   - pytest-flakes
+  - pytest-cov
   - python-graphviz
   - ruamel.yaml
   - scikit-image
@@ -85,8 +86,6 @@ dependencies:
   - pip:
     - memory_profiler
     - stim
-    # Remove when https://github.com/jupyterhub/nbgitpuller/pull/240 is released
-    - git+https://github.com/manics/nbgitpuller.git@jupyter-server
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
