@@ -30,6 +30,7 @@ dependencies:
   - dask_labextension
   - hpc05
   - ipyparallel
+  - dask-gateway~=2022.06
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
@@ -78,8 +79,9 @@ dependencies:
   - xlrd
   - ffmpeg
   - git
-  - dask-gateway~=2022.06
   - python-gitlab  
+  - fish
+  - zsh
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
