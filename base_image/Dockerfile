@@ -4,9 +4,10 @@ USER root
 WORKDIR /
 
 # Debian packages
-RUN apt-get update \
-    && apt-get full-upgrade -y \
-    && apt-get install -y --no-install-recommends --fix-missing \
+RUN apt update \
+    && apt full-upgrade -y \
+    && apt install -y --no-install-recommends --fix-missing \
+        software-properties-common \
         autossh \
         bash-completion \
         build-essential \
@@ -18,7 +19,6 @@ RUN apt-get update \
         tig \
         htop \
         imagemagick \
-        inkscape \
         jq \
         keychain \
         latexmk \
@@ -55,8 +55,9 @@ RUN apt-get update \
    && curl -s https://syncthing.net/release-key.txt | apt-key add - \
    && echo "deb https://apt.syncthing.net/ syncthing stable" > \
         /etc/apt/sources.list.d/syncthing.list \
-   && apt-get update \
-   && apt-get install -y syncthing \
+   && apt-add-repository -y ppa:inkscape.dev/stable \
+   && apt update \
+   && apt install -y syncthing inkscape \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
