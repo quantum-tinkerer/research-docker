@@ -82,6 +82,7 @@ dependencies:
   - python-gitlab  
   - fish
   - zsh
+  - zip
   # Ensure that these packages do not get removed by python upgrade
   - conda
   - mamba
