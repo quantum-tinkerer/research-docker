@@ -88,6 +88,7 @@ dependencies:
   - mamba
   - tini=0.18*
   - pip:
+    - pyqula 
     - stim
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
