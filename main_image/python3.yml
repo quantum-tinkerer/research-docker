@@ -88,8 +88,8 @@ dependencies:
   - mamba
   - tini=0.18*
   - pip:
-    - pyqula
     - stim
+    - git+https://github.com/joselado/pyqula
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/asantosnet/Poisson_Solver.git
