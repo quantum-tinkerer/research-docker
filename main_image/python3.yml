@@ -75,6 +75,7 @@ dependencies:
   - ruamel.yaml
   - scikit-image
   - shapely
+  - alphashape
   - tqdm
   - xlrd
   - ffmpeg
