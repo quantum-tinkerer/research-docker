@@ -68,6 +68,7 @@ dependencies:
   - numba
   - pandas
   - pandoc
+  - jupyter-book
   - pip
   - pytest-flakes
   - pytest-cov
