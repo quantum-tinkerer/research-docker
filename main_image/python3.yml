@@ -30,7 +30,7 @@ dependencies:
   - dask_labextension
   - hpc05
   - ipyparallel
-  - dask-gateway~=2022.06
+  - dask-gateway
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
