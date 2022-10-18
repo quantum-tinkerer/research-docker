@@ -38,3 +38,5 @@ c.ServerApp.ResourceUseDisplay.cpu_limit = 5\n\
 c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
 # Add the manual jupyter lab config file
 COPY jupyter_server_config.json /etc/jupyter/jupyter_server_config.json
+# Add the test notebook
+COPY test_notebook.ipynb /user/share/test_notebook.ipynb
