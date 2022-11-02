@@ -12,6 +12,7 @@ dependencies:
   # numerics, not version-pinned (less mission-critical)
   - pfapack
   - adaptive
+  - h5netcdf
   - xarray
   - sympy
   - sparse
