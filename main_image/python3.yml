@@ -27,6 +27,7 @@ dependencies:
   - h5py
   - pytables
   - distributed
+  - dask-jobqueue
   - dask_labextension
   - hpc05
   - ipyparallel
