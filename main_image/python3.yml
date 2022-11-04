@@ -58,6 +58,7 @@ dependencies:
   - nbresuse
   # other
   - adaptive-scheduler
+  - asyncssh
   - memory_profiler
   - jax
   - black
