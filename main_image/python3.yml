@@ -45,6 +45,7 @@ dependencies:
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
+  - jupyterlab-mathjax3
   - jupyter_bokeh
   - jupyterlab-lsp
   - python-lsp-server
