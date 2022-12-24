@@ -1,5 +1,12 @@
+# Default section provided by conda (may get outdated)
+[http]
+        sslVerify = true
+        sslCAPath = /opt/conda/ssl/cacert.pem
+        sslCAInfo = /opt/conda/ssl/cacert.pem
+
 [core]
 	editor = /usr/bin/editor
+    excludesfile = /opt/conda/etc/gitignore
 [diff "jupyternotebook"]
         command = git-nbdiffdriver diff
 [merge "jupyternotebook"]
