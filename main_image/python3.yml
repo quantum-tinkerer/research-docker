@@ -4,8 +4,8 @@ channels:
 dependencies:
   # general numerics (version pinned)
   - python=3.10*
-  - numpy=1.22*
-  - scipy=1.8*
+  - numpy=1.23*
+  - scipy=1.9*
   - kwant>=1.4.3
   - cython=0.29*
   - libblas=*=*mkl
@@ -19,8 +19,8 @@ dependencies:
   # plotting and serialization
   - deepdish
   - matplotlib-base=3.5*
-  - holoviews=1.14*
-  - panel=0.13*  # Needed for https://github.com/holoviz/panel/pull/3258
+  - holoviews
+  - panel
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
   # parallell computing
