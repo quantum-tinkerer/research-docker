@@ -26,10 +26,6 @@ RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
 
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
-# Create parallel profiles and copy the correct config
-RUN mkdir -p /opt/conda/etc/ipython && ipython profile create --parallel --profile python3 --ipython-dir /opt/conda/etc/ipython
-COPY ipcluster_config_python3.py /opt/conda/etc/ipython/profile_python3/ipcluster_config.py
-
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
 RUN printf '\n\n\
