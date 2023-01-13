@@ -1,6 +1,5 @@
 FROM gitlab.kwant-project.org:5005/qt/research-docker:base
-ARG GITLAB_API_TOKEN
-ARG CI_PIPELINE_ID
+ARG JOBS_URL
 
 USER root
 WORKDIR /
@@ -21,9 +20,9 @@ RUN rm "${CONDA_DIR}/conda-meta/pinned" \
 # RUN conda env create -p /opt/conda/envs/dev -f /environments/dev.yml
 
 # Figure out the future Singularity image address
-COPY resolve_singularity.py /usr/local/bin/resolve_singularity.py
+COPY resolve_singularity.py .gitlab-ci.yml /usr/local/bin/
 RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
-    && rm /usr/local/bin/resolve_singularity.py
+    && rm /usr/local/bin/resolve_singularity.py /usr/local/bin/.gitlab-ci.yml
 
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 

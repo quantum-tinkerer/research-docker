@@ -51,12 +51,13 @@ build image:
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
       - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
   script:
+    # Copy the CI config so that we can read the job specs from it.
+    - cp .gitlab-ci.yml $CI_PROJECT_DIR/main_image
     - /kaniko/executor
       --context $CI_PROJECT_DIR/main_image
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
-      --build-arg GITLAB_API_TOKEN=$GITLAB_API_TOKEN
-      --build-arg CI_PIPELINE_ID=$CI_PIPELINE_ID
+      --build-arg JOBS_URL=$CI_API_V4_URL/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs
       --reproducible
     - /busybox/sed -e "s%{{ docker_container_name }}%$CI_REGISTRY_IMAGE:$CI_REF%g" Singularity.j2 > Singularity
   artifacts:
