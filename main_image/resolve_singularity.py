@@ -37,7 +37,6 @@ for job in reversed(req.json()):
         logging.info(msg=f"Singularity image URL: {singularity_url}")
         with open("/etc/singularity_url", "w") as f:
             print(singularity_url, file=f)
-        os.setenv("SINGULARITY_URL", singularity_url)
         sys.exit(0)
 
 logging.info(msg=f"Job '{job_name}' is not in the pipeline")

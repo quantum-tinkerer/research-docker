@@ -21,7 +21,8 @@ RUN rm "${CONDA_DIR}/conda-meta/pinned" \
 # Figure out the future Singularity image address
 COPY resolve_singularity.py .gitlab-ci.yml /usr/local/bin/
 RUN /opt/conda/bin/python /usr/local/bin/resolve_singularity.py \
-    && rm /usr/local/bin/resolve_singularity.py /usr/local/bin/.gitlab-ci.yml
+    && rm /usr/local/bin/resolve_singularity.py /usr/local/bin/.gitlab-ci.yml \
+    && export SINGULARITY_URL=$(cat /etc/singularity_url)
 
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
