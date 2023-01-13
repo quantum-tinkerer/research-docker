@@ -20,8 +20,8 @@ for job_name, job in ci_config.items():
     if image_path := next((p for p in artifact_paths if p.endswith(".simg")), None):
         break
 else:
-    logging.error(msg="CI does not build a singularity image")
-    sys.exit(250)
+    logging.info(msg="CI does not build a singularity image")
+    sys.exit(0)
 
 
 req = requests.get(os.getenv("JOBS_URL"))
@@ -40,5 +40,5 @@ for job in reversed(req.json()):
         os.setenv("SINGULARITY_URL", singularity_url)
         sys.exit(0)
 
-logging.error(msg=f"Job '{job_name}' is not in the pipeline")
-sys.exit(250)
+logging.info(msg=f"Job '{job_name}' is not in the pipeline")
+sys.exit(0)
