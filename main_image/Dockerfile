@@ -5,7 +5,6 @@ USER root
 WORKDIR /
 
 # Add environment files
-RUN mkdir /environments
 COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
 
 # Update the root environment
