@@ -95,11 +95,10 @@ dependencies:
   - mamba
   - tini=0.18*
   - pip:
-    - stim
-    - pyqula
-    - git+https://github.com/basnijholt/adaptive-tools
-    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
-    - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
-    - opencv-python-headless
+    # - pyqula
+    # - git+https://github.com/basnijholt/adaptive-tools
+    # - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
+    # - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
+    # - opencv-python-headless
     # TODO: remove this when jupyterlab 3.6 is released
     - jupyterlab==3.6.0rc0 --install-option="--pre"
