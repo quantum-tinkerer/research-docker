@@ -35,11 +35,13 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=2.0.0
-  - jupyterlab<4.0,>=3.3.0
+  # TODO: uncomment this when jupyterlab 3.6 is released
+  # - jupyterlab<4.0,>=3.3.0
   - retrolab
   - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter-vscode-proxy
+  - jupyter_server_ydoc  # backend for RTC
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
@@ -84,7 +86,7 @@ dependencies:
   - xlrd
   - ffmpeg
   - git
-  - python-gitlab  
+  - python-gitlab
   - fish
   - zsh
   - zip
@@ -99,3 +101,5 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
     - opencv-python-headless
+    # TODO: remove this when jupyterlab 3.6 is released
+    - jupyterlab==3.6.0rc0 --install-option="--pre"
