@@ -11,7 +11,7 @@ COPY python3.yml /environments/
 # Update the root environment
 RUN rm "${CONDA_DIR}/conda-meta/pinned" \
     && mamba install -n base -y python=3.10* \
-    && mamba env update --quiet -n base -f /environments/python3.yml \
+    && mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && mamba list python | grep '^python ' | tr -s ' ' | cut -d ' ' -f 1,2 >> "${CONDA_DIR}/conda-meta/pinned" \
     && fix-permissions /opt/conda
