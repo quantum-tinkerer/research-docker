@@ -6,7 +6,7 @@ USER root
 WORKDIR /
 
 # Add environment files
-COPY python3.yml dev.yml fenics.yml install_dev.sh /environments/
+COPY python3.yml /environments/
 
 # Update the root environment
 RUN rm "${CONDA_DIR}/conda-meta/pinned" \
