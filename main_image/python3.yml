@@ -37,9 +37,9 @@ dependencies:
   - jupyterhub>=2.0.0
   # TODO: uncomment this when jupyterlab 3.6 is released
   # - jupyterlab<4.0,>=3.3.0
-  - retrolab
   - jupyterlab-link-share
   - jupyter-server-proxy
+  - jupyter_server>=2.0
   - jupyter-vscode-proxy
   - jupyter_server_ydoc  # backend for RTC
   - jupytext
@@ -84,7 +84,6 @@ dependencies:
   - alphashape
   - tqdm
   - xlrd
-  - ffmpeg
   - git
   - python-gitlab
   - fish
