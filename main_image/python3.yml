@@ -35,8 +35,7 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=3.1.0
-  # TODO: uncomment this when jupyterlab 3.6 is released
-  # - jupyterlab<4.0,>=3.3.0
+  - jupyterlab<4.0,>=3.3.0
   - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter_server
