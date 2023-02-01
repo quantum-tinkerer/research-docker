@@ -14,6 +14,8 @@ RUN rm "${CONDA_DIR}/conda-meta/pinned" \
     && mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && mamba list python | grep '^python ' | tr -s ' ' | cut -d ' ' -f 1,2 >> "${CONDA_DIR}/conda-meta/pinned" \
+    # TODO: remove this when the new jupyterlab is released
+    && pip install jupyterlab==3.6.0rc1 --pre \
     && fix-permissions /opt/conda
 
 # Figure out the future Singularity image address

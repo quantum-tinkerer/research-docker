@@ -1,6 +1,6 @@
 {
     "LabApp": {
-        "collaborative": false
+        "collaborative": true
     },
     "ContentsManager": {
         "allow_hidden": true

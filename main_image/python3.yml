@@ -35,10 +35,11 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=3.1.0
-  - jupyterlab<4.0,>=3.3.0
+  # TODO: uncomment when jupyterlab 3.6 is released
+  # - jupyterlab<4.0,>=3.6.0
   - jupyterlab-link-share
   - jupyter-server-proxy
-  - jupyter_server
+  - jupyter_server>=2.2.0
   - jupyter-vscode-proxy
   - jupyter_server_ydoc  # backend for RTC
   - jupytext
