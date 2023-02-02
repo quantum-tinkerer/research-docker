@@ -23,7 +23,7 @@ dependencies:
   - panel
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
-  # parallell computing
+  # parallel computing
   - zarr
   - h5py
   - pytables
@@ -35,8 +35,7 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=3.1.0
-  # TODO: uncomment when jupyterlab 3.6 is released
-  # - jupyterlab<4.0,>=3.6.0
+  - jupyterlab<4.0,>=3.6.0
   - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
@@ -73,7 +72,7 @@ dependencies:
   - numba
   - pandas
   - pandoc
-  - jupyter-book
+  # - jupyter-book
   - pip
   - pytest-flakes
   - pytest-cov
