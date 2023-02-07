@@ -13,6 +13,6 @@
         driver = git-nbmergedriver merge %O %A %B %L %P
         name = jupyter notebook merge driver
 [pull]
-        rebase = true
+        rebase = false
 [init]
         defaultBranch = main
