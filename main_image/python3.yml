@@ -39,7 +39,6 @@ dependencies:
   - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
-  - jupyter-vscode-proxy
   - jupyter_server_ydoc  # backend for RTC
   - jupytext
   - jupyterlab-git
@@ -65,7 +64,6 @@ dependencies:
   - jax
   - black
   - boost
-  - code-server
   - emcee
   - feedparser
   - ffmpeg
