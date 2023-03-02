@@ -3,9 +3,9 @@ channels:
   - conda-forge
 dependencies:
   # general numerics (version pinned)
-  - python=3.10*
-  - numpy=1.23*
-  - scipy=1.9*
+  - python=3.11*
+  - numpy=1.24*
+  - scipy=1.10*
   - kwant>=1.4.3
   - cython=0.29*
   - libblas=*=*mkl
@@ -18,7 +18,7 @@ dependencies:
   - sparse
   # plotting and serialization
   - deepdish
-  - matplotlib-base=3.5*
+  - matplotlib-base=3.7*
   - holoviews
   - panel
   - plotly>=5.0
