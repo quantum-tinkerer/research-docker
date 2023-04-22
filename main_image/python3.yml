@@ -68,7 +68,7 @@ dependencies:
   - feedparser
   - ffmpeg
   - git
-  - numba
+  #- numba
   - pandas
   - pandoc
   # - jupyter-book
