@@ -75,7 +75,6 @@ dependencies:
   - pip
   - pytest-flakes
   - pytest-cov
-  - pytest-ruff
   - python-graphviz
   - ruamel.yaml
   - scikit-image
@@ -94,6 +93,7 @@ dependencies:
   - tini=0.18*
   - pip:
     - pyqula
+    - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
