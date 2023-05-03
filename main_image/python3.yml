@@ -75,6 +75,7 @@ dependencies:
   - pip
   - pytest-flakes
   - pytest-cov
+  - pytest-ruff
   - python-graphviz
   - ruamel.yaml
   - scikit-image
