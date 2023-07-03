@@ -68,6 +68,7 @@ dependencies:
   - feedparser
   - ffmpeg
   - git
+  - pymablock
   #- numba
   - pandas
   - pandoc
