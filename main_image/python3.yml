@@ -35,18 +35,17 @@ dependencies:
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=3.1.0
-  - jupyterlab<4.0,>=3.6.0
+  - jupyterlab>=4.0
   - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
-  - jupyter_server_ydoc  # backend for RTC
+  - jupyter-collaboration
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
   - jupyterlab-mathjax3
   - jupyter_bokeh
-  - jupyterlab-lsp
   - python-lsp-server
   - nbgitpuller
   - pyviz_comms
@@ -69,7 +68,7 @@ dependencies:
   - ffmpeg
   - git
   - pymablock
-  #- numba
+  - numba
   - pandas
   - pandoc
   # - jupyter-book
@@ -93,7 +92,6 @@ dependencies:
   - mamba
   - tini=0.18*
   - pip:
-    - pyqula
     - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
