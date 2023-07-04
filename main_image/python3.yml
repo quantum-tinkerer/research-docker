@@ -36,7 +36,6 @@ dependencies:
   - ipython>=8
   - jupyterhub>=3.1.0
   - jupyterlab>=4.0
-  - jupyterlab-link-share
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
   - jupyter-collaboration
@@ -50,7 +49,7 @@ dependencies:
   - nbgitpuller
   - pyviz_comms
   - line_profiler
-  - jupyterlab-system-monitor
+  - jupyter-resource-usage
   - nbdime
   - nbstripout
   - mistune
