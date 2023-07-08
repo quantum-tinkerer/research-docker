@@ -5,8 +5,8 @@ dependencies:
   # general numerics (version pinned)
   - python=3.11*
   - numpy=1.24*
-  - scipy=1.10*
-  - kwant>=1.4.3
+  - scipy=1.11*
+  - kwant>=1.4.4
   - cython=0.29*
   - libblas=*=*mkl
   # numerics, not version-pinned (less mission-critical)
