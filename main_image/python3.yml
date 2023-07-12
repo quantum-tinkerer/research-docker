@@ -14,7 +14,8 @@ dependencies:
   - adaptive
   - h5netcdf
   - xarray
-  - sympy
+  # Unpin once https://gitlab.kwant-project.org/qt/qsymm/-/issues/48 is fixed and released
+  - sympy<1.12
   - sparse
   # plotting and serialization
   - deepdish
