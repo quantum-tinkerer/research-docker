@@ -4,10 +4,10 @@ channels:
 dependencies:
   # general numerics (version pinned)
   - python=3.11*
-  - numpy=1.24*
+  - numpy=1.25*
   - scipy=1.11*
   - kwant>=1.4.4
-  - cython=0.29*
+  - cython=3.*
   - libblas=*=*mkl
   # numerics, not version-pinned (less mission-critical)
   - pfapack
