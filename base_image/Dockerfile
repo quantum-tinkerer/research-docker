@@ -58,6 +58,8 @@ RUN apt update \
    && apt-add-repository -y ppa:inkscape.dev/stable \
    && apt update \
    && apt install -y syncthing inkscape \
+   && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
+   && apt-get install -y git-lfs \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
