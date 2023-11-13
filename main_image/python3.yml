@@ -94,6 +94,7 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
+  - svgutils
   - pip:
     - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
