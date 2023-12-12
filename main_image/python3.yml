@@ -102,4 +102,8 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - opencv-python-headless
     - svgutils
+    - mkdocs-material
+    - mkdocs-simple-hooks
+    - mkdocs-exclude
+
 
