@@ -103,7 +103,6 @@ dependencies:
     - opencv-python-headless
     - svgutils
     - mkdocs-material
-    - mkdocs-simple-hooks
     - mkdocs-exclude
 
 
