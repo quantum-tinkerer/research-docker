@@ -100,6 +100,7 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
     - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
+    - git+https://github.com/Kostusas/dfttools
     - opencv-python-headless
     - svgutils
     - mkdocs-material
