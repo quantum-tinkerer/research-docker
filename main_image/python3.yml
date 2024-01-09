@@ -94,6 +94,9 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
+  # mumpy requirement
+  - ninja
+  - meson-python
   - pip:
     - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
@@ -101,6 +104,7 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - git+https://github.com/Kostusas/dfttools
+    - git+https://gitlab.kwant-project.org/kwant/mumpy.git@meson
     - opencv-python-headless
     - svgutils
     - mkdocs-material
