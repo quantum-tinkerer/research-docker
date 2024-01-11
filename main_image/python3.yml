@@ -105,7 +105,7 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - git+https://github.com/Kostusas/dfttools
     - git+https://gitlab.kwant-project.org/kwant/mumpy.git@meson
-    - git+https://gitlab.kwant-project.org/qt/pescado.git@setup
+    - git+https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.kwant-project.org/grenoble/pescado.git@setup
     - opencv-python-headless
     - svgutils
     - mkdocs-material
