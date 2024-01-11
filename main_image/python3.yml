@@ -39,6 +39,8 @@ dependencies:
   - jupyterlab>=4.0
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
+  - jupyter-vscode-proxy
+  - openvscode-server
   # Enable jupyter-collaboration after
   # https://github.com/jupyterlab/jupyterlab/issues/14031 and
   # https://github.com/jupyterlab/jupyterlab/issues/13930 are fixed.

@@ -2,6 +2,9 @@ FROM gitlab.kwant-project.org:5005/qt/research-docker:base
 ARG SINGULARITY_URL
 ENV SINGULARITY_URL=$SINGULARITY_URL
 
+# For jupyter-vscode-proxy
+ENV CODE_EXECUTABLE=openvscode-server
+
 USER root
 WORKDIR /
 
