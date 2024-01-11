@@ -76,6 +76,7 @@ dependencies:
   - numba
   - pandas
   - pandoc
+  - qutip
   # - jupyter-book
   - pip
   - pytest-flakes
