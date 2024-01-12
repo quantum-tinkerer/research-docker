@@ -9,6 +9,7 @@ dependencies:
   - kwant>=1.4.4
   - cython=3.*
   - libblas=*=*mkl
+  - metis!=5.1.1  # Segfaults
   # numerics, not version-pinned (less mission-critical)
   - pfapack
   - adaptive
