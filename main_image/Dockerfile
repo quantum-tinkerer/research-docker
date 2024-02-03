@@ -13,7 +13,8 @@ COPY python3.yml /environments/
 COPY pescado /tmp/pescado
 
 # Update the root environment
-RUN mamba env update --no-py-pin -n base -f /environments/python3.yml \
+RUN rm "${CONDA_DIR}/conda-meta/pinned" \
+    && mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
