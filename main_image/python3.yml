@@ -25,6 +25,7 @@ dependencies:
   - panel
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
+  - cmasher
   # parallel computing
   - zarr
   - h5py
