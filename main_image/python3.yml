@@ -113,3 +113,4 @@ dependencies:
     - mkdocs-material
     - mkdocs-exclude
     - mkdocs-execute-plugin==0.0.6
+    - meanfi
