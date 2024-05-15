@@ -10,15 +10,12 @@ WORKDIR /
 
 # Add environment files
 COPY python3.yml /environments/
-COPY pescado /tmp/pescado
 
 # Update the root environment
 RUN rm "${CONDA_DIR}/conda-meta/pinned" \
     && mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
-
-RUN rm -rf /tmp/pescado
 
 # Figure out the future Singularity image address
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
