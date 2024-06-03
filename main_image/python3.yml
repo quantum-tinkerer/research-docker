@@ -99,7 +99,10 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
-  # mumpy requirement
+  # mumpy requirementz
+  # pixi environment
+  - pixi
+  - pixi-kernel
   - pip:
     - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
