@@ -107,7 +107,6 @@ dependencies:
     - pytest-ruff
     - git+https://github.com/basnijholt/adaptive-tools
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
-    - git+https://gitlab.kwant-project.org/qt/Poisson_Solver.git
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - git+https://github.com/Kostusas/dfttools
     - git+https://gitlab.kwant-project.org/grenoble/pescado.git@setup
