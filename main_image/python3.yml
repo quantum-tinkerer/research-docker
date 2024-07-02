@@ -114,5 +114,5 @@ dependencies:
     - svgutils
     - mkdocs-material
     - mkdocs-exclude
-    - mkdocs-execute-plugin==0.0.6
+    - mkdocs-execute-plugin>=0.0.7,<0.1
     - meanfi
