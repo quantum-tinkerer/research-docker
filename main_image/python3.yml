@@ -4,7 +4,7 @@ channels:
 dependencies:
   # general numerics (version pinned)
   - python=3.12*
-  - numpy=1.26*
+  - numpy=2.0*
   - scipy=1.14*
   - kwant=1.5*
   - cython=3.*
@@ -20,7 +20,7 @@ dependencies:
   - sparse
   # plotting and serialization
   - deepdish
-  - matplotlib-base=3.9*
+  - matplotlib-base=3.8*
   - holoviews
   - panel
   - plotly>=5.0
