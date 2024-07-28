@@ -29,7 +29,6 @@ dependencies:
   # parallel computing
   - zarr
   - h5py
-  - pytables
   - distributed=2023.3.2.1 # pin because after this version scheduler needs to have consistent env with client and workers
   - dask-jobqueue
   - dask_labextension
