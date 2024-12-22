@@ -60,14 +60,12 @@ dependencies:
   - mistune
   - nbresuse
   # other
-  - openfermion
   - adaptive-scheduler
   - asyncssh
   - memory_profiler
   - jax
   - black
   - boost
-  - emcee
   - feedparser
   - ffmpeg
   - git
@@ -82,8 +80,6 @@ dependencies:
   - python-graphviz
   - ruamel.yaml
   - scikit-image
-  - shapely
-  - alphashape
   - tqdm
   - xlrd
   - python-gitlab
