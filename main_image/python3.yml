@@ -33,7 +33,6 @@ dependencies:
   - dask-jobqueue
   - dask_labextension
   - hpc05
-  - dask-gateway
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=4.0
@@ -104,8 +103,7 @@ dependencies:
   - pixi-kernel
   - pip:
     - pytest-ruff
-    - git+https://github.com/basnijholt/adaptive-tools
-    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git
+    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git@v0.0.3
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - git+https://github.com/Kostusas/dfttools
     - git+https://gitlab.kwant-project.org/grenoble/pescado.git@setup
