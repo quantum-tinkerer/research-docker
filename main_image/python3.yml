@@ -103,7 +103,7 @@ dependencies:
     - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git@v0.0.3
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
     - git+https://github.com/Kostusas/dfttools
-    - git+https://gitlab.kwant-project.org/grenoble/pescado.git@setup
+    - git+https://gitlab.kwant-project.org/grenoble/pescado.git@db13881f
     - opencv-python-headless
     - svgutils
     - mkdocs-material
