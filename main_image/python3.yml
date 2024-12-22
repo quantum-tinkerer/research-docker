@@ -3,10 +3,10 @@ channels:
   - conda-forge
 dependencies:
   # general numerics (version pinned)
-  - python=3.12*
-  - numpy=2.0*
-  - scipy=1.14*
-  - kwant=1.5*
+  - python=3.12.*
+  - numpy=1.26.*
+  - scipy=1.14.*
+  - kwant=1.5.*
   - cython=3.*
   - libblas=*=*mkl
   - metis!=5.1.1  # Segfaults
@@ -20,7 +20,7 @@ dependencies:
   - sparse
   # plotting and serialization
   - deepdish
-  - matplotlib-base=3.8*
+  - matplotlib-base=3.8.*
   - holoviews
   - panel
   - plotly>=5.0
@@ -32,7 +32,6 @@ dependencies:
   - distributed=2023.3.2.1 # pin because after this version scheduler needs to have consistent env with client and workers
   - dask-jobqueue
   - dask_labextension
-  - hpc05
   # jupyter tools and extensions
   - ipython>=8
   - jupyterhub>=4.0
@@ -77,7 +76,6 @@ dependencies:
   - pandas
   - pandoc
   - qutip
-  # - jupyter-book
   - pip
   - pytest-flakes
   - pytest-cov
@@ -88,7 +86,6 @@ dependencies:
   - alphashape
   - tqdm
   - xlrd
-  - git
   - python-gitlab
   - fish
   - zsh
