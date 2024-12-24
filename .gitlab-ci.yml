@@ -8,7 +8,6 @@ image:
 stages:
   - build_base
   - build
-  - build_singularity
 
 .build base image:
   stage: build_base
@@ -59,5 +58,4 @@ build image:
       --context $CI_PROJECT_DIR/main_image
       --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
       --destination $CI_REGISTRY_IMAGE:$CI_REF
-      --build-arg SINGULARITY_URL=$(cat singularity_url)
       --reproducible

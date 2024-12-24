@@ -1,6 +1,4 @@
 FROM gitlab.kwant-project.org:5005/qt/research-docker:base
-ARG SINGULARITY_URL
-ENV SINGULARITY_URL=$SINGULARITY_URL
 
 # For jupyter-vscode-proxy
 ENV CODE_EXECUTABLE=openvscode-server
@@ -17,7 +15,6 @@ RUN rm "${CONDA_DIR}/conda-meta/pinned" \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
-# Figure out the future Singularity image address
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
 # Switch back to jovyan to avoid accidental container runs as root
