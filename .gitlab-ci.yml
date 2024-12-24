@@ -9,18 +9,23 @@ stages:
   - build_base
   - build
 
-.build base image:
-  stage: build_base
+.kaniko_build:
   before_script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
   script:
     - /kaniko/executor
-      --context $CI_PROJECT_DIR/base_image
-      --dockerfile $CI_PROJECT_DIR/base_image/Dockerfile
-      --destination $CI_REGISTRY_IMAGE:base
+      --context $IMAGE_DIR
+      --dockerfile $IMAGE_DIR/Dockerfile
+      --destination $CI_REGISTRY_IMAGE:$IMAGE_TAG
       --reproducible
-  needs: []
+
+.build base image:
+  extends: .kaniko_build
+  variables:
+    IMAGE_DIR: $CI_PROJECT_DIR/base_image
+    IMAGE_TAG: base
+  stage: build_base
 
 build base image:master:
   extends: .build base image
@@ -43,19 +48,12 @@ build base image:manual:
 
 build image:
   stage: build
+  extends: .kaniko_build
   only:
     # To ensure that CI_COMMIT_REF_SLUG exists
     refs:
       - branches
       - tags
-  before_script:
-      - mkdir -p /kaniko/.docker
-      - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-      - '[[ "$CI_COMMIT_REF_SLUG" == "master" ]] && export CI_REF="latest" || export CI_REF="$CI_COMMIT_REF_SLUG"'
-  script:
-    # Copy the CI config so that we can read the job specs from it.
-    - /kaniko/executor
-      --context $CI_PROJECT_DIR/main_image
-      --dockerfile $CI_PROJECT_DIR/main_image/Dockerfile
-      --destination $CI_REGISTRY_IMAGE:$CI_REF
-      --reproducible
+  variables:
+    IMAGE_DIR: $CI_PROJECT_DIR/main_image
+    IMAGE_TAG: $CI_REF
