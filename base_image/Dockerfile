@@ -15,11 +15,9 @@ RUN apt update \
         tree \
         curl \
         dvipng \
-        gfortran \
         tig \
         htop \
         imagemagick \
-        jq \
         keychain \
         latexmk \
         latexdiff \
@@ -86,10 +84,6 @@ RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
     && fix-permissions /opt/conda
 
 USER $NB_USER
-# Allow running image in CI with user mismatch, see
-# e.g. https://github.com/actions/checkout/issues/760
-# and https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2750
-RUN git config --global --add safe.directory '*'
 
 CMD ["startup.sh"]
 EXPOSE 22

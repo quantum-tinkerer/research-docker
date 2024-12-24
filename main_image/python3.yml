@@ -4,36 +4,14 @@ channels:
 dependencies:
   # general numerics (version pinned)
   - python=3.12.*
-  - numpy=1.26.*
-  - scipy=1.14.*
-  - kwant=1.5.*
-  - cython=3.*
-  - libblas=*=*mkl
-  - metis!=5.1.1  # Segfaults
   # numerics, not version-pinned (less mission-critical)
-  - python-mumps
-  - pfapack
-  - adaptive
-  - h5netcdf
-  - xarray
-  - sympy
-  - sparse
   # plotting and serialization
-  - deepdish
-  - matplotlib-base=3.8.*
-  - holoviews
   - panel
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
-  - cmasher
   # parallel computing
-  - zarr
-  - h5py
-  - distributed=2023.3.2.1 # pin because after this version scheduler needs to have consistent env with client and workers
-  - dask-jobqueue
   - dask_labextension
   # jupyter tools and extensions
-  - ipython>=8
   - jupyterhub>=4.0
   - jupyterlab>=4.1
   - jupyter-server-proxy
@@ -43,7 +21,7 @@ dependencies:
   # Enable jupyter-collaboration after
   # https://github.com/jupyterlab/jupyterlab/issues/14031 and
   # https://github.com/jupyterlab/jupyterlab/issues/13930 are fixed.
-  # - jupyter-collaboration
+  - jupyter-collaboration
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
@@ -60,29 +38,13 @@ dependencies:
   - mistune
   - nbresuse
   # other
-  - adaptive-scheduler
   - asyncssh
   - memory_profiler
-  - jax
   - black
-  - boost
-  - feedparser
-  - ffmpeg
   - git
-  - pymablock
-  - numba
-  - pandas
   - pandoc
-  - qutip
   - pip
-  - pytest-flakes
-  - pytest-cov
-  - python-graphviz
   - ruamel.yaml
-  - scikit-image
-  - tqdm
-  - xlrd
-  - python-gitlab
   - fish
   - zsh
   - zip
@@ -96,13 +58,4 @@ dependencies:
   - pixi-kernel
   - pip:
     - pytest-ruff
-    - git+https://gitlab.kwant-project.org/qt/dask-quantumtinkerer.git@v0.0.3
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
-    - git+https://github.com/Kostusas/dfttools
-    - git+https://gitlab.kwant-project.org/grenoble/pescado.git@db13881f
-    - opencv-python-headless
-    - svgutils
-    - mkdocs-material
-    - mkdocs-exclude
-    - mkdocs-execute-plugin>=0.0.7,<0.1
-    - meanfi
