@@ -46,7 +46,6 @@ RUN apt update \
         openssh-server \
         apt-transport-https \
         gnupg \
-        libgl1-mesa-glx \
    && apt-add-repository -y ppa:inkscape.dev/stable \
    && apt update \
    && apt install -y inkscape \
