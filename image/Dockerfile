@@ -52,33 +52,26 @@ RUN apt update \
    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
    && apt-get install -y git-lfs \
    && apt-get clean \
-   && rm -rf /var/lib/apt/lists/*
-
-COPY startup.sh /usr/local/bin/before-notebook.d/
-
-# setting openblas and mkl variables
-ENV OPENBLAS_NUM_THREADS=1\
-    OMP_NUM_THREADS=1\
-    MKL_DYNAMIC=FALSE\
-    MKL_NUM_THREADS=1\
-    CONDA_ALWAYS_COPY=true
-
-RUN update-alternatives --set editor /bin/nano
-
-RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
-    && conda clean --yes --all \
-    && conda init --system --no-user \
-    && fix-permissions /opt/conda
+   && rm -rf /var/lib/apt/lists/* \
+   && update-alternatives --set editor /bin/nano
 
 
-# For jupyter-vscode-proxy
-ENV CODE_EXECUTABLE=openvscode-server
+   # OpenBLAS and MKL multithreading does not offer advantages in practice
+   ENV OPENBLAS_NUM_THREADS=1\
+   OMP_NUM_THREADS=1\
+   MKL_DYNAMIC=FALSE\
+   MKL_NUM_THREADS=1\
+   # Otherwise volumes don't work
+   CONDA_ALWAYS_COPY=true\
+   # The vscode we're using
+   CODE_EXECUTABLE=openvscode-server
 
 # Add environment files
+COPY startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
-# Update the root environment
+# Update the base environment
 RUN mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
