@@ -71,6 +71,28 @@ RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
     && conda init --system --no-user \
     && fix-permissions /opt/conda
 
-USER $NB_USER
+
+# For jupyter-vscode-proxy
+ENV CODE_EXECUTABLE=openvscode-server
+
+# Add environment files
+COPY python3.yml /environments/
+COPY gitconfig gitattributes gitignore /opt/conda/etc/
+
+# Update the root environment
+RUN mamba env update -n base -f /environments/python3.yml \
+    && mamba clean --quiet --yes --all \
+    && fix-permissions /opt/conda
+
+
+# Switch back to jovyan to avoid accidental container runs as root
+USER $NB_UID
+RUN printf '\n\n\
+c.ServerApp.ResourceUseDisplay.mem_limit = 21474836480\n\
+c.ServerApp.ResourceUseDisplay.track_cpu_percent = True\n\
+c.ServerApp.ResourceUseDisplay.cpu_limit = 5\n\
+c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
+# Add the manual jupyter lab config file
+COPY jupyter_server_config.json /etc/jupyter/jupyter_server_config.json
 
 EXPOSE 22
