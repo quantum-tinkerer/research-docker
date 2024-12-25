@@ -50,19 +50,14 @@ RUN apt update \
         supervisor \
         gnupg \
         libgl1-mesa-glx \
-   && curl -s https://syncthing.net/release-key.txt | apt-key add - \
-   && echo "deb https://apt.syncthing.net/ syncthing stable" > \
-        /etc/apt/sources.list.d/syncthing.list \
    && apt-add-repository -y ppa:inkscape.dev/stable \
    && apt update \
-   && apt install -y syncthing inkscape \
+   && apt install -y inkscape \
    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
    && apt-get install -y git-lfs \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-# Install supervisor for automatic starting of syncthing
-COPY supervisord.conf /etc/supervisor/supervisord.conf
 # copy startup.sh script and set start-up command
 COPY startup.sh /usr/local/bin/
 
@@ -75,8 +70,6 @@ ENV OPENBLAS_NUM_THREADS=1\
 
 RUN chmod a+x /usr/local/bin/startup.sh \
     && update-alternatives --set editor /bin/nano \
-    # https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
-    && echo "fs.inotify.max_user_watches=204800" >> /etc/sysctl.conf
 
 RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
     && conda clean --yes --all \
