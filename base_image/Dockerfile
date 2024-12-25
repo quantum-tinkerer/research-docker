@@ -58,8 +58,7 @@ RUN apt update \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-# copy startup.sh script and set start-up command
-COPY startup.sh /usr/local/bin/
+COPY startup.sh /usr/local/bin/before-notebook.d/
 
 # setting openblas and mkl variables
 ENV OPENBLAS_NUM_THREADS=1\
@@ -68,8 +67,7 @@ ENV OPENBLAS_NUM_THREADS=1\
     MKL_NUM_THREADS=1\
     CONDA_ALWAYS_COPY=true
 
-RUN chmod a+x /usr/local/bin/startup.sh \
-    && update-alternatives --set editor /bin/nano \
+RUN update-alternatives --set editor /bin/nano
 
 RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
     && conda clean --yes --all \
@@ -78,5 +76,4 @@ RUN conda install --quiet -n base -y conda\>4.8.2 mamba \
 
 USER $NB_USER
 
-CMD ["startup.sh"]
 EXPOSE 22
