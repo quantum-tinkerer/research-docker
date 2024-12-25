@@ -5,10 +5,6 @@ image:
   name: gcr.io/kaniko-project/executor:debug
   entrypoint: [""]
 
-stages:
-  - build_base
-  - build
-
 .kaniko_build:
   before_script:
     - mkdir -p /kaniko/.docker
@@ -17,43 +13,11 @@ stages:
     - /kaniko/executor
       --context $IMAGE_DIR
       --dockerfile $IMAGE_DIR/Dockerfile
-      --destination $CI_REGISTRY_IMAGE:$IMAGE_TAG
+      --destination $CI_REGISTRY_IMAGE/combined:$IMAGE_TAG
       --reproducible
 
-.build base image:
-  extends: .kaniko_build
-  variables:
-    IMAGE_DIR: $CI_PROJECT_DIR/base_image
-    IMAGE_TAG: base
-  stage: build_base
-
-build base image:master:
-  extends: .build base image
-  only:
-    refs:
-      - master
-      - schedules
-    changes:
-      - base_image/**/*
-
-build base image:scheduled:
-  extends: .build base image
-  only:
-    refs:
-      - schedules
-
-build base image:manual:
-  extends: .build base image
-  when: manual
-
 build image:
-  stage: build
   extends: .kaniko_build
-  only:
-    # To ensure that CI_COMMIT_REF_SLUG exists
-    refs:
-      - branches
-      - tags
   variables:
-    IMAGE_DIR: $CI_PROJECT_DIR/main_image
-    IMAGE_TAG: $CI_REF
+    IMAGE_DIR: $CI_PROJECT_DIR/image
+    IMAGE_TAG: $CI_COMMIT_REF_NAME
