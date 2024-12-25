@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:latest
+FROM quay.io/jupyter/base-notebook:ubuntu-24.04
 
 USER root
 WORKDIR /
@@ -8,9 +8,7 @@ RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
         software-properties-common \
-        autossh \
         bash-completion \
-        build-essential \
         cron \
         tree \
         curl \
@@ -27,6 +25,7 @@ RUN apt update \
         rsync \
         screen \
         tmux \
+        # LaTeX packages
         biber \
         texlive-bibtex-extra \
         texlive-extra-utils \
@@ -43,11 +42,9 @@ RUN apt update \
         texlive-lang-european \
         lmodern \
         cm-super \
-        vim \
         zsh \
         openssh-server \
         apt-transport-https \
-        supervisor \
         gnupg \
         libgl1-mesa-glx \
    && apt-add-repository -y ppa:inkscape.dev/stable \
