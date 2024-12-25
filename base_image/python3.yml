@@ -2,22 +2,16 @@ name: python3
 channels:
   - conda-forge
 dependencies:
-  # general numerics (version pinned)
-  - python=3.12.*
-  # numerics, not version-pinned (less mission-critical)
   # plotting and serialization
   - panel
   - plotly>=5.0
   - ipympl  # interactive plotting in jupyterlab
   # parallel computing
-  - dask_labextension
   # jupyter tools and extensions
-  - jupyterhub>=4.0
-  - jupyterlab>=4.1
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
   - jupyter-vscode-proxy
-  - openvscode-server
+  - dask_labextension
   - jupytext
   - jupyterlab-git
   - jupyterlab_code_formatter
@@ -30,11 +24,9 @@ dependencies:
   - line_profiler
   - jupyter-resource-usage
   - nbdime
-  - nbstripout
-  - mistune
   - nbresuse
+  - openvscode-server
   # other
-  - asyncssh
   - memory_profiler
   - black
   - git
@@ -48,10 +40,8 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
-  # mumpy requirementz
   # pixi environment
   - pixi
   - pixi-kernel
   - pip:
-    - pytest-ruff
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
