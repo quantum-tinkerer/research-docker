@@ -13,6 +13,7 @@ dependencies:
   - jupyter-vscode-proxy
   - dask_labextension
   - jupytext
+  - jupyterlab>=4.4.0
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
