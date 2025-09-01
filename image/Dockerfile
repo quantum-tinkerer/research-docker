@@ -15,33 +15,13 @@ RUN apt update \
         dvipng \
         tig \
         htop \
-        imagemagick \
         keychain \
-        latexmk \
-        latexdiff \
         less \
         man \
         nano \
         rsync \
         screen \
         tmux \
-        # LaTeX packages
-        biber \
-        texlive-bibtex-extra \
-        texlive-extra-utils \
-        texlive-fonts-extra \
-        texlive-fonts-recommended \
-        texlive-latex-base \
-        texlive-latex-extra \
-        texlive-latex-recommended \
-        texlive-plain-generic \
-        texlive-publishers \
-        texlive-science \
-        texlive-xetex \
-        texlive-lang-cyrillic \
-        texlive-lang-european \
-        lmodern \
-        cm-super \
         zsh \
         openssh-server \
         apt-transport-https \
