@@ -17,6 +17,7 @@ dependencies:
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
+  - jupyter-collaboration
   - jupyterlab-mathjax3
   - jupyter_bokeh
   - python-lsp-server
@@ -46,3 +47,4 @@ dependencies:
   - pixi-kernel
   - pip:
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
+    - jupyter_server_nbmodel[lab]
