@@ -19,6 +19,7 @@ dependencies:
   - jupyterlab_latex
   - jupyter-collaboration
   - jupyterlab-mathjax3
+  - jupyterlab-lsp
   - jupyter_bokeh
   - python-lsp-server
   - nbgitpuller

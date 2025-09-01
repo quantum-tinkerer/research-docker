@@ -12,7 +12,6 @@ RUN apt update \
         cron \
         tree \
         curl \
-        dvipng \
         tig \
         htop \
         keychain \

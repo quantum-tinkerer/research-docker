@@ -4,5 +4,8 @@
     },
     "ContentsManager": {
         "allow_hidden": true
+    },
+    "LatexConfig": {
+        "latex_command": "tectonic"
     }
 }
