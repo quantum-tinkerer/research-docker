@@ -13,3 +13,7 @@ docker run -d -p 8888:8888 gitlab.kwant-project.org:5005/qt/research-docker star
 To test create a link `ln -s /usr/share/testing.ipynb testing.ipynb` in the home folder and run the testing notebook.
 
 To add a new feature to test, dump it into the testing notebook.
+
+## SSH sessions and Hub variables
+
+The container starts an `sshd` daemon during boot so users can connect over SSH. `PermitUserEnvironment` is enabled for the daemon, and every time the notebook server starts, all environment variables whose name contains `JUPYTER` are collected and written to `~/.ssh/environment`. Because OpenSSH reads this file for each login, every SSH session (interactive shells and remote commands) inherits the same Hub context available inside JupyterLab while keeping the configuration user-owned and editable.
