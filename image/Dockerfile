@@ -46,9 +46,6 @@ RUN apt update \
         openssh-server \
         apt-transport-https \
         gnupg \
-   && apt-add-repository -y ppa:inkscape.dev/stable \
-   && apt update \
-   && apt install -y inkscape \
    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
    && apt-get install -y git-lfs \
    && apt-get clean \
@@ -57,12 +54,12 @@ RUN apt update \
 
 
    # OpenBLAS and MKL multithreading does not offer advantages in practice
-   ENV OPENBLAS_NUM_THREADS=1\
-   OMP_NUM_THREADS=1\
-   MKL_DYNAMIC=FALSE\
-   MKL_NUM_THREADS=1\
+   ENV OPENBLAS_NUM_THREADS=1 \
+   OMP_NUM_THREADS=1 \
+   MKL_DYNAMIC=FALSE \
+   MKL_NUM_THREADS=1 \
    # Otherwise volumes don't work
-   CONDA_ALWAYS_COPY=true\
+   CONDA_ALWAYS_COPY=true \
    # The vscode we're using
    CODE_EXECUTABLE=openvscode-server
 
@@ -87,4 +84,3 @@ c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
 # Add the manual jupyter lab config file
 COPY jupyter_server_config.json /etc/jupyter/jupyter_server_config.json
 
-EXPOSE 22

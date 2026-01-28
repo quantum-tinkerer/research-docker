@@ -11,7 +11,6 @@ dependencies:
   - jupyter-server-proxy
   - jupyter_server>=2.2.0
   - jupyter-vscode-proxy
-  - dask_labextension
   - jupytext
   - jupyterlab>=4.4.0
   - jupyterlab-git
@@ -41,8 +40,4 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
-  # pixi environment
-  - pixi
-  - pixi-kernel
-  - pip:
-    - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
+ 
