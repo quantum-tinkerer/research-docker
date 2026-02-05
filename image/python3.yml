@@ -2,6 +2,12 @@ name: python3
 channels:
   - conda-forge
 dependencies:
+  # basic scipy stack
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - sympy
   # plotting and serialization
   - panel
   - plotly>=5.0
