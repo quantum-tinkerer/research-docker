@@ -66,14 +66,14 @@ RUN apt update \
 # Add environment files
 COPY startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
-COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
-RUN cat /opt/conda/etc/gitconfig
 # Update the base environment
 RUN mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
-RUN echo "AFTER MAMBA:" && cat /opt/conda/etc/gitconfig
+
+# configure git globally (must do this after mamba which overwrites gitconfig)
+COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
