@@ -54,6 +54,12 @@ RUN mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
+# jupyter-sshd-proxy starts its own sshd with "-f none", so it does not read
+# the global sshd_config.d drop-in below unless the option is set explicitly.
+RUN sed -i "/PrintLastLog no/a\\        '-o', 'PermitUserEnvironment yes'," \
+        /opt/conda/lib/python*/site-packages/jupyter_sshd_proxy/__init__.py \
+    && /opt/conda/bin/python -m py_compile \
+        /opt/conda/lib/python*/site-packages/jupyter_sshd_proxy/__init__.py
 
 # Allow SSH sessions to read per-user environment files
 RUN mkdir -p /etc/ssh/sshd_config.d \

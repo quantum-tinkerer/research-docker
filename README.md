@@ -17,3 +17,5 @@ To add a new feature to test, dump it into the testing notebook.
 ## SSH sessions and Hub variables
 
 The container starts an `sshd` daemon during boot so users can connect over SSH. `PermitUserEnvironment` is enabled for the daemon, and every time the notebook server starts, all environment variables whose name contains `JUPYTER` are collected and written to `~/.ssh/environment`. Because OpenSSH reads this file for each login, every SSH session (interactive shells and remote commands) inherits the same Hub context available inside JupyterLab while keeping the configuration user-owned and editable.
+
+The image also includes `jupyter-sshd-proxy` for SSH over the authenticated JupyterHub HTTPS/WebSocket route. Its on-demand `sshd` is patched during the image build to read `~/.ssh/environment`, matching the behavior of the daemonized SSH server.
