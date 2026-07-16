@@ -4,7 +4,7 @@
 conda config --system --add envs_dirs /home/$NB_USER/.conda/envs
 conda config --system --add pkgs_dirs /home/$NB_USER/.conda/pkgs
 
-# Capture all *JUPYTER* environment variables for SSH logins via ~/.ssh/environment
+# Capture Hub and Pixi environment variables for SSH logins via ~/.ssh/environment
 SSH_USER_DIR="/home/$NB_USER/.ssh"
 SSH_ENV_FILE="$SSH_USER_DIR/environment"
 mkdir -p "$SSH_USER_DIR"
@@ -18,7 +18,7 @@ from pathlib import Path
 target = Path(os.environ["SSH_ENV_FILE"])
 lines = []
 for key, value in sorted(os.environ.items()):
-    if "JUPYTER" not in key:
+    if "JUPYTER" not in key and key not in {"PATH", "PIXI_HOME"}:
         continue
     if any(ch in value for ch in "\n\r"):
         continue  # refuse multi-line values

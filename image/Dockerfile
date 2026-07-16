@@ -44,8 +44,9 @@ RUN apt update \
    # The vscode we're using
    CODE_EXECUTABLE=openvscode-server
 
-# Add environment files
-COPY startup.sh /usr/local/bin/before-notebook.d/
+# Add environment files. pixi.sh is intentionally not executable: Jupyter's
+# hook runner sources it so its PATH update reaches the notebook server.
+COPY pixi.sh startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
