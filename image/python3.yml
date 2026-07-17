@@ -17,7 +17,9 @@ dependencies:
   - jupyterlab-git
   - jupyterlab_code_formatter
   - jupyterlab_latex
+  - jupyter-collaboration
   - jupyterlab-mathjax3
+  - jupyterlab-lsp
   - jupyter_bokeh
   - python-lsp-server
   - nbgitpuller
@@ -41,8 +43,9 @@ dependencies:
   - conda
   - mamba
   - tini=0.18*
-  # pixi environment
-  - pixi
+  # Jupyter integration for the user-installed Pixi executable
   - pixi-kernel
   - pip:
     - git+https://gitlab.kwant-project.org/qt/jupyterpost.git
+    - jupyter-sshd-proxy
+    - jupyter_server_nbmodel[lab]

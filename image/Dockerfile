@@ -12,36 +12,15 @@ RUN apt update \
         cron \
         tree \
         curl \
-        dvipng \
         tig \
         htop \
-        imagemagick \
         keychain \
-        latexmk \
-        latexdiff \
         less \
         man \
         nano \
         rsync \
         screen \
         tmux \
-        # LaTeX packages
-        biber \
-        texlive-bibtex-extra \
-        texlive-extra-utils \
-        texlive-fonts-extra \
-        texlive-fonts-recommended \
-        texlive-latex-base \
-        texlive-latex-extra \
-        texlive-latex-recommended \
-        texlive-plain-generic \
-        texlive-publishers \
-        texlive-science \
-        texlive-xetex \
-        texlive-lang-cyrillic \
-        texlive-lang-european \
-        lmodern \
-        cm-super \
         zsh \
         openssh-server \
         apt-transport-https \
@@ -55,7 +34,6 @@ RUN apt update \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --set editor /bin/nano
 
-
    # OpenBLAS and MKL multithreading does not offer advantages in practice
    ENV OPENBLAS_NUM_THREADS=1\
    OMP_NUM_THREADS=1\
@@ -66,8 +44,9 @@ RUN apt update \
    # The vscode we're using
    CODE_EXECUTABLE=openvscode-server
 
-# Add environment files
-COPY startup.sh /usr/local/bin/before-notebook.d/
+# Add environment files. pixi.sh is intentionally not executable: Jupyter's
+# hook runner sources it so its PATH update reaches the notebook server.
+COPY pixi.sh startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
@@ -76,6 +55,16 @@ RUN mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 
+# jupyter-sshd-proxy starts its own sshd with "-f none", so it does not read
+# the global sshd_config.d drop-in below unless the option is set explicitly.
+RUN sed -i "/PrintLastLog no/a\\        '-o', 'PermitUserEnvironment yes'," \
+        /opt/conda/lib/python*/site-packages/jupyter_sshd_proxy/__init__.py \
+    && /opt/conda/bin/python -m py_compile \
+        /opt/conda/lib/python*/site-packages/jupyter_sshd_proxy/__init__.py
+
+# Allow SSH sessions to read per-user environment files
+RUN mkdir -p /etc/ssh/sshd_config.d \
+    && printf 'PermitUserEnvironment yes\n' > /etc/ssh/sshd_config.d/50-permit-user-env.conf
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
