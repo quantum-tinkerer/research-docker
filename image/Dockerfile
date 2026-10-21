@@ -5,6 +5,7 @@ WORKDIR /
 
 # Start with a sanitized system store before installing anything over HTTPS.
 COPY sanitize-ca-bundle.sh /usr/local/bin/sanitize-ca-bundle
+COPY sanitize-native-stores.py pkcs11-ca-probe.py /usr/local/bin/
 RUN sh /usr/local/bin/sanitize-ca-bundle /etc/ssl/certs/ca-certificates.crt \
     && mkdir -p /etc/ssl/empty
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
@@ -23,7 +24,7 @@ ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
 RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
-        ca-certificates \
+        ca-certificates p11-kit-modules \
         software-properties-common \
         bash-completion \
         cron \
@@ -68,10 +69,13 @@ COPY pixi.sh startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
+RUN python3 /usr/local/bin/sanitize-native-stores.py
+
 # Update the base environment
 RUN mamba env update -n base -f /environments/python3.yml \
     && find /opt/conda -type f -name cacert.pem -exec sh /usr/local/bin/sanitize-ca-bundle {} \; \
     && mamba clean --quiet --yes --all \
+    && python3 /usr/local/bin/sanitize-native-stores.py \
     && fix-permissions /opt/conda
 
 # jupyter-sshd-proxy starts its own sshd with "-f none", so it does not read

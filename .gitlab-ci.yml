@@ -22,7 +22,7 @@ build image:
 
 include:
 - project: qt/ci
-  ref: b3308b243019ddff98015b7f152c642589187712
+  ref: 6206078f05b154de82c569a20aa6b3dff137212e
   file: /TLS.gitlab-ci.yml
 
 default:
