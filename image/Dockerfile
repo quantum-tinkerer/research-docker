@@ -3,10 +3,27 @@ FROM quay.io/jupyter/base-notebook:ubuntu-24.04
 USER root
 WORKDIR /
 
+# Start with a sanitized system store before installing anything over HTTPS.
+COPY sanitize-ca-bundle.sh /usr/local/bin/sanitize-ca-bundle
+RUN sh /usr/local/bin/sanitize-ca-bundle /etc/ssl/certs/ca-certificates.crt \
+    && mkdir -p /etc/ssl/empty
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    SSL_CERT_DIR=/etc/ssl/empty \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    CONDA_SSL_VERIFY=/etc/ssl/certs/ca-certificates.crt \
+    MAMBA_SSL_VERIFY=/etc/ssl/certs/ca-certificates.crt \
+    GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt \
+    PIXI_TLS_ROOT_CERTS=native \
+    UV_NATIVE_TLS=true \
+    UV_SYSTEM_CERTS=true \
+    NODE_OPTIONS=--use-openssl-ca
+
 # Debian packages
 RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
+        ca-certificates \
         software-properties-common \
         bash-completion \
         cron \
@@ -25,6 +42,7 @@ RUN apt update \
         openssh-server \
         apt-transport-https \
         gnupg \
+   && sh /usr/local/bin/sanitize-ca-bundle /etc/ssl/certs/ca-certificates.crt \
    && apt-add-repository -y ppa:inkscape.dev/stable \
    && apt update \
    && apt install -y inkscape \
@@ -52,6 +70,7 @@ COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
 # Update the base environment
 RUN mamba env update -n base -f /environments/python3.yml \
+    && find /opt/conda -type f -name cacert.pem -exec sh /usr/local/bin/sanitize-ca-bundle {} \; \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
 

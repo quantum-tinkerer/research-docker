@@ -18,7 +18,7 @@ from pathlib import Path
 target = Path(os.environ["SSH_ENV_FILE"])
 lines = []
 for key, value in sorted(os.environ.items()):
-    if "JUPYTER" not in key and key not in {"PATH", "PIXI_HOME"}:
+    if "JUPYTER" not in key and key not in {"PATH", "PIXI_HOME", "PIXI_TLS_ROOT_CERTS", "SSL_CERT_FILE", "SSL_CERT_DIR", "REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE", "UV_NATIVE_TLS", "UV_SYSTEM_CERTS", "NODE_OPTIONS"}:
         continue
     if any(ch in value for ch in "\n\r"):
         continue  # refuse multi-line values

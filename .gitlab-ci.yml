@@ -4,6 +4,7 @@ image:
 
 .kaniko_build:
   before_script:
+    - !reference [.tls-trust, before_script]
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
   script:
@@ -18,3 +19,12 @@ build image:
   variables:
     IMAGE_DIR: $CI_PROJECT_DIR/image
     IMAGE_TAG: $CI_COMMIT_REF_NAME
+
+include:
+- project: qt/ci
+  ref: b3308b243019ddff98015b7f152c642589187712
+  file: /TLS.gitlab-ci.yml
+
+default:
+  before_script:
+    - !reference [.tls-trust, before_script]
