@@ -2,6 +2,9 @@ name: python3
 channels:
   - conda-forge
 dependencies:
+  # October 2026 eMudhra root distrust, including Python requests/certifi.
+  - ca-certificates>=2026.10.19
+  - certifi>=2026.10.19
   # plotting and serialization
   - panel
   - plotly>=5.0
@@ -34,7 +37,7 @@ dependencies:
   - black
   - git
   - pandoc
-  - pip
+  - pip>=26.2.2
   - ruamel.yaml
   - fish
   - zsh

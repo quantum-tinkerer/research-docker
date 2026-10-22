@@ -7,6 +7,7 @@ WORKDIR /
 RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
+        ca-certificates p11-kit-modules \
         software-properties-common \
         bash-completion \
         cron \
@@ -25,6 +26,7 @@ RUN apt update \
         openssh-server \
         apt-transport-https \
         gnupg \
+   && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' ca-certificates)" ge 20260816ubuntu0.24.04.1 \
    && apt-add-repository -y ppa:inkscape.dev/stable \
    && apt update \
    && apt install -y inkscape \
@@ -50,10 +52,27 @@ COPY pixi.sh startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
 COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
+# User-installed runtimes share the patched distro store; old Pixi is upgraded
+# separately by pixi.sh because its old native-store option was ineffective.
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    CONDA_SSL_VERIFY=/etc/ssl/certs/ca-certificates.crt \
+    MAMBA_SSL_VERIFY=/etc/ssl/certs/ca-certificates.crt \
+    NODE_OPTIONS=--use-openssl-ca \
+    DENO_TLS_CA_STORE=system \
+    UV_NATIVE_TLS=true \
+    UV_SYSTEM_CERTS=true
+
 # Update the base environment
 RUN mamba env update -n base -f /environments/python3.yml \
     && mamba clean --quiet --yes --all \
     && fix-permissions /opt/conda
+
+# Conda NSS does not yet ship the upstream trust fix. Use the distro's documented
+# p11-kit root provider, leaving the NSS cryptographic engine unchanged.
+RUN nss_provider=$(dpkg-query -L p11-kit-modules | sed -n '/\/p11-kit-trust\.so$/p') \
+    && test -f "$nss_provider" \
+    && find /opt/conda /usr/lib -name libnssckbi.so -exec ln -sf "$nss_provider" {} \;
 
 # jupyter-sshd-proxy starts its own sshd with "-f none", so it does not read
 # the global sshd_config.d drop-in below unless the option is set explicitly.
