@@ -1,0 +1,83 @@
+{
+  "source_commit": "4aa893c4d865e14043aff0ef0ee617056f20801b",
+  "image_id": "sha256:3579555e313c0e96df877b49b628d083770604e6951b84aff9d1d881444fc289",
+  "archive_sha256": "5c424d779ebb29c4a0518e682d25711f6b8613752f6232a08662a079688d0593",
+  "base_manifest": "quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1",
+  "runtime_suite": "passed",
+  "home": {
+    "path": "/home/tinkerer",
+    "uid": 1000,
+    "owner": 1000,
+    "matplotlib_cache": {
+      "path": "/home/tinkerer/.cache/matplotlib",
+      "uid": 1000,
+      "writable": true
+    }
+  },
+  "kernel": true,
+  "python_tls_stores": [
+    "default",
+    "conda",
+    "certifi",
+    "system",
+    "pip_vendor"
+  ],
+  "offline_pem_checks": 48,
+  "browser": {
+    "passed": true,
+    "settings_id": "jupyterlab_code_formatter:settings",
+    "loaded_schemas": 93,
+    "schema_cases": 26,
+    "formatting": {
+      "path": "synthetic-formatter.py",
+      "formatters": [
+        "black"
+      ],
+      "considered": 1,
+      "changed": 1,
+      "errors": []
+    },
+    "extension_command": true,
+    "nbclassic": {
+      "version": "1.13.8",
+      "deep_flatten_and_equality_passed": true,
+      "asset_path": "/user/synthetic/static/nbclassic/components/underscore/underscore-security-fixed.js",
+      "sha256": "1879dd00d8c45c2234c61a06c0e473ae800c5bbbd8d745d8483bd6d7efb09fa8"
+    }
+  },
+  "native_crates": [
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "pyo3",
+      "version": "0.29.3"
+    },
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "quinn-proto",
+      "version": "0.11.19"
+    },
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "zip",
+      "version": "9.1.3"
+    }
+  ],
+  "scan": {
+    "tool": "Trivy 0.76.1",
+    "scanners": [
+      "vuln"
+    ],
+    "ignore_unfixed": true,
+    "raw_counts": {
+      "HIGH": 19,
+      "CRITICAL": 3
+    },
+    "applicable_reported_high_critical": 0,
+    "scope": "Only classified reports; no comprehensive Conda or compiled-JS clearance"
+  },
+  "solver_artifacts": {
+    "/build/plugin-artifact/conda-rattler-solver-0.2.1.dev0+g50108b638-py_0.conda": "133e4070ede382845ff7c7d38c03f62c03b72b004ca4fbd3841b5a754b200dfd"
+  },
+  "published": false,
+  "rolled_out": false
+}
