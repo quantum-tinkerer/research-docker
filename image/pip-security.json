@@ -1,0 +1,12 @@
+{
+  "urllib3": {
+    "version": "2.8.0",
+    "url": "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl",
+    "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+  },
+  "msgpack": {
+    "version": "1.2.4",
+    "url": "https://files.pythonhosted.org/packages/c9/94/562e0733593a780c70b0b18994f30c205149f7f9f4efbe3e9b00b88612c5/msgpack-1.2.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+    "sha256": "7fabd415c41e62006c6641fcdf5b3e866f581c4e11c58328c0d0f69584b9577d"
+  }
+}

@@ -4,6 +4,9 @@ const fs=require('fs');let page;let editorPage;
 try{const context=await browser.newContext({viewport:{width:1440,height:1000},extraHTTPHeaders:{Authorization:'token synthetic-server-only'}});page=await context.newPage();
 result.caught_exception_descriptions=[];result.validation_schema_ids=[];const cdp=await context.newCDPSession(page);await cdp.send('Debugger.enable');await cdp.send('Debugger.setPauseOnExceptions',{state:'all'});cdp.on('Debugger.paused',async e=>{if(e.data?.description&&result.caught_exception_descriptions.length<80)result.caught_exception_descriptions.push(e.data.description);if(e.data?.description?.includes('URI scheme is malformed')){for(const f of e.callFrames||[]){if(['getSchema','validateData'].includes(f.functionName)){const v=await cdp.send('Debugger.evaluateOnCallFrame',{callFrameId:f.callFrameId,expression:"typeof arguments[0]==='string' && (arguments[0].startsWith('jupyterlab') || arguments[0].startsWith('@jupyterlab/')) ? arguments[0] : null",returnByValue:true}).catch(()=>null);if(v?.result?.value)result.validation_schema_ids.push({function:f.functionName,id:v.result.value});}}}await cdp.send('Debugger.resume').catch(()=>{});});
 result.console_errors=[];page.on('pageerror',e=>result.console_errors.push(e.stack));
+let ready=false;
+for(let n=0;n<60;n++){try{const response=await context.request.get('http://127.0.0.1:51591/user/synthetic/api/status',{timeout:2000});if(response.status()===200){ready=true;break;}}catch{}await page.waitForTimeout(1000);}
+if(!ready)throw Error('singleuser HTTP readiness timeout');
 await page.goto('http://127.0.0.1:51591/user/synthetic/lab?token=synthetic-server-only',{waitUntil:'domcontentloaded',timeout:180000});
 await page.locator('.jp-LabShell').waitFor({timeout:120000});
 await page.waitForTimeout(3000);await cdp.send('Debugger.setPauseOnExceptions',{state:'none'});

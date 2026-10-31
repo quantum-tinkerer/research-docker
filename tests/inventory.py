@@ -1,5 +1,7 @@
 """Measure actual installed records and selected imports, without exporting Env."""
 import hashlib, importlib, importlib.metadata, json, pathlib, subprocess
+for name in ['gitconfig', 'gitattributes', 'gitignore']:
+    assert (pathlib.Path('/opt/conda/etc')/name).is_file(), name
 expected = json.loads(pathlib.Path('/build/conda-artifacts.json').read_text())
 actual = [json.loads(p.read_text()) for p in pathlib.Path('/opt/conda/conda-meta').glob('*.json')]
 by_name = {r['name']:r for r in actual}

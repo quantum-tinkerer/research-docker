@@ -142,3 +142,10 @@ COPY --from=frontend /build/app/package.json /usr/local/share/research-base/form
 COPY --from=frontend /build/typescript/package-lock.json /usr/local/share/research-base/formatter-typescript-lock.json
 ENV HOME=/home/jovyan
 USER 1000
+
+# pip 26.2.2 fixes trust, but still vendors older urllib3/msgpack releases.
+# Preserve pip's namespace and pure-Python msgpack implementation.
+USER root
+COPY pip-security.py pip-security.json /build/
+RUN python /build/pip-security.py
+USER 1000

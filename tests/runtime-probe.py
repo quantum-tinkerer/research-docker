@@ -49,7 +49,7 @@ for f in sorted(paths):
  assert not bad.intersection(hits),str(f)
  if certs:R['ca_files'][str(f)]={'certificates':len(certs),'sha256':hashlib.sha256(data).hexdigest()}
 # Extra GitLab HTTP availability and native TLS controls are retained separately in gitlab-tls.json.
-R['tls']={};stores={'default':None,'certifi':certifi.where(),'system':'/etc/ssl/certs/ca-certificates.crt','pip_vendor':__import__('pip._vendor.certifi',fromlist=['where']).where()}
+R['tls']={};stores={'default':None,'conda':'/opt/conda/ssl/cert.pem','certifi':certifi.where(),'system':'/etc/ssl/certs/ca-certificates.crt','pip_vendor':__import__('pip._vendor.certifi',fromlist=['where']).where()}
 for name,store in stores.items():
  ctx=ssl.create_default_context(cafile=store);assert not bad.intersection(hashlib.sha256(x).hexdigest().upper() for x in ctx.get_ca_certs(binary_form=True))
  R['tls'][name]={}
@@ -61,7 +61,7 @@ for name,store in stores.items():
    assert not good and isinstance(e.reason,ssl.SSLCertVerificationError)
    R['tls'][name][host]={'certificate_rejected':True,'verify_code':e.reason.verify_code}
 R['offline_chains']=[]
-for store in set([certifi.where(),ssl.get_default_verify_paths().cafile,stores['system'],stores['pip_vendor']]):
+for store in set([ssl.get_default_verify_paths().cafile, *[p for p in stores.values() if p]]):
  for chain in (P/'chains').glob('*.pem'):
   p=subprocess.run(['openssl','verify','-CAfile',store,'-no-CApath','-no-CAstore','-untrusted',str(chain),str(chain)],capture_output=True,text=True)
   assert p.returncode and any(s in p.stderr+p.stdout for s in ['unable to get local issuer certificate','certificate rejected','self-signed certificate'])

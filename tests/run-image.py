@@ -5,6 +5,7 @@ p.add_argument('image')
 p.add_argument('--output', type=pathlib.Path, required=True)
 a = p.parse_args()
 a.output = a.output.resolve(); a.output.mkdir(parents=True, exist_ok=True)
+assert not any(a.output.iterdir()), 'Use a fresh evidence directory; stale receipts must not pass gates'
 probe = pathlib.Path(__file__).resolve().parent
 name = 'research-source-test-' + str(time.time_ns())
 def run(args, **kw):
@@ -18,6 +19,8 @@ def container(command, label, *, root=False, entrypoint=None, env=()):
 # Rootless mapped user must be able to write receipts; this is a task-owned directory.
 a.output.chmod(0o777)
 container(['python', '/probe/inventory.py'], 'inventory')
+container(['pip', 'check'], 'pip-consistency')
+container(['python', '/probe/pip-vendor-probe.py'], 'pip-vendor')
 container(['python', '/probe/entrypoint-probes.py'], 'entrypoint')
 container(['bash', '/probe/pixi-probe.sh'], 'pixi')
 container(['-c', 'unset SSL_CERT_FILE REQUESTS_CA_BUNDLE; /usr/bin/python3 /probe/system-native-probe.py'], 'system', entrypoint='/bin/bash')
