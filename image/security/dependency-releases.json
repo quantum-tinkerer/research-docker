@@ -1,0 +1,224 @@
+{
+  "shell-quote@1.9.0": {
+    "name": "shell-quote",
+    "version": "1.9.0",
+    "engines": {
+      "node": ">= 0.4"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "e108b1a136586d5964edb3300016d4bedba0fe57",
+      "tarball": "https://registry.npmjs.org/shell-quote/-/shell-quote-1.9.0.tgz",
+      "fileCount": 21,
+      "integrity": "sha512-Iov+JwFv/2HcTpcwNMKd8+IWNb8tboQJNQTkAY/LLVK7gGH9jy+LGkVqPxfekHl+yMmiqXszdGWXgkfml7hjqA==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDwHxA5LRnJUGWdbU2W5t5TvzrLFQmsgkKX+N3+7h5UHwIhAJv06FxW05s5zPcAZQEk6YwPTGXcu17ELttz1LTLEOc7",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 33477
+    },
+    "type": null,
+    "main": "index.js",
+    "exports": null
+  },
+  "ip-address@10.3.1": {
+    "name": "ip-address",
+    "version": "10.3.1",
+    "engines": {
+      "node": ">= 12"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "929f9629d1724f7e1b7485ce89752f3675336a10",
+      "tarball": "https://registry.npmjs.org/ip-address/-/ip-address-10.3.1.tgz",
+      "fileCount": 30,
+      "integrity": "sha512-1e9d3kb97NHJTIJDZW9rKqW2h6+dFa50Dy0fpPSMQp2ADje5gvKsXmdiK6dwY5t76TaTt5+P5N1Y/LoToIxP6g==",
+      "signatures": [
+        {
+          "sig": "MEUCIDc6SaW+ZNa/Q7qO2Lwn3PdlgHi2np16ZfHZCg1vqwMrAiEAtN+NqshIBKZWovN29E5SsfwpAJF03Gue2S2gVLxfnZo=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQD3zN0eSKOy9Q8LSHD+KyFWVtlE5/De8pDIfxjGE3kUIAIhAOS7sol8DNYOq3fVo9CQvpgZzWyI+xE3mREWRbTJ+gPo",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/ip-address@10.3.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 294030
+    },
+    "type": null,
+    "main": "dist/ip-address.js",
+    "exports": null
+  },
+  "lodash-es@4.18.0": {
+    "name": "lodash-es",
+    "version": "4.18.0",
+    "engines": null,
+    "dependencies": null,
+    "dist": {
+      "shasum": "553d0eca832a8d8702aefa2d1ffd19e115efe52d",
+      "tarball": "https://registry.npmjs.org/lodash-es/-/lodash-es-4.18.0.tgz",
+      "fileCount": 647,
+      "integrity": "sha512-koAgswPPA+UTaPN64Etp+PGP+WT6oqOS2NMi5yDkMaiGw9qY4VxQbQF0mtKMyr4BlTznWyzePV5UpECTJQmSUA==",
+      "signatures": [
+        {
+          "sig": "MEUCIFwHttJVXzaV/SbSdTkg1tz2eQ5zY/N4ExJe20msbsWBAiEA7C3AplJZIjWKnYng/iPfTs3DDrxT2aSUT7lwnKFngdY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 634509
+    },
+    "type": "module",
+    "main": "lodash.js",
+    "exports": null
+  },
+  "picomatch@4.0.4": {
+    "name": "picomatch",
+    "version": "4.0.4",
+    "engines": {
+      "node": ">=12"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "fd6f5e00a143086e074dffe4c924b8fb293b0589",
+      "tarball": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.4.tgz",
+      "fileCount": 10,
+      "integrity": "sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCv5e5BwqTV7AdUgp7YA5ImjKGI6SRr2Vo6JoAWcxen5gIgdj1ozhk8p81pX1vWkbdOhJ0cl3mWjeOEpDpFFNrYZx8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 91415
+    },
+    "type": null,
+    "main": "index.js",
+    "exports": null
+  },
+  "undici@7.30.1": {
+    "name": "undici",
+    "version": "7.30.1",
+    "engines": {
+      "node": ">=20.18.1"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "360b3de104b94abc52729aa1a4a07e027aa71f73",
+      "tarball": "https://registry.npmjs.org/undici/-/undici-7.30.1.tgz",
+      "fileCount": 210,
+      "integrity": "sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==",
+      "signatures": [
+        {
+          "sig": "MEQCIGbwZDAY6XHGtV3F63le15RCYMcYwf3nzbaM2ztCj2DGAiAqUnBQOsztQSISAXFGwLgoGWpRj/VvzXdOFrTwdyhwuA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDJSG4Aynkp2Dzgyly5TZSCJHEgJVaLYBMWDrR5E1DJbwIhAPbAsgaW/B92exUFb8F8H4/9yEObgVOBlT8Qw7P+70oC",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/undici@7.30.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1670065
+    },
+    "type": null,
+    "main": "index.js",
+    "exports": null
+  },
+  "undici@6.29.1": {
+    "name": "undici",
+    "version": "6.29.1",
+    "engines": {
+      "node": ">=18.17"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "a3317c5df0236e0633727d9a7bd4f7ed195d8575",
+      "tarball": "https://registry.npmjs.org/undici/-/undici-6.29.1.tgz",
+      "fileCount": 176,
+      "integrity": "sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA==",
+      "signatures": [
+        {
+          "sig": "MEYCIQCM+PxpZGqOIXf3IL1xFc8ITlhTrKdyeFZUuC+HwYR1RwIhAJWmDuQzpY3/scYPsn6+p+P7cNAm/l12KRzRBe3vHz/I",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQChJ0aDZB2VwH+EUwPqt/EyZpF1ZbPqdGNalcPlyGbwQwIgOkIaX/3JaQ1OXfIxs1z0xBxtYP565egBBEZtSRMYS7Y=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/undici@6.29.1",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1205968
+    },
+    "type": null,
+    "main": "index.js",
+    "exports": null
+  },
+  "socks@2.8.10": {
+    "name": "socks",
+    "version": "2.8.10",
+    "engines": {
+      "npm": ">= 3.0.0",
+      "node": ">= 10.0.0"
+    },
+    "dependencies": {
+      "ip-address": "^10.1.1",
+      "smart-buffer": "^4.2.0"
+    },
+    "dist": {
+      "shasum": "23aab4dccc1fdae110aaf4fa51cd190552432dc5",
+      "tarball": "https://registry.npmjs.org/socks/-/socks-2.8.10.tgz",
+      "fileCount": 31,
+      "integrity": "sha512-e0VyvkVTwVYViNovRkZ9aodhxVlyoMn7eJhVUPxZ+eK9P/7CBkxvvsBOHqFPEH416726W8tLXXXjKwqgTErrCQ==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDCqE+1jilIebBZe7fww4w4aGpKzovm61f1KWbx2wgskgIhANB13/DhaS9GlOLDpuQzn97JXSxgpB81m/ZkRUvslM7U",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQD5ZIg2zc056wiNegj6xkkJrX++9zHPXFkyAjAuA1OsngIgURgxG7qyrm7Uj9TluBayWA1cB4s8ZBBoSjO7LftdNCU=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 156009
+    }
+  },
+  "shell-quote@1.12.0": {
+    "name": "shell-quote",
+    "version": "1.12.0",
+    "engines": {
+      "node": ">= 0.4"
+    },
+    "dependencies": null,
+    "dist": {
+      "shasum": "e98fdfd2e921d8a58ae2820f4fc0f75c39f09675",
+      "tarball": "https://registry.npmjs.org/shell-quote/-/shell-quote-1.12.0.tgz",
+      "fileCount": 11,
+      "integrity": "sha512-PcByqNyT/38F2kDNi006HAMRJaULuBzq/FOsw3qdZvX/GA9W/jamDaRskgHjubHiftXK5sIFxLNkvrXUwcof6Q==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDUPJ1+ric6KTWrOEyyWhmWdfncG15K7VCySjZ1wOY7OAIhAM2NxSh7W5qlVnDmVB04ba7g8hc7pPGgQU0Uw+zRHpA5",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 26348
+    }
+  }
+}

@@ -1,0 +1,27 @@
+package:
+  name: conda-rattler-solver
+  version: 0.2.1.dev0+g50108b638
+source:
+  path: ../source
+  folder: src
+build:
+  noarch: python
+  number: 0
+  script_env:
+    - SETUPTOOLS_SCM_PRETEND_VERSION=0.2.1.dev0+g50108b638
+  script: '{{ PYTHON }} -m pip install src/ --no-deps --no-build-isolation'
+requirements:
+  host:
+    - python 3.13.*
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=3.11
+    - conda >=26.7.0
+    - py-rattler >=0.27.1,<0.29.0a0
+about:
+  home: https://github.com/conda/conda-rattler-solver
+  license: BSD-3-Clause
+  license_file: src/LICENSE
+  summary: Official main 50108b638 archive candidate; packaged without a Git checkout

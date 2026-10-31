@@ -1,0 +1,8 @@
+"""Load the real patched upstream module ahead of stale optimized AMD definitions."""
+import pathlib,hashlib,difflib,json
+root=pathlib.Path('/opt/conda/lib/python3.13/site-packages/nbclassic');component=root/'static/components/underscore';data=(component/'underscore-min.js').read_bytes();expected='89e99999dfa83ee9fb88e58beb7820961dbfcf391cee2f361ffd4a3489309c69';assert hashlib.sha256(data).hexdigest()==expected
+oldid=b'define("underscore",r)';newid=b'define("underscore-security-fixed",r)';assert data.count(oldid)==1;alias=data.replace(oldid,newid);(component/'underscore-security-fixed.js').write_bytes(alias)
+p=root/'templates/page.html';old=p.read_text();s=old
+needle="            underscore : 'components/underscore/underscore-min',";assert s.count(needle)==1;s=s.replace(needle,needle+"\n            'underscore-security-fixed': 'components/underscore/underscore-security-fixed',")
+needle="                'contents': '{{ contents_js_source }}',";assert s.count(needle)==1;s=s.replace(needle,needle+"\n                'underscore': 'underscore-security-fixed',")
+p.write_text(s);B=pathlib.Path('/build');(B/'nbclassic-loader.patch').write_text(''.join(difflib.unified_diff(old.splitlines(True),s.splitlines(True),fromfile='nbclassic/templates/page.html',tofile='nbclassic/templates/page.html')));(B/'nbclassic-loader-receipt.json').write_text(json.dumps({'upstream_version':'1.13.8','upstream_umd_sha256':expected,'alias_sha256':hashlib.sha256(alias).hexdigest(),'alias_change':'Only named AMD module identifier; all library code bytes retained','old_optimized_bundle_preserved_but_underscore_imports_mapped':True},indent=2)+'\n')

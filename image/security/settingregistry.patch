@@ -1,0 +1,50 @@
+--- a/packages/settingregistry/src/settingregistry.ts
++++ b/packages/settingregistry/src/settingregistry.ts
+@@ -152,8 +152,8 @@
+     plugin: ISettingRegistry.IPlugin,
+     populate = true
+   ): ISchemaValidator.IError[] | null {
+-    const validate = this._validator.getSchema(plugin.id);
+-    const compose = this._composer.getSchema(plugin.id);
++    const validate = this._validator.getSchema(this._schemaKey(plugin.id));
++    const compose = this._composer.getSchema(this._schemaKey(plugin.id));
+ 
+     // If the schemas do not exist, add them to the validator and continue.
+     if (!validate || !compose) {
+@@ -237,6 +237,7 @@
+   ): ISchemaValidator.IError[] | null {
+     const composer = this._composer;
+     const validator = this._validator;
++    const key = this._schemaKey(plugin);
+     const validate = validator.getSchema('jupyterlab-plugin-schema')!;
+ 
+     // Validate against the main schema.
+@@ -250,14 +251,24 @@
+     }
+ 
+     // Remove if schema already exists.
+-    composer.removeSchema(plugin);
+-    validator.removeSchema(plugin);
++    composer.removeSchema(key);
++    validator.removeSchema(key);
+ 
+     // Add schema to the validator and composer.
+-    composer.addSchema(schema, plugin);
+-    validator.addSchema(schema, plugin);
++    composer.addSchema(schema, key);
++    validator.addSchema(schema, key);
+ 
+     return null;
++  }
++
++  /** Keep opaque plugin IDs separate from JSON Schema URI identifiers. */
++  private _schemaKey(plugin: string): string {
++    // Only a colon before any path/query/fragment delimiter denotes a scheme.
++    // Leave valid URI keys and all schema $id/$ref values untouched.
++    const scheme = /^([^:/?#]*):/.exec(plugin);
++    return scheme && !/^[a-z][a-z0-9+.-]*$/i.test(scheme[1])
++      ? `jupyterlab-settings:/${encodeURIComponent(plugin)}`
++      : plugin;
+   }
+ 
+   private _composer: Ajv = new Ajv({

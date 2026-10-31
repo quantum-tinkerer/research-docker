@@ -1,13 +1,28 @@
-FROM quay.io/jupyter/base-notebook:ubuntu-24.04
+# linux/amd64; public Jupyter Docker Stacks manifest, resolved 2026-10-31.
+FROM quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1 AS solver
+USER root
+ENV HOME=/root
+COPY security/solver-source.tar.gz /build/source.tar.gz
+COPY security/plugin-recipe.yaml /build/recipe/meta.yaml
+COPY security/solver-tools-linux-64.lock /build/solver-tools.lock
+RUN echo "18b436a8293cf22e34815b2e27a223bc1c63cc76a3cab6b2eb642673dd75949a  /build/source.tar.gz" | sha256sum -c - \
+ && mkdir /build/source && tar -xzf /build/source.tar.gz --strip-components=1 -C /build/source \
+ && mamba create -y -p /build/tools --file /build/solver-tools.lock \
+ && /build/tools/bin/conda build /build/recipe --no-test --output-folder /build/out --override-channels -c conda-forge
+
+FROM quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1 AS runtime
 
 USER root
 WORKDIR /
+ENV HOME=/root
 
-# Debian packages
+# Published Ubuntu snapshot; no mutable PPA or fetched installer script.
+RUN sed -i -E 's#https?://(archive.ubuntu.com/ubuntu/?|security.ubuntu.com/ubuntu/?)#https://snapshot.ubuntu.com/ubuntu/20261031T000000Z/#g' /etc/apt/sources.list.d/ubuntu.sources \
+ && printf 'Acquire::Check-Valid-Until "false";\n' > /etc/apt/apt.conf.d/99snapshot
 RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
-        ca-certificates p11-kit-modules \
+        ca-certificates p11-kit-modules git-lfs inkscape \
         software-properties-common \
         bash-completion \
         cron \
@@ -27,11 +42,6 @@ RUN apt update \
         apt-transport-https \
         gnupg \
    && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' ca-certificates)" ge 20260816ubuntu0.24.04.1 \
-   && apt-add-repository -y ppa:inkscape.dev/stable \
-   && apt update \
-   && apt install -y inkscape \
-   && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
-   && apt-get install -y git-lfs \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --set editor /bin/nano
@@ -50,7 +60,6 @@ RUN apt update \
 # hook runner sources it so its PATH update reaches the notebook server.
 COPY pixi.sh startup.sh /usr/local/bin/before-notebook.d/
 COPY python3.yml /environments/
-COPY gitconfig gitattributes gitignore /opt/conda/etc/
 
 # User-installed runtimes share the patched distro store; old Pixi is upgraded
 # separately by pixi.sh because its old native-store option was ineffective.
@@ -63,10 +72,28 @@ ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
     UV_NATIVE_TLS=true \
     UV_SYSTEM_CERTS=true
 
-# Update the base environment
-RUN mamba env update -n base -f /environments/python3.yml \
-    && mamba clean --quiet --yes --all \
-    && fix-permissions /opt/conda
+# Reconstruct the tested environment from published, digest-verified artifacts.
+# Bootstrap mamba lives outside the target prefix; no inherited Conda packages remain.
+COPY security/ /build/
+COPY --from=solver /build/out/noarch/ /build/plugin-artifact/
+RUN python /build/prepare-lock.py \
+ && cp -a /opt/conda /opt/bootstrap \
+ && rm -rf /opt/conda \
+ && /opt/bootstrap/bin/mamba create -y -p /opt/conda --file /build/install.lock \
+ && rm -rf /opt/bootstrap \
+ && python /build/install-assets.py \
+ && python /build/dependency-overlay.py \
+ && python /build/nbclassic-loader.py \
+ && python /build/proxy-compat.py \
+ && rm /usr/local/bin/openvscode-server \
+ && install -m 0755 /build/openvscode-server /usr/local/bin/openvscode-server \
+ && fix-permissions /opt/conda
+
+COPY gitconfig gitattributes gitignore /opt/conda/etc/
+
+# Separately pinned pip-only integrations (not represented by the Conda lock).
+COPY requirements-pip.txt /build/
+RUN pip install --no-cache-dir --report /build/pip-report.json -r /build/requirements-pip.txt
 
 # Conda NSS does not yet ship the upstream trust fix. Use the distro's documented
 # p11-kit root provider, leaving the NSS cryptographic engine unchanged.
@@ -86,6 +113,7 @@ RUN mkdir -p /etc/ssh/sshd_config.d \
     && printf 'PermitUserEnvironment yes\n' > /etc/ssh/sshd_config.d/50-permit-user-env.conf
 
 # Switch back to jovyan to avoid accidental container runs as root
+ENV HOME=/home/jovyan CHOWN_HOME=yes
 USER $NB_UID
 RUN printf '\n\n\
 c.ServerApp.ResourceUseDisplay.mem_limit = 21474836480\n\
@@ -96,3 +124,21 @@ c.ContextManager.root_dir = "~"\n' >> /etc/jupyter/jupyter_notebook_config.py
 COPY jupyter_server_config.json /etc/jupyter/jupyter_server_config.json
 
 EXPOSE 22
+
+FROM runtime AS frontend
+USER root
+ENV HOME=/root NODE_OPTIONS="--use-openssl-ca --max-old-space-size=6144" RAYON_NUM_THREADS=4
+WORKDIR /build
+RUN python /build/build-assets.py
+
+FROM runtime
+USER root
+RUN rm -rf /opt/conda/lib/python3.13/site-packages/jupyterlab/static /opt/conda/share/jupyter/lab/static
+COPY --from=frontend /build/app/build/ /opt/conda/lib/python3.13/site-packages/jupyterlab/static/
+COPY --from=frontend /build/app/build/ /opt/conda/share/jupyter/lab/static/
+COPY --from=frontend /build/asset-receipt.json /usr/local/share/research-base/formatter-asset-receipt.json
+COPY --from=frontend /build/app/yarn.lock /usr/local/share/research-base/formatter-yarn.lock
+COPY --from=frontend /build/app/package.json /usr/local/share/research-base/formatter-package.json
+COPY --from=frontend /build/typescript/package-lock.json /usr/local/share/research-base/formatter-typescript-lock.json
+ENV HOME=/home/jovyan
+USER 1000

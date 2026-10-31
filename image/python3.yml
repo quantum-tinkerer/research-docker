@@ -1,3 +1,4 @@
+# Human-readable intent; security/conda-linux-64.lock is the build input.
 name: python3
 channels:
   - conda-forge
@@ -12,13 +13,13 @@ dependencies:
   # parallel computing
   # jupyter tools and extensions
   - jupyter-server-proxy
-  - jupyter_server>=2.2.0
+  - jupyter_server>=2.21.1
   - jupyter-vscode-proxy
   - dask_labextension
-  - jupytext
-  - jupyterlab>=4.4.0
+  - jupytext=1.19.6
+  - jupyterlab=4.6.5
   - jupyterlab-git
-  - jupyterlab_code_formatter
+  - jupyterlab_code_formatter=3.1.0
   - jupyterlab_latex
   - jupyter-collaboration
   - jupyterlab-mathjax3
@@ -31,7 +32,7 @@ dependencies:
   - jupyter-resource-usage
   - nbdime
   - nbresuse
-  - openvscode-server
+  # OpenVSCode is installed from the digest-verified official archive.
   # other
   - memory_profiler
   - black

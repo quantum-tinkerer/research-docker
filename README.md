@@ -22,4 +22,24 @@ The image also includes `jupyter-sshd-proxy` for SSH over the authenticated Jupy
 
 ## Pixi updates
 
-On the first start with a new home directory, the official Pixi installer runs as the notebook user and installs the latest release in `~/.pixi/bin/pixi`. This user-owned executable takes precedence in Jupyter and SSH sessions, so `pixi self-update` survives container replacement. Subsequent starts preserve the installed version; they do not contact the network or replace a version selected by the user.
+On first startup, the hook installs the SHA256-verified official Pixi 0.82.1 archive as the notebook user. Persistent installations older than 0.82.1 are upgraded; current or newer user-selected versions are retained. The user-owned executable takes precedence in Jupyter and SSH sessions. Home ownership is established by the upstream startup script through `CHOWN_HOME=yes` (not a recursive ownership change).
+
+## Independent source build candidate
+
+The Dockerfile uses a public Jupyter base pinned by its linux/amd64 registry
+manifest. It does not depend on any fleet checkpoint or host-local image ID.
+`image/security/conda-linux-64.lock` fixes the 376 published Conda artifacts;
+the 377th package, conda-rattler-solver, is rebuilt from the verified upstream
+source archive. `python3.yml` documents intent, rather than resolving the build.
+The editor archive and dependency overlays retain upstream integrity hashes.
+The JupyterLab source backport and immutable Yarn lock preserve the original
+formatter plugin ID, preferences filename, and schema identifiers.
+
+Run `tests/build-local.sh` for the bounded rootless Podman build and exact-image
+regression gates. It permits at most four CPUs and 8 GiB RAM, checks host
+headroom, and writes receipts under ignored `build-evidence/`. Tests use fresh
+synthetic homes, a fake Hub, public certificate chains, and an offline test VSIX.
+No existing user home, fleet container, or runtime checkpoint is an input.
+
+This is a candidate, not publication or deployment approval. See
+[BUILD-HANDOFF.md](BUILD-HANDOFF.md) for measured results and remaining limits.

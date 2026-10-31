@@ -1,0 +1,148 @@
+{
+  "editor": {
+    "url": "https://api.github.com/repos/gitpod-io/openvscode-server/releases/latest",
+    "data": {
+      "tag_name": "openvscode-server-v1.109.5",
+      "published_at": "2026-02-20T18:49:34Z",
+      "html_url": "https://github.com/gitpod-io/openvscode-server/releases/tag/openvscode-server-v1.109.5",
+      "body": "OpenVSCode Server v1.109.5",
+      "assets": [
+        {
+          "name": "openvscode-server-v1.109.5-linux-arm64.tar.gz",
+          "browser_download_url": "https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.109.5/openvscode-server-v1.109.5-linux-arm64.tar.gz",
+          "digest": "sha256:36d9c14036489b63de84ebace837fcacf7e60e669a0dc715802c5443684ea4dc",
+          "size": 74488835
+        },
+        {
+          "name": "openvscode-server-v1.109.5-linux-armhf.tar.gz",
+          "browser_download_url": "https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.109.5/openvscode-server-v1.109.5-linux-armhf.tar.gz",
+          "digest": "sha256:f84ac0dcea0bdeac07e172e58903b38bc5ef0ac94b0bf2ab2ce4eca325ab98bb",
+          "size": 68994573
+        },
+        {
+          "name": "openvscode-server-v1.109.5-linux-x64.tar.gz",
+          "browser_download_url": "https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.109.5/openvscode-server-v1.109.5-linux-x64.tar.gz",
+          "digest": "sha256:b433bf4f0227321a7014d8460d10a8f958adc0f45aa79bd889e84e65e8f88363",
+          "size": 76686959
+        }
+      ]
+    }
+  },
+  "selected_node_archive": {
+    "version": "v22.23.4",
+    "url": "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.xz",
+    "sha256": "1805bcd35e6815559bd2eb97db438d3fdb0eb3a5e6a977b7c1badca76337e9ce"
+  },
+  "npm": {
+    "url": "https://registry.npmjs.org/npm/latest",
+    "data": {
+      "version": "12.2.1",
+      "engines": {
+        "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+      },
+      "dependencies": {
+        "ms": "^2.1.2",
+        "ini": "^7.0.0",
+        "tar": "^7.5.22",
+        "diff": "^8.0.2",
+        "glob": "^13.0.6",
+        "nopt": "^10.0.1",
+        "read": "^6.0.0",
+        "ssri": "^14.0.0",
+        "archy": "~1.0.0",
+        "chalk": "^5.6.2",
+        "p-map": "^7.0.4",
+        "which": "^7.0.0",
+        "abbrev": "^5.0.0",
+        "pacote": "^22.0.0",
+        "semver": "^7.8.5",
+        "cacache": "^21.0.1",
+        "ci-info": "^4.4.0",
+        "is-cidr": "^7.0.0",
+        "minipass": "^7.1.3",
+        "node-gyp": "^13.0.0",
+        "proc-log": "^7.0.0",
+        "bin-links": "^7.0.0",
+        "libnpmorg": "^9.0.0",
+        "minimatch": "^10.2.5",
+        "treeverse": "^3.0.0",
+        "@npmcli/fs": "^6.0.0",
+        "libnpmdiff": "^9.0.4",
+        "libnpmexec": "^11.0.4",
+        "libnpmfund": "^8.0.4",
+        "libnpmpack": "^10.0.4",
+        "libnpmteam": "^9.0.0",
+        "text-table": "~0.2.0",
+        "@npmcli/git": "^8.0.0",
+        "fs-minipass": "^3.0.3",
+        "graceful-fs": "^4.2.11",
+        "npm-profile": "^13.0.1",
+        "libnpmaccess": "^11.0.0",
+        "libnpmsearch": "^10.0.0",
+        "@sigstore/tuf": "^5.0.0",
+        "libnpmpublish": "^12.0.1",
+        "libnpmversion": "^9.0.0",
+        "@npmcli/config": "^11.2.0",
+        "@npmcli/redact": "^5.0.0",
+        "supports-color": "^10.2.2",
+        "hosted-git-info": "^10.1.1",
+        "npm-package-arg": "^14.0.0",
+        "qrcode-terminal": "^0.12.0",
+        "@npmcli/arborist": "^10.0.4",
+        "npm-audit-report": "^8.0.0",
+        "init-package-json": "^9.0.0",
+        "make-fetch-happen": "^16.0.1",
+        "minipass-pipeline": "^1.2.4",
+        "npm-pick-manifest": "^12.0.0",
+        "npm-user-validate": "^5.0.0",
+        "@npmcli/run-script": "^11.0.0",
+        "npm-install-checks": "^9.0.0",
+        "npm-registry-fetch": "^20.0.1",
+        "tiny-relative-date": "^2.0.2",
+        "fastest-levenshtein": "^1.0.16",
+        "parse-conflict-json": "^6.0.0",
+        "@npmcli/package-json": "^8.0.0",
+        "@npmcli/promise-spawn": "^10.0.0",
+        "spdx-expression-parse": "^4.0.0",
+        "@npmcli/map-workspaces": "^6.0.0",
+        "validate-npm-package-name": "^8.0.0",
+        "@npmcli/metavuln-calculator": "^10.0.0",
+        "@isaacs/string-locale-compare": "^1.1.0",
+        "json-parse-even-better-errors": "^6.0.0"
+      },
+      "dist": {
+        "shasum": "2a2765aa5b36f68006ea7132bd3f20b095a85c6e",
+        "tarball": "https://registry.npmjs.org/npm/-/npm-12.2.1.tgz",
+        "fileCount": 1942,
+        "integrity": "sha512-bKCmFRVT/BB+YPEYbZwQ1XUI3N5t4xKSpU1MxOjo7z3iWzKBJ0ZXRC1xFdEN+TC7N5TdywaBzf2dMXGJq/e2PQ==",
+        "signatures": [
+          {
+            "sig": "MEQCIAsXcHTrdTysebaa+LWvu1F6tjSlwyXRr3eG/smzppVnAiApJq1ELms3QE7/aTlQmEt/Yf24Tz5G7sygrUXYS8khng==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEUCIB++SZIIe5GkkDK2W7U+6Nvp9MXNjpqHUviecw480OMCAiEAnJUNjH2EnEyZgrFQz0nM8A81An7XUuu08GR5KXWHgmo=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 12430582
+      }
+    }
+  },
+  "underscore": {
+    "version": "1.13.8",
+    "dist": {
+      "shasum": "a93a21186c049dbf0e847496dba72b7bd8c1e92b",
+      "tarball": "https://registry.npmjs.org/underscore/-/underscore-1.13.8.tgz",
+      "fileCount": 505,
+      "integrity": "sha512-DXtD3ZtEQzc7M8m4cXotyHR+FAS18C64asBYY5vqZexfYryNNnDc02W4hKg3rdQuqOYas1jkseX0+nZXjTXnvQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIHFXnmR/72G02iqJ4VrPkEE6fU0v6+YoTQKsNBNDPr7YAiEAl3vzWfCV3kMUVo/hiWfrKsoc5bOjEySbk0w/P9hjdQA=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "unpackedSize": 908033
+    }
+  }
+}

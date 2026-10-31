@@ -1,0 +1,4 @@
+#!/bin/sh
+# jupyter-server-proxy's TCP readiness probe uses IPv4 loopback. OpenVSCode
+# 1.109 defaults localhost to ::1 on this image; bind the matching interface.
+exec /opt/research-editor/bin/openvscode-server --host=127.0.0.1 "$@"
