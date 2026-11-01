@@ -1,5 +1,5 @@
 """Cheap build-input checks; these do not replace exact-image runtime gates."""
-import hashlib, json, pathlib, re, subprocess, tempfile
+import difflib, hashlib, json, pathlib, re
 root = pathlib.Path(__file__).resolve().parents[1]
 s = root / 'image/security'
 records = json.loads((s/'conda-artifacts.json').read_text())
@@ -12,12 +12,13 @@ assert hashlib.sha256((s/'solver-source.tar.gz').read_bytes()).hexdigest() == '1
 for line in (root/'image/Dockerfile').read_text().splitlines():
     if line.startswith('FROM '):
         assert re.fullmatch(r'FROM (quay.io/jupyter/base-notebook@sha256:[0-9a-f]{64} AS (solver|runtime)|runtime( AS frontend)?)', line), line
-with tempfile.TemporaryDirectory() as d:
-    p = pathlib.Path(d)/'packages/settingregistry/src'
-    p.mkdir(parents=True)
-    (p/'settingregistry.ts').write_bytes((s/'settingregistry-source.ts').read_bytes())
-    subprocess.run(['patch', '-p1', '-i', str(s/'settingregistry.patch')], cwd=d, check=True)
-    assert (p/'settingregistry.ts').read_bytes() == (s/'settingregistry-patched.ts').read_bytes()
+# Validate the exact reviewed diff without requiring patch/git in the CI image.
+path = 'packages/settingregistry/src/settingregistry.ts'
+expected = ''.join(difflib.unified_diff(
+    (s/'settingregistry-source.ts').read_text().splitlines(True),
+    (s/'settingregistry-patched.ts').read_text().splitlines(True),
+    fromfile='a/'+path, tofile='b/'+path))
+assert (s/'settingregistry.patch').read_text() == expected
 assert len(json.loads((root/'tests/blocked-fingerprints.json').read_text())) == 20
 assert len(list((root/'tests/chains').glob('*.pem'))) == 12
 print('source contracts passed; runtime and trust remain separate gates')

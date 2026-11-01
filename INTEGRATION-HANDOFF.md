@@ -74,8 +74,14 @@ trust stores. Migration from archived Kaniko remains outstanding.
 
 Local YAML parsing and no-publication checks pass. GitLab CI lint POST is denied
 HTTP 403 by the existing managed API scope; no broader lease was requested.
-The final source SHA, remote readback and one-time CI status observation are
-returned in the publication receipt, not inferred from local validation.
+The first integrated pipeline [261807](https://gitlab.kwant-project.org/qt/research-docker/-/pipelines/261807)
+passed all eight patch contracts, then failed because the bootstrap image lacks
+`patch`. The source-contract check now compares the exact unified diff using
+Python's standard library; it requires neither `patch` nor Git. All three source
+job commands pass inside the exact CI image. The native Kaniko probe also removes
+its downloaded public fixture before the subsequent image build. The final
+source SHA, remote readback and one-time CI status observation are returned in
+the publication receipt, not inferred from local validation.
 
 ## Outstanding exceptions
 

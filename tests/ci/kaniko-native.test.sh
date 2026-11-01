@@ -3,7 +3,7 @@
 # No registry login, image push, cache push, host ports or production resources.
 set -eu
 work=$(mktemp -d /kaniko/trust-probe.XXXXXX)
-trap 'rm -rf "$work"' EXIT HUP INT TERM
+trap 'rm -rf "$work"; rm -f /research-native-tls-download' EXIT HUP INT TERM
 probe() {
   host=$1
   printf 'FROM scratch\nADD https://%s/ /research-native-tls-download\n' "$host" > "$work/Dockerfile"
