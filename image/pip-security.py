@@ -2,6 +2,9 @@
 import difflib, hashlib, io, json, pathlib, re, shutil, urllib.request, zipfile
 root = pathlib.Path('/opt/conda/lib/python3.13/site-packages/pip/_vendor')
 releases = json.loads(pathlib.Path('/build/pip-security.json').read_text())
+# Reason/removal/tests: security/PATCHES.md (pip vendor backport).
+from patch_checks import pip_vendor
+pip_vendor(root, releases)
 receipt = {}
 for name, release in releases.items():
     data = urllib.request.urlopen(release['url'], timeout=120).read()

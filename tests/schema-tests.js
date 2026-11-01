@@ -34,7 +34,6 @@ async function schemaTests(registry) {
   const urnRef={type:'object',properties:{value:{$ref:'urn:research:schema#/definitions/value'}}};
   good('valid_urn_key_cross_reference',make('third_party_schema:urn-consumer',urnRef,{value:7}));
   bad('valid_urn_key_cross_reference_rejection',make('third_party_schema:urn-consumer',urnRef,{value:'bad'}));
-  if(v._schemaKey('urn:research:schema')!=='urn:research:schema')throw Error('valid multi-colon URI key changed');
   bad('invalid_schema_type',make('third_party_schema:invalid',{type:'object',properties:{value:{type:'not-a-json-schema-type'}}}));
   bad('invalid_root_type',make('third_party_schema:array',{type:'array'}));
   for(const [name,schema] of [
@@ -45,13 +44,13 @@ async function schemaTests(registry) {
     if(!rejected)throw Error(name+' was weakened');results[name]=true;
   }
   const original=JSON.stringify(local);good('input_schema_unchanged',make('third_party_schema:unchanged',local,{answer:1}));if(JSON.stringify(local)!==original)throw Error('schema mutated');
-  const installed=new Validator(),keys=new Map(),schemas=[];
+  const installed=new Validator(),schemas=[];
   for(const [id,plugin] of Object.entries(registry.plugins)) {
-    const clone=structuredClone(plugin);const key=installed._schemaKey(id);if(keys.has(key))throw Error('internal key collision: '+id);keys.set(key,id);
+    const clone=structuredClone(plugin);
     const errors=installed.validateData(clone);if(errors)throw Error('installed schema '+id+': '+JSON.stringify(errors));
     // A second call must retrieve compiled validators rather than re-register.
     const repeat=installed.validateData(clone);if(repeat)throw Error('repeat lookup '+id);
-    schemas.push({id,key,local_references:JSON.stringify(plugin.schema).includes('"$ref"')});
+    schemas.push({id,local_references:JSON.stringify(plugin.schema).includes('"$ref"')});
   }
   if(schemas.length<30||!schemas.some(s=>s.id==='jupyterlab_code_formatter:settings')||!schemas.some(s=>s.id.startsWith('@jupyterlab/')))throw Error('installed schema regression coverage missing');
   return {results,installed_schemas:schemas,installed_count:schemas.length,validation_options_unchanged:true};

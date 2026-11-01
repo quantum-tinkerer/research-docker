@@ -1,10 +1,17 @@
 """Apply actual official security release files, not scanner/version-only edits."""
 import re
+from patch_checks import editor_dependency, source_digest
 import json,pathlib,urllib.request,hashlib,base64,tarfile,io,shutil,subprocess,os,difflib
 B=pathlib.Path('/build');releases=json.loads((B/'dependency-releases.json').read_text());editor=pathlib.Path('/opt/research-editor');npm=pathlib.Path('/opt/conda/lib/node_modules/npm');receipt={'updated':[]}
 updates=[(editor/'node_modules'/n,n+'@'+v) for n,v in [('shell-quote','1.12.0'),('socks','2.8.10'),('ip-address','10.3.1'),('lodash-es','4.18.0'),('picomatch','4.0.4'),('undici','7.30.1')]]+[(npm/'node_modules/undici','undici@6.29.1')]
 for dest,key in updates:
  assert dest.is_dir(),str(dest);old=json.loads((dest/'package.json').read_text());release=releases[key];data=urllib.request.urlopen(release['dist']['tarball'],timeout=120).read();alg,digest=release['dist']['integrity'].split('-',1);assert base64.b64encode(hashlib.new(alg,data).digest()).decode()==digest
+ # Compare real upstream code trees before any substitution, not just versions.
+ with tarfile.open(fileobj=io.BytesIO(data),mode='r:gz') as tf:
+  fixed={str(pathlib.PurePosixPath(*pathlib.PurePosixPath(m.name).parts[1:])):tf.extractfile(m).read() for m in tf if m.isfile() and pathlib.Path(m.name).suffix in ['.js','.mjs','.cjs','.json']}
+ actual={str(p.relative_to(dest)):p.read_bytes() for p in dest.rglob('*') if p.is_file() and p.suffix in ['.js','.mjs','.cjs','.json']}
+ label=dest.name if str(dest).startswith(str(editor)) else 'npm/'+dest.name
+ editor_dependency(label,old['version'],source_digest(actual),source_digest(fixed))
  shutil.rmtree(dest);dest.mkdir()
  with tarfile.open(fileobj=io.BytesIO(data),mode='r:gz') as tf:
   for m in tf.getmembers():

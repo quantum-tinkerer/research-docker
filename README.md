@@ -2,7 +2,7 @@
 
 * Official repo on [kwant-gitlab/qt/research-docker](https://gitlab.kwant-project.org/qt/research-docker)
 * GitHub mirror on [github.com/quantum-tinkerer/research-docker](https://github.com/quantum-tinkerer/research-docker)
-* Built automatically in Gitlab CI using Kaniko
+* Validated automatically in GitLab CI using no-push builds; source pushes do not publish image tags.
 
 To use it, follow the instructions of [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#startup-hooks), for example:
 
@@ -43,3 +43,21 @@ No existing user home, fleet container, or runtime checkpoint is an input.
 
 This is a candidate, not publication or deployment approval. See
 [BUILD-HANDOFF.md](BUILD-HANDOFF.md) for measured results and remaining limits.
+
+## Patch review and upstream refresh
+
+Before updating candidate inputs, read [the specific patch inventory](image/security/PATCHES.md).
+Build preflights stop with `RETIRE` when the fix is incorporated, or `REVIEW`
+on unsupported source/API changes. Remove obsolete code and rerun the retained
+regressions; do not simply refresh expected hashes to bypass a failure.
+
+Explicitly inspect current released artifacts even while build pins stay fixed:
+
+```sh
+python3 tests/upstream-refresh.py --output build-evidence/upstream-refresh
+sh tests/ci/upstream-refresh.sh
+```
+
+These commands never run during notebook startup or persistent-user recovery.
+See [the integration validation record](INTEGRATION-HANDOFF.md) for the retired
+NSS workaround, final candidate identity, and unresolved release exceptions.

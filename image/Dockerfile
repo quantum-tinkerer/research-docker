@@ -2,10 +2,11 @@
 FROM quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1 AS solver
 USER root
 ENV HOME=/root
+COPY security/patch_checks.py security/reviewed-inputs.json /build/
 COPY security/solver-source.tar.gz /build/source.tar.gz
 COPY security/plugin-recipe.yaml /build/recipe/meta.yaml
 COPY security/solver-tools-linux-64.lock /build/solver-tools.lock
-RUN echo "18b436a8293cf22e34815b2e27a223bc1c63cc76a3cab6b2eb642673dd75949a  /build/source.tar.gz" | sha256sum -c - \
+RUN cd /build && python -c 'from pathlib import Path; from patch_checks import solver_snapshot; solver_snapshot(Path("source.tar.gz").read_bytes())' \
  && mkdir /build/source && tar -xzf /build/source.tar.gz --strip-components=1 -C /build/source \
  && mamba create -y -p /build/tools --file /build/solver-tools.lock \
  && /build/tools/bin/conda build /build/recipe --no-test --output-folder /build/out --override-channels -c conda-forge
@@ -22,7 +23,7 @@ RUN sed -i -E 's#https?://(archive.ubuntu.com/ubuntu/?|security.ubuntu.com/ubunt
 RUN apt update \
     && apt full-upgrade -y \
     && apt install -y --no-install-recommends --fix-missing \
-        ca-certificates p11-kit-modules git-lfs inkscape \
+        ca-certificates git-lfs inkscape \
         software-properties-common \
         bash-completion \
         cron \
@@ -95,11 +96,8 @@ COPY gitconfig gitattributes gitignore /opt/conda/etc/
 COPY requirements-pip.txt /build/
 RUN pip install --no-cache-dir --report /build/pip-report.json -r /build/requirements-pip.txt
 
-# Conda NSS does not yet ship the upstream trust fix. Use the distro's documented
-# p11-kit root provider, leaving the NSS cryptographic engine unchanged.
-RUN nss_provider=$(dpkg-query -L p11-kit-modules | sed -n '/\/p11-kit-trust\.so$/p') \
-    && test -f "$nss_provider" \
-    && find /opt/conda /usr/lib -name libnssckbi.so -exec ln -sf "$nss_provider" {} \;
+# The distro NSS provider is now fixed. Do not replace libnssckbi.so:
+# native PKCS#11/chain regressions in tests/ remain mandatory (PATCHES.md).
 
 # jupyter-sshd-proxy starts its own sshd with "-f none", so it does not read
 # the global sshd_config.d drop-in below unless the option is set explicitly.

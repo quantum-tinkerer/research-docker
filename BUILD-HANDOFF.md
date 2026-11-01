@@ -1,5 +1,8 @@
 # Independent notebook source handoff — 2026-10-31
 
+This is the historical October 31 validation record. The subsequent source
+integration and NSS retirement are recorded in [INTEGRATION-HANDOFF.md](INTEGRATION-HANDOFF.md).
+
 The clean-source candidate builds and passes the exact-image runtime/trust suite.
 It is ready for source review, **not an unconditional release approval**. Nothing
 was pushed, tagged, merged, published or deployed. Admin-notes and live hosts,

@@ -1,2 +1,4 @@
 /build-evidence/
 __pycache__/
+
+.ci-trust/

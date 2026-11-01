@@ -1,0 +1,45 @@
+{
+  "pip_urllib3": "2e56de7e1c77728a49e9198409c72b407fccc92054f0957a6fd42c603271812a",
+  "pip_msgpack": "41ec18089a7e3788e2bb11ac33e37ad9a20287cea115ce969038cd21903a160d",
+  "nbclassic": "3b87ade2ed3e61e1ed0d47975335693287d06e0a6046e3c766ee59c165cfd1d3",
+  "jupyter-vscode-proxy": "06f3a8ed5ae69649cfc50bf7db23cd901a2ea9d188a7cf2b50c3e7f114f76051",
+  "jupyter-sshd-proxy": "b1b5bfebb2ab55dd25c91b4540291eaa8c62bbcea2a578f7a72dc79fed6c410c",
+  "settingregistry_original": "d4e894c1cc474df29dc6a679802b9ee9319bd0066ae6d8f03d3594ca1fceec43",
+  "settingregistry_fixed": "895a5ddf9f21d45ce68e7144738c60e479c569b4427b7407174d6a9c5274fe36",
+  "pip_urllib3_fixed": "9ffe9efbb30b35a8ac076d6461606cd54dbed140fd0ed5e47ad74da0e64c091c",
+  "pip_msgpack_fixed": "7dd56317f80c75cd4110b2efe8f8df5319648328f1f2178d2c37106524bed805",
+  "editor_dependencies": {
+    "shell-quote": {
+      "version": "1.8.3",
+      "sha256": "1b697aeaca6c4b51e53a57eb6216657c0fc859c633cae61587afaea06c6c2938"
+    },
+    "socks": {
+      "version": "2.8.3",
+      "sha256": "9de7c6581a9421123238061a0de93570db5adf9448e508748804a0e59a4399a0"
+    },
+    "ip-address": {
+      "version": "9.0.5",
+      "sha256": "5c29a4f4c6ea008268e0875496113aaa6e9d5079a60b84fce12d5feaad60e1b9"
+    },
+    "lodash-es": {
+      "version": "4.17.23",
+      "sha256": "5c9d5f66fa49472b84d446fbbe3e061ae4a3dfca4ad363c1c0f4d50f55390849"
+    },
+    "picomatch": {
+      "version": "4.0.3",
+      "sha256": "4b35fa3048901fdcc8778985592ec3a1655baf2d987c5eb4c76e489c631b0c51"
+    },
+    "undici": {
+      "version": "7.19.0",
+      "sha256": "7bc19b0e571a9d2cf64a73f0b296b6f089f027734f09b325056f183e999dde00"
+    },
+    "npm/undici": {
+      "version": "6.29.0",
+      "sha256": "0daecc44d644a43fb8f6993ca0e0ac682e4f8c0e45894d5e49b4a05f7ec080b8"
+    }
+  },
+  "global_npm": {
+    "version": "10.9.9",
+    "sha256": "481d4924576b40e627b93721f2cb5d44fae82b6ce247081cd074547b95a8ef43"
+  }
+}

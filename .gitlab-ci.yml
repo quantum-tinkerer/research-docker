@@ -1,20 +1,33 @@
-image:
-  name: gcr.io/kaniko-project/executor:debug
-  entrypoint: [""]
+# Source integration is validation-only. Never move combined:main implicitly:
+# release exceptions in BUILD-HANDOFF.md have not been accepted.
+stages: [test, build]
 
-.kaniko_build:
-  before_script:
-    - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+patch contracts:
+  stage: test
+  image:
+    name: quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1
+    entrypoint: [""]
   script:
-    - /kaniko/executor
-      --context $IMAGE_DIR
-      --dockerfile $IMAGE_DIR/Dockerfile
-      --destination $CI_REGISTRY_IMAGE/combined:$IMAGE_TAG
-      --reproducible
+    - python -m unittest discover -s tests -p 'test_patch*.py' -v
+    - python tests/source-contract.py
+    - python tests/ci/export-trust.py
+  artifacts:
+    paths: [.ci-trust/ca-certificates.crt]
+    expire_in: 1 day
 
 build image:
-  extends: .kaniko_build
-  variables:
-    IMAGE_DIR: $CI_PROJECT_DIR/image
-    IMAGE_TAG: $CI_COMMIT_REF_NAME
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug@sha256:9e22d0ba2c78cffbd47e2269aa6d3dc43fc3e3ecc6b61262399279dec5e67d45
+    entrypoint: [""]
+  before_script:
+    - sh tests/ci/kaniko-ca.test.sh /kaniko/ssl/certs/ca-certificates.crt .ci-trust/ca-certificates.crt
+    - sh tests/ci/kaniko-ca.sh /kaniko/ssl/certs/ca-certificates.crt .ci-trust/ca-certificates.crt --apply
+    - sh tests/ci/kaniko-native.test.sh
+  script:
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR/image
+      --dockerfile $CI_PROJECT_DIR/image/Dockerfile
+      --no-push
+      --no-push-cache
+      --reproducible

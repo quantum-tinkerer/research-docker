@@ -1,0 +1,129 @@
+{
+  "conda-rattler-solver_release": {
+    "version": "0.2.0",
+    "url": "https://files.pythonhosted.org/packages/7b/10/ebe6394df0518d1f5e4ac48ee8c8db5462b96d7810e25d43b6e268409052/conda_rattler_solver-0.2.0-py3-none-any.whl",
+    "sha256": "c577f091be1823d82875c82dd19a4e61ede68f0bc53669897364a547b34ca147"
+  },
+  "jupyterlab_release": {
+    "version": "4.6.5",
+    "url": "https://files.pythonhosted.org/packages/41/8f/58a539ef036aca50891a06b283f044da84a6544177fb6e49217c5c5206c9/jupyterlab-4.6.5-py3-none-any.whl",
+    "sha256": "cb96fc3d59d20b6f17d0cc1afe6e0508a61d881ab39be89236c55b01fa0e2b99"
+  },
+  "nbclassic_release": {
+    "version": "1.3.3",
+    "url": "https://files.pythonhosted.org/packages/3d/fd/dfb6db427bb4e0a50c9802b11df0b69d9364192f3db999849cde9209c8d0/nbclassic-1.3.3-py3-none-any.whl",
+    "sha256": "dcee5149aa6aa01846c7458d6394b29b325213b5e118ee14c80d689122e0e4f2"
+  },
+  "pip_release": {
+    "version": "26.2.2",
+    "url": "https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl",
+    "sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+  },
+  "certifi_release": {
+    "version": "2026.10.23",
+    "url": "https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl",
+    "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
+  },
+  "solver snapshot": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": [
+      "py-rattler<0.27.0a0,>=0.26.0"
+    ]
+  },
+  "nbclassic AMD": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": {
+      "version": "1.13.7",
+      "standalone_fixed": false,
+      "bundle_fixed": false,
+      "bundles": [
+        "/tmp/research-upstream-raspjz9a/nbclassic/nbclassic/static/notebook/js/main.min.js",
+        "/tmp/research-upstream-raspjz9a/nbclassic/nbclassic/static/edit/js/main.min.js",
+        "/tmp/research-upstream-raspjz9a/nbclassic/nbclassic/static/tree/js/main.min.js",
+        "/tmp/research-upstream-raspjz9a/nbclassic/nbclassic/static/terminal/js/main.min.js"
+      ]
+    }
+  },
+  "pip vendor backport": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "pip actual CA store": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": 120
+  },
+  "certifi actual CA store": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": 118
+  },
+  "fast-uri resolution": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "settingregistry_release": {
+    "version": "4.6.5",
+    "url": "https://registry.npmjs.org/@jupyterlab/settingregistry/-/settingregistry-4.6.5.tgz",
+    "integrity": "sha512-8mdcHyY+Hq0gclu1ir/q56/TnEa8YagLmLTFQw6Mz/1zJk0edh1X0IHPIPnVrKHvY36BEXU0xZclW3tL5mrcJQ=="
+  },
+  "settingregistry patch": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": {
+      "fixed": false
+    }
+  },
+  "fast_uri_latest": {
+    "latest": "4.2.3",
+    "latest_compatible_3": "3.1.9"
+  },
+  "editor_release": {
+    "version": "openvscode-server-v1.109.5",
+    "url": "https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.109.5/openvscode-server-v1.109.5-linux-x64.tar.gz",
+    "sha256": "sha256:b433bf4f0227321a7014d8460d10a8f958adc0f45aa79bd889e84e65e8f88363"
+  },
+  "editor native Node": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor shell-quote": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor socks": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor ip-address": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor lodash-es": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor picomatch": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "editor undici": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "npm undici": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "npm_release": {
+    "version": "12.2.1",
+    "url": "https://registry.npmjs.org/npm/-/npm-12.2.1.tgz",
+    "integrity": "sha512-bKCmFRVT/BB+YPEYbZwQ1XUI3N5t4xKSpU1MxOjo7z3iWzKBJ0ZXRC1xFdEN+TC7N5TdywaBzf2dMXGJq/e2PQ=="
+  },
+  "Conda global npm": {
+    "status": "reviewed affected input / retained configuration",
+    "detail": null
+  },
+  "conda_node_release": {
+    "version": "22.23.4",
+    "url": "https://conda.anaconda.org/conda-forge/linux-64/nodejs-22.23.4-h645b291_0.conda",
+    "sha256": "faf0d3f9e12ad4d2d2084e51f825ad7ab7b2cd874bae60e6d410f4e2f2d27ef6"
+  }
+}

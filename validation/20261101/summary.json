@@ -1,0 +1,92 @@
+{
+  "image_id": "sha256:694d627c2cc5873ee97cca6c61a45ba64dd00ba8d950907dbe46be1091be1821",
+  "archive_sha256": "a9b9d8ce6ae841bfbb37137739ecc2f4b58446cf6d53c1e19d26b23e7cfaae3c",
+  "local_tag": "localhost/research-source:20261101-final",
+  "base_manifest": "quay.io/jupyter/base-notebook@sha256:49c3267842eb52c9505dba89ebac3adf142afa73feba48d0243da3c9dbdd34d1",
+  "runtime_suite": "passed",
+  "patch_contract_tests": 8,
+  "home": {
+    "uid": 1000,
+    "home": "/home/tinkerer",
+    "home_uid": 1000,
+    "matplotlib_cache": {
+      "path": "/home/tinkerer/.cache/matplotlib",
+      "uid": 1000,
+      "writable": true
+    }
+  },
+  "browser": {
+    "passed": true,
+    "settings_id": "jupyterlab_code_formatter:settings",
+    "loaded_schemas": 93,
+    "schema_cases": 26,
+    "formatting": {
+      "path": "synthetic-formatter.py",
+      "formatters": [
+        "black"
+      ],
+      "considered": 1,
+      "changed": 1,
+      "errors": []
+    },
+    "nbclassic": {
+      "version": "1.13.8",
+      "deep_flatten_and_equality_passed": true,
+      "asset_path": "/user/synthetic/static/nbclassic/components/underscore/underscore-security-fixed.js",
+      "sha256": "1879dd00d8c45c2234c61a06c0e473ae800c5bbbd8d745d8483bd6d7efb09fa8"
+    },
+    "console_errors": [],
+    "caught_exception_descriptions": 24
+  },
+  "nss": {
+    "/usr/lib/x86_64-linux-gnu/libnssckbi.so": {
+      "target": "/usr/lib/x86_64-linux-gnu/libnssckbi.so",
+      "probe": {
+        "certificates": 169,
+        "affected": []
+      }
+    }
+  },
+  "native_crates": [
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "pyo3",
+      "version": "0.29.3"
+    },
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "quinn-proto",
+      "version": "0.11.19"
+    },
+    {
+      "binary": "opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so",
+      "name": "zip",
+      "version": "9.1.3"
+    }
+  ],
+  "scan": {
+    "tool": "Trivy 0.76.1",
+    "raw_counts": {
+      "LOW": 7,
+      "HIGH": 19,
+      "MEDIUM": 29,
+      "CRITICAL": 3
+    },
+    "finding_set_identical_to": "../20261031/scan-applicability.json",
+    "applicable_reported_high_critical": 0,
+    "coverage_limit": "Not comprehensive Conda or compiled-JavaScript clearance; medium/low retained"
+  },
+  "retired": [
+    "NSS libnssckbi.so blanket replacement"
+  ],
+  "ci_kaniko": {
+    "digest": "sha256:9e22d0ba2c78cffbd47e2269aa6d3dc43fc3e3ecc6b61262399279dec5e67d45",
+    "apply_retire_drift": "passed",
+    "native_tls_no_push": "passed",
+    "upstream_refresh": "still affected (2 blocked roots)"
+  },
+  "source_integration_authorized": true,
+  "image_published": false,
+  "release_exceptions_accepted": false,
+  "rolled_out": false
+}
