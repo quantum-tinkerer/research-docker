@@ -1,5 +1,5 @@
-# Source integration is validation-only. Never move combined:main implicitly:
-# release exceptions in BUILD-HANDOFF.md have not been accepted.
+# Branches validate only. Dated release tags publish an immutable deployment
+# candidate; production promotion and its runtime checks remain separate.
 stages: [test, build]
 
 patch contracts:
@@ -31,3 +31,29 @@ build image:
       --no-push
       --no-push-cache
       --reproducible
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^release-[0-9]{8}(-[0-9]+)?$/'
+      when: never
+    - when: on_success
+
+publish image:
+  extends: build image
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^release-[0-9]{8}(-[0-9]+)?$/'
+  script:
+    - |
+      mkdir -p /kaniko/.docker
+      printf '{"auths":{"%s":{"auth":"%s"}}}\n' "$CI_REGISTRY" \
+        "$(printf '%s:%s' "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" | base64 | tr -d '\n')" \
+        > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR/image
+      --dockerfile $CI_PROJECT_DIR/image/Dockerfile
+      --destination $CI_REGISTRY_IMAGE/combined:$CI_COMMIT_TAG
+      --cache=false
+      --compressed-caching=false
+      --reproducible
+      --digest-file image-digest.txt
+  artifacts:
+    paths: [image-digest.txt]
+    expire_in: 1 year
